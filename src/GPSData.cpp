@@ -5,7 +5,11 @@
 GPSData::GPSData(QObject *parent) :
     QObject(parent)
 {
-    m_status = "False";
+    m_latitude = "";
+    m_longitude = "";
+    m_altitude = "";
+    m_time = QDate::currentDate().toString("yyyy.MM.dd") + " " + QDateTime::currentDateTime().toString("hh:mm:ss");
+    m_status = "Unknown";
 
     m_timer = new QTimer(this);
     connect(m_timer, &QTimer::timeout, this, &GPSData::UpdateData);
@@ -22,23 +26,17 @@ GPSData::GPSData(QObject *parent) :
 }
 
 void GPSData::UpdateData() {
-    double latitude;
-    double longitude;
-    double altitude;
     double hasFix;
 
     double *res = new double[6];
     m_gnss->get_gnss_info(res);
-    latitude = res[0];
-    longitude = res[1];
-    altitude = res[2];
     hasFix = m_gnss->has_fix();
 
     // We use the setters because they emit a signal
     // so that the UI gets refreshed
-    setLongitude(QString::number(latitude));
-    setLatitude(QString::number(longitude));
-    setAltitude(QString::number(altitude));
+    setLongitude(QString::number(res[0]));
+    setLatitude(QString::number(res[1]));
+    setAltitude(QString::number(res[2]));
     setTime(QDate::currentDate().toString("yyyy.MM.dd") + " " + QDateTime::currentDateTime().toString("hh:mm:ss"));
     setStatus(hasFix == 1 ? "True" : "False");
 

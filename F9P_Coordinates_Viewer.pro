@@ -48,3 +48,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 CONFIG += qmltypes
 QML_IMPORT_NAME = io.qt.examples.gps_data
 QML_IMPORT_MAJOR_VERSION = 1
+
+DISTFILES += \
+    readme.md
