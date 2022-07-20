@@ -1,9 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <string.h>
-#include <stdio.h>
-#include <QFile>
-#include <QTextStream>
 #include <QDate>
 
 #include <GPSData.h>
@@ -21,7 +15,7 @@ GPSData::GPSData(QObject *parent) :
 
     if (!m_gnss->init("/dev/ttyACM0")) {
         std::cout << "No GPS Found !" << std::endl;
-        std::cout << "Please make sure that the application is running as root and that the GPU is properly plugged." << std::endl;
+        std::cout << "Please make sure that the application is running as root and that the GNSS device is properly plugged." << std::endl;
     }
 
     std::cout << m_gnss->get_gnss_name() << std::endl;
@@ -33,24 +27,22 @@ void GPSData::UpdateData() {
     double altitude;
     double hasFix;
 
-    if (true) {
-        double *res = new double[6];
-        m_gnss->get_gnss_info(res);
-        latitude = res[0];
-        longitude = res[1];
-        altitude = res[2];
-        hasFix = m_gnss->has_fix();
+    double *res = new double[6];
+    m_gnss->get_gnss_info(res);
+    latitude = res[0];
+    longitude = res[1];
+    altitude = res[2];
+    hasFix = m_gnss->has_fix();
 
-        // We use the setters because the emit a signal
-        // so that the UI gets refreshed
-        setLongitude(QString::number(latitude));
-        setLatitude(QString::number(longitude));
-        setAltitude(QString::number(altitude));
-        setTime(QDate::currentDate().toString("yyyy.MM.dd") + " " + QDateTime::currentDateTime().toString("hh:mm:ss"));
-        setStatus(hasFix == 1 ? "True" : "False");
+    // We use the setters because they emit a signal
+    // so that the UI gets refreshed
+    setLongitude(QString::number(latitude));
+    setLatitude(QString::number(longitude));
+    setAltitude(QString::number(altitude));
+    setTime(QDate::currentDate().toString("yyyy.MM.dd") + " " + QDateTime::currentDateTime().toString("hh:mm:ss"));
+    setStatus(hasFix == 1 ? "True" : "False");
 
-        delete [ ] res;
-    }
+    delete [ ] res;
 }
 
 

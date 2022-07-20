@@ -1,14 +1,6 @@
 #ifndef GPSDATA_H
 #define GPSDATA_H
 
-#include <QApplication>
-#include <QPushButton>
-#include <QMessageBox>
-#include <QInputDialog>
-#include <QFontDialog>
-#include <QLineEdit>
-#include <QFormLayout>
-#include <QLabel>
 #include <QTimer>
 #include <QObject>
 #include <QString>
