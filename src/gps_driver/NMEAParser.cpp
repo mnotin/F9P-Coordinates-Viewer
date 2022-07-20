@@ -2,8 +2,8 @@
 #include <algorithm>
 #include <cctype>
 
-#include "../../headers/gps_driver/nmeaparse/NMEAParser.h"
-#include "../../headers/gps_driver/nmeaparse/NumberConversion.h"
+#include <gps_driver/nmeaparse/NMEAParser.h>
+#include <gps_driver/nmeaparse/NumberConversion.h>
 
 using namespace std;
 using namespace nmea;

@@ -6,7 +6,7 @@
 #include <libserial/SerialPort.h>
 #include <fstream>
 
-#include "../../headers/gps_driver/nmeaparse/nmea.h"
+#include <gps_driver/nmeaparse/nmea.h>
 
 #define BUF_SIZE 200
 

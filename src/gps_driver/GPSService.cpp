@@ -2,8 +2,8 @@
 #include <cmath>
 #include <fstream>
 
-#include "../../headers/gps_driver/nmeaparse/GPSService.h"
-#include "../../headers/gps_driver/nmeaparse/NumberConversion.h"
+#include <gps_driver/nmeaparse/GPSService.h>
+#include <gps_driver/nmeaparse/NumberConversion.h>
 
 using namespace std;
 using namespace std::chrono;

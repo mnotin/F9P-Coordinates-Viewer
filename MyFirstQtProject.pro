@@ -9,8 +9,10 @@ QMAKE_LFLAGS += -DHAVE_CBLAS=1
 
 LIBS += -lblas -llapack -ltbb -lserial
 
+INCLUDEPATH += headers/
+
 SOURCES += \
-    src/MyWindow.cpp \
+    src/GPSData.cpp \
     src/main.cpp\
     src/gps_driver/GPSFix.cpp \
     src/gps_driver/GPSService.cpp \
@@ -21,7 +23,7 @@ SOURCES += \
     src/gps_driver/HAL_Sirius_F9P_Rover.cc
 
 HEADERS += \
-    headers/MyWindow.h \
+    headers/GPSData.h \
     headers/gps_driver/nmeaparse/Event.h \
     headers/gps_driver/nmeaparse/GPSFix.h \
     headers/gps_driver/nmeaparse/GPSService.h \
@@ -30,8 +32,7 @@ HEADERS += \
     headers/gps_driver/nmeaparse/NMEAParser.h \
     headers/gps_driver/nmeaparse/NumberConversion.h
 
-RESOURCES += qml.qrc \
-    qml.qrc
+RESOURCES += qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -43,3 +44,7 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+CONFIG += qmltypes
+QML_IMPORT_NAME = io.qt.examples.gps_data
+QML_IMPORT_MAJOR_VERSION = 1

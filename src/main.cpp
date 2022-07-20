@@ -1,21 +1,9 @@
-/*#include <QApplication>
-
-#include "../headers/MyWindow.h"
-#include "gps_driver/drotek_f9p_rover.cpp"
-
-int main(int argc, char *argv[])
-{
-    QApplication app(argc, argv);
-
-    MyWindow window;
-    window.show();
-
-    return app.exec();
-}*/
-
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
+#include <GPSData.h>
+
+#include "gps_driver/drotek_f9p_rover.cpp"
 
 int main(int argc, char *argv[])
 {
@@ -23,6 +11,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
     QGuiApplication app(argc, argv);
+
+    GPSData gpsData;
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));

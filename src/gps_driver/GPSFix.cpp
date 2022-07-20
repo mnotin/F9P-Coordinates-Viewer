@@ -3,7 +3,7 @@
 #include <sstream>
 #include <iomanip>
 
-#include "../../headers/gps_driver/nmeaparse/GPSFix.h"
+#include <gps_driver/nmeaparse/GPSFix.h>
 
 using namespace std;
 using namespace std::chrono;

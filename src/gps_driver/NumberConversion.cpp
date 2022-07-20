@@ -1,6 +1,6 @@
 #include <cstdlib>
 
-#include "../../headers/gps_driver/nmeaparse/NumberConversion.h"
+#include <gps_driver/nmeaparse/NumberConversion.h>
 
 using namespace std;
 

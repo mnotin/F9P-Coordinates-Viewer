@@ -1,7 +1,7 @@
 #include <iomanip>
 #include <sstream>
 
-#include "../../headers/gps_driver/nmeaparse/NMEACommand.h"
+#include <gps_driver/nmeaparse/NMEACommand.h>
 
 using namespace std;
 using namespace nmea;
