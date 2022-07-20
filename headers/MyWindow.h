@@ -12,6 +12,8 @@
 #include <QLabel>
 #include <QTimer>
 
+#include "../src/gps_driver/drotek_f9p_rover.cpp"
+
 class MyWindow : public QWidget
 {
     Q_OBJECT
@@ -34,6 +36,8 @@ private:
     bool m_readGpsData;
 
     QTimer *m_timer;
+
+    PyHALDrotekF9P *m_gnss;
 };
 
 #endif // MYWINDOW_H

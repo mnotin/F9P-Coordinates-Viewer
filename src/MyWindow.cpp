@@ -4,8 +4,9 @@
 #include <stdio.h>
 #include <QFile>
 #include <QTextStream>
+#include <QDate>
 
-#include "headers/MyWindow.h"
+#include "../headers/MyWindow.h"
 
 MyWindow::MyWindow()
 {
@@ -42,35 +43,38 @@ MyWindow::MyWindow()
     m_timer->start(1000);
 
     connect(m_pushButton, &QPushButton::clicked, this, &MyWindow::SwitchReadGpsData);
+
+    m_gnss = new PyHALDrotekF9P();
+
+    if (!m_gnss->init("/dev/ttyACM0")) {
+        std::cout << "No GPS Found !" << std::endl;
+        std::cout << "Please make sure that the application is running as root and that the GPU is properly plugged." << std::endl;
+    }
+
+    std::cout << m_gnss->get_gnss_name() << std::endl;
 }
 
 void MyWindow::UpdateData() {
-    std::string latitude;
-    std::string longitude;
-    std::string altitude;
-    std::string time;
-    std::string hasFix;
+    double latitude;
+    double longitude;
+    double altitude;
+    double hasFix;
 
     if (m_readGpsData) {
-        QFile file("/home/user/Documents/HAL-Drotek-F9P-main/HAL-Drotek-F9P-main/demofile2.txt");
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-            return;
+        double *res = new double[6];
+        m_gnss->get_gnss_info(res);
+        latitude = res[0];
+        longitude = res[1];
+        altitude = res[2];
+        hasFix = m_gnss->has_fix();
 
-        QTextStream in(&file);
+        m_longitude->setText(QString::number(latitude));
+        m_latitude->setText(QString::number(longitude));
+        m_altitude->setText(QString::number(altitude));
+        m_time->setText(QDate::currentDate().toString("yyyy.MM.dd") + " " + QDateTime::currentDateTime().toString("hh:mm:ss"));
+        m_status->setText(hasFix == 1 ? "True" : "False");
 
-        latitude = in.readLine().toStdString();
-        longitude = in.readLine().toStdString();
-        altitude = in.readLine().toStdString();
-        time = in.readLine().toStdString();
-        hasFix = in.readLine().toStdString();;
-        file.close();
-
-
-        m_longitude->setText(QString::fromStdString(latitude));
-        m_latitude->setText(QString::fromStdString(longitude));
-        m_altitude->setText(QString::fromStdString(altitude));
-        m_time->setText(QString::fromStdString(time));
-        m_status->setText(QString::fromStdString(hasFix));
+        delete [ ] res;
     }
 }
 
