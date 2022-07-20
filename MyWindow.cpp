@@ -2,27 +2,16 @@
 #include <fstream>
 #include <string.h>
 #include <stdio.h>
+#include <QFile>
+#include <QTextStream>
 
 #include "MyWindow.h"
 
 MyWindow::MyWindow()
 {
-    setFixedSize(830, 200);
-
-    // Create a text string, which is used to output the text file
-    std::string myText;
-
-    // Read from the text file
-    std::ifstream MyReadFile("/home/user/Documents/HAL-Drotek-F9P-main/HAL-Drotek-F9P-main/demofile2.txt");
-
-    // Use a while loop together with the getline() function to read the file line by line
-    while (getline (MyReadFile, myText)) {
-      // Output the text from the file
-      std::cout << myText;
-    }
-
-    // Close the file
-    MyReadFile.close();
+    //setFixedSize(830, 200);
+    //resize(830, 200);
+    setWindowTitle("GPS");
 
     m_latitude = new QLabel("0.0");
     m_longitude = new QLabel("0.0");
@@ -32,7 +21,8 @@ MyWindow::MyWindow()
 
     QVBoxLayout *vboxLayout = new QVBoxLayout;
 
-    QPushButton *pushButton = new QPushButton("Pause");
+    m_pushButton = new QPushButton("Pause");
+    m_readGpsData = true;
 
     QFormLayout *formLayout = new QFormLayout;
     formLayout->addRow("Latitude : ", m_latitude);
@@ -42,7 +32,7 @@ MyWindow::MyWindow()
     formLayout->addRow("Has fix: ", m_status);
 
     vboxLayout->addLayout(formLayout);
-    vboxLayout->addWidget(pushButton);
+    vboxLayout->addWidget(m_pushButton);
 
     setLayout(vboxLayout);
 
@@ -50,6 +40,8 @@ MyWindow::MyWindow()
     m_timer = new QTimer(this);
     connect(m_timer, &QTimer::timeout, this, &MyWindow::UpdateData);
     m_timer->start(1000);
+
+    connect(m_pushButton, &QPushButton::clicked, this, &MyWindow::SwitchReadGpsData);
 }
 
 void MyWindow::UpdateData() {
@@ -59,19 +51,35 @@ void MyWindow::UpdateData() {
     std::string time;
     std::string hasFix;
 
-    std::ifstream MyReadFile("/home/user/Documents/HAL-Drotek-F9P-main/HAL-Drotek-F9P-main/demofile2.txt");
-    getline(MyReadFile, latitude);
-    getline(MyReadFile, longitude);
-    getline(MyReadFile, altitude);
-    getline(MyReadFile, time);
-    getline(MyReadFile, hasFix);
-    MyReadFile.close();
+    if (m_readGpsData) {
+        QFile file("/home/user/Documents/HAL-Drotek-F9P-main/HAL-Drotek-F9P-main/demofile2.txt");
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+            return;
 
-    if (latitude != "") {
+        QTextStream in(&file);
+
+        latitude = in.readLine().toStdString();
+        longitude = in.readLine().toStdString();
+        altitude = in.readLine().toStdString();
+        time = in.readLine().toStdString();
+        hasFix = in.readLine().toStdString();;
+        file.close();
+
+
         m_longitude->setText(QString::fromStdString(latitude));
         m_latitude->setText(QString::fromStdString(longitude));
         m_altitude->setText(QString::fromStdString(altitude));
         m_time->setText(QString::fromStdString(time));
         m_status->setText(QString::fromStdString(hasFix));
+    }
+}
+
+void MyWindow::SwitchReadGpsData() {
+    m_readGpsData = !m_readGpsData;
+
+    if (m_readGpsData) {
+        m_pushButton->setText("Pause");
+    } else {
+        m_pushButton->setText("Resume");
     }
 }

@@ -21,6 +21,7 @@ public:
 
 public slots:
     void UpdateData();
+    void SwitchReadGpsData();
 
 private:
     QLabel *m_latitude;
@@ -28,6 +29,9 @@ private:
     QLabel *m_altitude;
     QLabel *m_time;
     QLabel *m_status;
+
+    QPushButton *m_pushButton;
+    bool m_readGpsData;
 
     QTimer *m_timer;
 };
