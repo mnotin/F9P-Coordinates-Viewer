@@ -68,9 +68,9 @@ void MyWindow::UpdateData() {
         altitude = res[2];
         hasFix = m_gnss->has_fix();
 
-        m_longitude->setText(QString::number(latitude));
-        m_latitude->setText(QString::number(longitude));
-        m_altitude->setText(QString::number(altitude));
+        m_longitude->setText(QString::number(latitude) + "°");
+        m_latitude->setText(QString::number(longitude) + "°");
+        m_altitude->setText(QString::number(altitude) + "m");
         m_time->setText(QDate::currentDate().toString("yyyy.MM.dd") + " " + QDateTime::currentDateTime().toString("hh:mm:ss"));
         m_status->setText(hasFix == 1 ? "True" : "False");
 
