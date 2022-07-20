@@ -11,9 +11,9 @@
 class GPSData : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString latitude READ latitude WRITE setLatitude NOTIFY latitudeChanged)
-    Q_PROPERTY(QString longitude READ longitude WRITE setLongitude NOTIFY longitudeChanged)
-    Q_PROPERTY(QString altitude READ altitude WRITE setAltitude NOTIFY altitudeChanged)
+    Q_PROPERTY(double latitude READ latitude WRITE setLatitude NOTIFY latitudeChanged)
+    Q_PROPERTY(double longitude READ longitude WRITE setLongitude NOTIFY longitudeChanged)
+    Q_PROPERTY(double altitude READ altitude WRITE setAltitude NOTIFY altitudeChanged)
     Q_PROPERTY(QString time READ time WRITE setTime NOTIFY timeChanged)
     Q_PROPERTY(QString status READ status WRITE setStatus NOTIFY statusChanged)
     QML_ELEMENT
@@ -21,15 +21,15 @@ class GPSData : public QObject
 public:
     explicit GPSData(QObject *parent = nullptr);
 
-    QString latitude();
-    QString longitude();
-    QString altitude();
+    double latitude();
+    double longitude();
+    double altitude();
     QString time();
     QString status();
 
-    void setLatitude(const QString &latitude);
-    void setLongitude(const QString &longitude);
-    void setAltitude(const QString &altitude);
+    void setLatitude(const double latitude);
+    void setLongitude(const double longitude);
+    void setAltitude(const double altitude);
     void setTime(const QString &time);
     void setStatus(const QString &status);
 
@@ -44,9 +44,9 @@ public slots:
     void UpdateData();
 
 private:
-    QString m_latitude;
-    QString m_longitude;
-    QString m_altitude;
+    double m_latitude;
+    double m_longitude;
+    double m_altitude;
     QString m_time;
     QString m_status;
 

@@ -5,9 +5,9 @@
 GPSData::GPSData(QObject *parent) :
     QObject(parent)
 {
-    m_latitude = "";
-    m_longitude = "";
-    m_altitude = "";
+    m_latitude = 0.0;
+    m_longitude = 0.0;
+    m_altitude = 0.0;
     m_time = QDate::currentDate().toString("yyyy.MM.dd") + " " + QDateTime::currentDateTime().toString("hh:mm:ss");
     m_status = "Unknown";
 
@@ -34,9 +34,9 @@ void GPSData::UpdateData() {
 
     // We use the setters because they emit a signal
     // so that the UI gets refreshed
-    setLongitude(QString::number(res[0]));
-    setLatitude(QString::number(res[1]));
-    setAltitude(QString::number(res[2]));
+    setLongitude(res[0]);
+    setLatitude(res[1]);
+    setAltitude(res[2]);
     setTime(QDate::currentDate().toString("yyyy.MM.dd") + " " + QDateTime::currentDateTime().toString("hh:mm:ss"));
     setStatus(hasFix == 1 ? "True" : "False");
 
@@ -44,16 +44,16 @@ void GPSData::UpdateData() {
 }
 
 
-QString GPSData::latitude()
+double GPSData::latitude()
 {
     return m_latitude;
 }
 
-QString GPSData::longitude()
+double GPSData::longitude()
 {
     return m_longitude;
 }
-QString GPSData::altitude()
+double GPSData::altitude()
 {
     return m_altitude;
 }
@@ -67,7 +67,7 @@ QString GPSData::status()
 }
 
 
-void GPSData::setLatitude(const QString &latitude)
+void GPSData::setLatitude(const double latitude)
 {
     if (latitude == m_latitude)
         return;
@@ -76,7 +76,7 @@ void GPSData::setLatitude(const QString &latitude)
     emit latitudeChanged();
 }
 
-void GPSData::setLongitude(const QString &longitude)
+void GPSData::setLongitude(const double longitude)
 {
     if (longitude == m_longitude)
         return;
@@ -85,7 +85,7 @@ void GPSData::setLongitude(const QString &longitude)
     emit longitudeChanged();
 }
 
-void GPSData::setAltitude(const QString &altitude)
+void GPSData::setAltitude(const double altitude)
 {
     if (altitude == m_altitude)
         return;

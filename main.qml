@@ -17,7 +17,7 @@ Window {
 
     Plugin {
         id: mapPlugin
-        name: "osm" // "mapboxgl", "esri", ...
+        name: "osm"
         // specify plugin parameters if necessary
         // PluginParameter {
         //     name:
@@ -38,7 +38,7 @@ Window {
                 latitude: gpsData.longitude
                 longitude: gpsData.latitude
             }
-            radius: 5.0
+            radius: map.zoomLevel.valueOf()
             color: 'blue'
             border.width: 3
         }
