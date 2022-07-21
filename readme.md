@@ -9,7 +9,9 @@ To compile the project, you will need the following dependencies:
 - [libserial](https://github.com/crayzeewulf/libserial/)
 - [lapack](https://netlib.org/lapack/)
 - [tbb](https://github.com/oneapi-src/oneTBB)
-- [gt5](https://www.qt.io/)
+- [qt5](https://www.qt.io/)
+- [qt5-location]
+- [qt5-quickcontrols]
 
 ## Credits
 The original version of the GNSS driver used in the project comes from [here](https://github.com/lapo5/HAL-Drotek-F9P).

@@ -15,30 +15,30 @@ class GPSData : public QObject
     Q_PROPERTY(double longitude READ longitude WRITE setLongitude NOTIFY longitudeChanged)
     Q_PROPERTY(double altitude READ altitude WRITE setAltitude NOTIFY altitudeChanged)
     Q_PROPERTY(QString time READ time WRITE setTime NOTIFY timeChanged)
-    Q_PROPERTY(QString status READ status WRITE setStatus NOTIFY statusChanged)
+    Q_PROPERTY(bool hasFix READ hasFix WRITE setHasFix NOTIFY hasFixChanged)
     QML_ELEMENT
 
 public:
     explicit GPSData(QObject *parent = nullptr);
 
-    double latitude();
-    double longitude();
-    double altitude();
-    QString time();
-    QString status();
+    double latitude() const;
+    double longitude() const;
+    double altitude() const;
+    QString time() const;
+    bool hasFix() const;
 
     void setLatitude(const double latitude);
-    void setLongitude(const double longitude);
-    void setAltitude(const double altitude);
+    void setLongitude(double longitude);
+    void setAltitude(double altitude);
     void setTime(const QString &time);
-    void setStatus(const QString &status);
+    void setHasFix(const bool status);
 
 signals:
     void latitudeChanged();
     void longitudeChanged();
     void altitudeChanged();
     void timeChanged();
-    void statusChanged();
+    void hasFixChanged();
 
 public slots:
     void UpdateData();
@@ -48,7 +48,7 @@ private:
     double m_longitude;
     double m_altitude;
     QString m_time;
-    QString m_status;
+    bool m_hasFix;
 
     QTimer *m_timer;
 

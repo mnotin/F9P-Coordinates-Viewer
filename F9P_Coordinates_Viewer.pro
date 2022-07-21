@@ -12,6 +12,7 @@ LIBS += -lblas -llapack -ltbb -lserial
 INCLUDEPATH += headers/
 
 SOURCES += \
+    src/CustomCursor.cpp \
     src/GPSData.cpp \
     src/main.cpp\
     src/gps_driver/GPSFix.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
     src/gps_driver/HAL_Sirius_F9P_Rover.cc
 
 HEADERS += \
+    headers/CustomCursor.h \
     headers/GPSData.h \
     headers/gps_driver/nmeaparse/Event.h \
     headers/gps_driver/nmeaparse/GPSFix.h \

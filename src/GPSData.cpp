@@ -9,7 +9,7 @@ GPSData::GPSData(QObject *parent) :
     m_longitude = 0.0;
     m_altitude = 0.0;
     m_time = QDate::currentDate().toString("yyyy.MM.dd") + " " + QDateTime::currentDateTime().toString("hh:mm:ss");
-    m_status = "Unknown";
+    m_hasFix = false;
 
     m_timer = new QTimer(this);
     connect(m_timer, &QTimer::timeout, this, &GPSData::UpdateData);
@@ -38,36 +38,36 @@ void GPSData::UpdateData() {
     setLatitude(res[1]);
     setAltitude(res[2]);
     setTime(QDate::currentDate().toString("yyyy.MM.dd") + " " + QDateTime::currentDateTime().toString("hh:mm:ss"));
-    setStatus(hasFix == 1 ? "True" : "False");
+    setHasFix(hasFix == 1);
 
     delete [ ] res;
 }
 
 
-double GPSData::latitude()
+double GPSData::latitude() const
 {
     return m_latitude;
 }
 
-double GPSData::longitude()
+double GPSData::longitude() const
 {
     return m_longitude;
 }
-double GPSData::altitude()
+double GPSData::altitude() const
 {
     return m_altitude;
 }
-QString GPSData::time()
+QString GPSData::time() const
 {
     return m_time;
 }
-QString GPSData::status()
+bool GPSData::hasFix() const
 {
-    return m_status;
+    return m_hasFix;
 }
 
 
-void GPSData::setLatitude(const double latitude)
+void GPSData::setLatitude(double latitude)
 {
     if (latitude == m_latitude)
         return;
@@ -76,7 +76,7 @@ void GPSData::setLatitude(const double latitude)
     emit latitudeChanged();
 }
 
-void GPSData::setLongitude(const double longitude)
+void GPSData::setLongitude(double longitude)
 {
     if (longitude == m_longitude)
         return;
@@ -103,11 +103,11 @@ void GPSData::setTime(const QString &time)
     emit timeChanged();
 }
 
-void GPSData::setStatus(const QString &status)
+void GPSData::setHasFix(const bool hasFix)
 {
-    if (status == m_status)
+    if (hasFix == m_hasFix)
         return;
 
-    m_status = status;
-    emit statusChanged();
+    m_hasFix = hasFix;
+    emit hasFixChanged();
 }
