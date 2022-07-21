@@ -66,21 +66,6 @@ Window {
     }
 
     Rectangle {
-        id: infoRect
-        width: 200; height: 50
-        x: (window.width / 2) - (infoRect.width / 2); y:(window.height / 2) - (infoRect.height/ 2)
-        color: "lightgray"
-        visible: !gpsData.hasFix
-
-        Text {
-            id: infoText
-            text: "Waiting for GPS fix ..."
-            anchors.horizontalCenter: infoRect.horizontalCenter
-            font.pointSize: 11; font.bold: true;
-        }
-    }
-
-    Rectangle {
         id: page
         width: 200; height: 150
         color: "lightgray"

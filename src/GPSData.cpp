@@ -67,7 +67,7 @@ bool GPSData::hasFix() const
 }
 
 
-void GPSData::setLatitude(double latitude)
+void GPSData::setLatitude(const double latitude)
 {
     if (latitude == m_latitude)
         return;
@@ -76,7 +76,7 @@ void GPSData::setLatitude(double latitude)
     emit latitudeChanged();
 }
 
-void GPSData::setLongitude(double longitude)
+void GPSData::setLongitude(const double longitude)
 {
     if (longitude == m_longitude)
         return;

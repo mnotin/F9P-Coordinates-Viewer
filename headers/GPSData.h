@@ -28,8 +28,8 @@ public:
     bool hasFix() const;
 
     void setLatitude(const double latitude);
-    void setLongitude(double longitude);
-    void setAltitude(double altitude);
+    void setLongitude(const double longitude);
+    void setAltitude(const double altitude);
     void setTime(const QString &time);
     void setHasFix(const bool status);
 

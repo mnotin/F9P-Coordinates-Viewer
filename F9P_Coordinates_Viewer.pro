@@ -52,4 +52,5 @@ QML_IMPORT_NAME = io.qt.examples.gps_data
 QML_IMPORT_MAJOR_VERSION = 1
 
 DISTFILES += \
-    readme.md
+    readme.md \
+    presentation_image.png
