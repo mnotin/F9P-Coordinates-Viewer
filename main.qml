@@ -20,22 +20,20 @@ Window {
        id: customCursor
     }
 
-    Plugin {
-        id: mapPlugin
-        name: "osm"
-        // specify plugin parameters if necessary
-        // PluginParameter {
-        //     name:
-        //     value:
-        // }
-    }
-
     Map {
         id: map
         anchors.fill: parent
-        plugin: mapPlugin
+        plugin: Plugin {
+            id: mapPlugin
+            name: "osm"
+             PluginParameter {
+                 name: "osm.mapping.offline.directory"
+                 value: ":/Offline_tiles/"
+            }
+        }
+        activeMapType: map.supportedMapTypes[2]
         center: QtPositioning.coordinate(gpsData.longitude, gpsData.latitude)
-        zoomLevel: 18
+        zoomLevel: 1
 
         MapQuickItem {
             id: gpsCursor
