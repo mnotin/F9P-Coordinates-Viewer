@@ -25,7 +25,7 @@ Once you have downloaded the tiles, you need to format their names under a speci
 To do this, you can use the small [`import_tiles.sh`](import_tiles.sh) script that will do that for you.
 Simply enter the following command from the folder of the project:
 ```bash
-./import_tiles.sh path/to/directory/containing/the/tiles ./Offline_tiles
+./import_tiles.sh /path/to/directory/containing/the/tiles
 ```
 Before, be sure to check that you have the rights to execute the script. If not: `chmod u+x import_tiles.sh`
 

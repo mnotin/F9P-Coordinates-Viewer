@@ -1,10 +1,10 @@
 #!/bin/sh
 
 source_directory=$1
-target_directory=$2
 declare -i nb_of_tiles=`find $source_directory -name "*.png" -type f | wc -l`
-
 declare -i tiles_parsed=1
+
+mkdir Offline_tiles
 
 for zoom_level_dir in $source_directory/*; do
     if [ -d "$zoom_level_dir" ]; then
@@ -20,7 +20,7 @@ for zoom_level_dir in $source_directory/*; do
 			x=`echo $column_tile_file | cut -d / -f 7`
 			extension=`echo $column_tile_file | cut -d / -f 8 | cut -d . -f 2`
 
-			cp "$column_tile_file" "$target_directory/osm_100-l-3-$zoom_level-$x-$y.$extension"
+			cp "$column_tile_file" "Offline_tiles/osm_100-l-3-$zoom_level-$x-$y.$extension"
 			tiles_parsed=$(( tiles_parsed + 1 ))
 		    fi
 		done
