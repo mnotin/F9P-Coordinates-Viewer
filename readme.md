@@ -22,7 +22,7 @@ Next, enter the coordinates of the bounding box you want to download, specify th
 Be sure to download only the tiles you need and please take a look at the [Tile usage policy](https://operations.osmfoundation.org/policies/tiles/) of OpenStreetMap.
 
 Once you have downloaded the tiles, you need to format their names under a specific format required by the application.
-To do this, you can use the small `[import_tiles.sh](import_tiles.sh)` script that will do that for you.
+To do this, you can use the small [`import_tiles.sh`](import_tiles.sh) script that will do that for you.
 Simply enter the following command from the folder of the project:
 ```bash
 ./import_tiles.sh path/to/directory/containing/the/tiles ./Offline_tiles
