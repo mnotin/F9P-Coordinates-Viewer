@@ -1,4 +1,4 @@
-QT += widgets core quick location
+QT += widgets core qml quick location
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.

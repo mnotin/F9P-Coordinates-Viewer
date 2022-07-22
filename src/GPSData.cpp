@@ -11,18 +11,20 @@ GPSData::GPSData(QObject *parent) :
     m_time = QDate::currentDate().toString("yyyy.MM.dd") + " " + QDateTime::currentDateTime().toString("hh:mm:ss");
     m_hasFix = false;
 
-    m_timer = new QTimer(this);
-    connect(m_timer, &QTimer::timeout, this, &GPSData::UpdateData);
-    m_timer->start(1000);
-
     m_gnss = new PyHALDrotekF9P();
 
-    if (!m_gnss->init("/dev/ttyACM0")) {
+    if (m_gnss->init("/dev/ttyACM0")) {
+        m_timer = new QTimer(this);
+        connect(m_timer, &QTimer::timeout, this, &GPSData::UpdateData);
+        m_timer->start(1000);
+
+        std::cout << m_gnss->get_gnss_name() << std::endl;
+    } else {
         std::cout << "No GPS Found !" << std::endl;
         std::cout << "Please make sure that the application is running as root and that the GNSS device is properly plugged." << std::endl;
     }
 
-    std::cout << m_gnss->get_gnss_name() << std::endl;
+
 }
 
 void GPSData::UpdateData() {
