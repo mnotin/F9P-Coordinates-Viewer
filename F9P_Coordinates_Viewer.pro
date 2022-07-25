@@ -53,4 +53,6 @@ QML_IMPORT_MAJOR_VERSION = 1
 
 DISTFILES += \
     readme.md \
-    presentation_image.png
+    presentation_image.png \
+    import_tiles.sh \
+    .gitignore
