@@ -55,71 +55,107 @@ Window {
 
     Rectangle {
         id: gpsDataRectangle
-        width: 200; height: 150
+        width: 200; height: 235
         color: "#FFD2D2D2"
         opacity: 0.75
+        x: 5; y: 5
+        border.color: "black"
 
-        Text {
-            id: longitude
-            text: "Longitude: " + (gpsData.longitude).toFixed(5) + "°"
-            x: 5; y: 0
-            font.pointSize: 11; font.bold: true;
+        Rectangle {
+            id: gpsDataSection
+            anchors.left: gpsDataRectangle.left; anchors.leftMargin: 5
+            anchors.right: parent.right; anchors.rightMargin: 5
+            height: 150
+            color: "transparent"
+
+            Text {
+                id: gpsDataSectionTitle
+                text: "GPS data"
+                font.pointSize: 13; font.bold: true
+                anchors.top: gpsDataSection.top
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+
+            Text {
+                id: longitude
+                text: "Longitude: " + (gpsData.longitude).toFixed(5) + "°"
+                font.pointSize: 11;
+                anchors.top: gpsDataSectionTitle.bottom
+            }
+
+            Text {
+                id: latitude
+                text: "Latitude: " + (gpsData.latitude).toFixed(5) + "°"
+                font.pointSize: 11;
+                anchors.top: longitude.bottom
+            }
+
+            Text {
+                id: altitude
+                text: "Altitude: " + gpsData.altitude + "m"
+                font.pointSize: 11;
+                anchors.top: latitude.bottom
+            }
+
+            Text {
+                id: time
+                text: "Time: " + gpsData.time
+                font.pointSize: 11;
+                anchors.top: altitude.bottom
+            }
+
+            Text {
+                id: hasFix
+                text: "Has fix: " + gpsData.hasFix
+                font.pointSize: 11;
+                anchors.top: time.bottom
+            }
         }
 
-        Text {
-            id: latitude
-            text: "Latitude: " + (gpsData.latitude).toFixed(5) + "°"
-            x: 5; y: 15
-            font.pointSize: 11; font.bold: true
-        }
+        Rectangle {
+            id: customCursorSection
+            anchors.top: gpsDataSection.bottom
+            anchors.left: parent.left; anchors.leftMargin: 5
+            anchors.right: parent.right
 
-        Text {
-            id: altitude
-            text: "Altitude: " + gpsData.altitude + "m"
-            x: 5; y: 30
-            font.pointSize: 11; font.bold: true
-        }
+            Text {
+                id: customCursorSectionTitle
+                text: "Custom cursor"
+                font.pointSize: 13; font.bold: true
+                anchors.top: customCursorSection.top
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
 
-        Text {
-            id: time
-            text: "Time: " + gpsData.time
-            x: 5; y: 45
-            font.pointSize: 11; font.bold: true
-        }
+            Text {
+                id: latitudeLabel
+                text: "Lat: "
+                font.pointSize: 11;
+                anchors.top: customCursorSectionTitle.bottom
+            }
 
-        Text {
-            id: hasFix
-            text: "Has fix: " + gpsData.hasFix
-            x: 5; y: 60
-            font.pointSize: 11; font.bold: true
-        }
+            TextField {
+                placeholderText: qsTr("Latitude  ...")
+                anchors.top: latitudeLabel.top
+                anchors.left: latitudeLabel.right
+                anchors.right: customCursorSection.right; anchors.rightMargin: 5
+                onEditingFinished: text !== "" ? customCursor.latitude = text : customCursor.latitudeIsSet = false
+            }
 
-        Text {
-            id: latitudeLabel
-            text: "Lat: "
-            x: 5; y: 90
-            font.pointSize: 11; font.bold: true
-        }
+            Text {
+                id: longitudeLabel
+                text: "Long: "
+                font.pointSize: 11;
+                anchors.top: latitudeLabel.bottom
+                anchors.topMargin: 5
+            }
 
-        TextField {
-            placeholderText: qsTr("Latitude  ...")
-            x: latitudeLabel.x + 45 ; y: latitudeLabel.y
-
-            onEditingFinished: text !== "" ? customCursor.latitude = text : customCursor.latitudeIsSet = false
-        }
-
-        Text {
-            id: longitudeLabel
-            text: "Long: "
-            x: 5; y: 115
-            font.pointSize: 11; font.bold: true
-        }
-
-        TextField {
-            placeholderText: qsTr("Longitude ...")
-            x: longitudeLabel.x + 45; y: longitudeLabel.y
-
-            onEditingFinished: text !== "" ? customCursor.longitude = text : customCursor.longitudeIsSet = false
+            TextField {
+                placeholderText: qsTr("Longitude ...")
+                anchors.top: longitudeLabel.top
+                anchors.left: longitudeLabel.right;
+                anchors.right: customCursorSection.right; anchors.rightMargin: 5
+                onEditingFinished: text !== "" ? customCursor.longitude = text : customCursor.longitudeIsSet = false
+            }
         }
     }
 }

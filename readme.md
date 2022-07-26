@@ -17,7 +17,7 @@ To compile the project, you will need the following dependencies:
 
 ### Build the release version
 Follow [Qt's guide](https://doc.qt.io/qt-5/linux-deployment.html) on how to build the application.
-If there is a problem while building Qt statically, you may want to check [this answer](https://forum.qt.io/topic/98501/static-compile-error-qt5-12-0-bootstrap-private/8) from Qt Forum.
+If you have any problem, you may want to check [this useful answer](https://forum.qt.io/topic/98501/static-compile-error-qt5-12-0-bootstrap-private/8) from Qt Forum.
 
 ## Use offline tiles
 If you want to use the application without an internet connection, you will need to download the tiles on your disk.
@@ -34,7 +34,7 @@ Simply enter the following command from the folder of the project:
 Before, be sure to check that you have the rights to execute the script. If not: `chmod u+x import_tiles.sh`
 
 Next, in QtCreator open the `qml.qrc` file (right-click > Open in Editor). From there, remove any missing files (Remove Missing Files) and select "Add Files".
-Select all the files imported in the "Offline_tiles" folder and select open.
+Select all the tiles imported in the "Offline_tiles" folder and select open.
 Now save and build the project.
 
 Next time you will launch the application, it will try to load the tiles from the Offline_tiles folder first.
