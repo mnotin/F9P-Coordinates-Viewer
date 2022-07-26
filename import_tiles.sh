@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ $# -eq 0 ]; then
-    echo "No arguments supplied. Please specify the directory containing the tiles."
+    echo "No argument supplied. Please specify the directory containing the tiles."
 else
     source_directory=$1
     declare -i nb_of_tiles=`find $source_directory -name "*.png" -type f | wc -l`

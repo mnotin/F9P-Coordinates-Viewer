@@ -15,6 +15,10 @@ To compile the project, you will need the following dependencies:
 - [qt5-location](https://www.qt.io/)
 - [qt5-quickcontrols](https://www.qt.io/)
 
+### Build the release version
+Follow [Qt's guide](https://doc.qt.io/qt-5/linux-deployment.html) on how to build the application.
+If there is a problem while building Qt statically, you may want to check [this answer](https://forum.qt.io/topic/98501/static-compile-error-qt5-12-0-bootstrap-private/8) from Qt Forum.
+
 ## Use offline tiles
 If you want to use the application without an internet connection, you will need to download the tiles on your disk.
 To do this, download the most recent version of [JTileDownloader](https://github.com/Zverik/JTileDownloader).

@@ -30,19 +30,19 @@ GPSData::GPSData(QObject *parent) :
 void GPSData::UpdateData() {
     double hasFix;
 
-    double *res = new double[6];
-    m_gnss->get_gnss_info(res);
+    double *gnss_info = new double[6];
+    m_gnss->get_gnss_info(gnss_info);
     hasFix = m_gnss->has_fix();
 
     // We use the setters because they emit a signal
     // so that the UI gets refreshed
-    setLongitude(res[0]);
-    setLatitude(res[1]);
-    setAltitude(res[2]);
+    setLongitude(gnss_info[0]);
+    setLatitude(gnss_info[1]);
+    setAltitude(gnss_info[2]);
     setTime(QDate::currentDate().toString("yyyy.MM.dd") + " " + QDateTime::currentDateTime().toString("hh:mm:ss"));
     setHasFix(hasFix == 1);
 
-    delete [ ] res;
+    delete [ ] gnss_info;
 }
 
 
