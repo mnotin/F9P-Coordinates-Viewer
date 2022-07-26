@@ -33,6 +33,10 @@ Simply enter the following command from the folder of the project:
 ```
 Before, be sure to check that you have the rights to execute the script. If not: `chmod u+x import_tiles.sh`
 
+Next, in QtCreator open the `qml.qrc` file (right-click > Open in Editor). From there, remove any missing files (Remove Missing Files) and select "Add Files".
+Select all the files imported in the "Offline_tiles" folder and select open.
+Now save and build the project.
+
 Next time you will launch the application, it will try to load the tiles from the Offline_tiles folder first.
 And if you are not connected to the internet, the application will still be able to display the tiles you have downloaded.
 
