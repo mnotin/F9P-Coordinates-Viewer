@@ -99,7 +99,7 @@ Window {
 
             Text {
                 id: time
-                text: "Time: " + gpsData.time
+                text: "UTC Time: " + gpsData.hour.valueOf() + ":" + gpsData.minute.valueOf() + ":" + gpsData.second.valueOf()
                 font.pointSize: 11;
                 anchors.top: altitude.bottom
             }

@@ -207,6 +207,10 @@ public:
         return output_packet;
     }
 
+    GPSTimestamp getTimestamp() {
+        return gps.fix.timestamp;
+    }
+
     bool hasFix() {
         ofstream myFile("/home/user/debug.txt");
 		myFile << gps.fix.status;
@@ -216,9 +220,3 @@ public:
 };
 
 #endif //MY_HAL_SIRIUS_FP9_ROVER
-
-
-
-
-
-

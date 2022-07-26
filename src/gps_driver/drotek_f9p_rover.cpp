@@ -32,11 +32,11 @@ class PyHALDrotekF9P {
 		}
 	}
 
-	std::string get_gnss_name(){
+    std::string get_gnss_name() {
 		return "Drotek-F9P";
 	}
 
-	bool shutdown(){
+    bool shutdown() {
 		hal_gps->disconnect();
 		return true;
 	}
@@ -52,6 +52,10 @@ class PyHALDrotekF9P {
         gnss_status[4] = res_gps[4];
         gnss_status[5] = res_gps[5];
 	}
+
+    GPSTimestamp getTimestamp() {
+        return hal_gps->getTimestamp();
+    }
 
 	bool has_fix() {
 		hal_gps->readPacket();

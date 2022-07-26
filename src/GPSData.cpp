@@ -8,8 +8,10 @@ GPSData::GPSData(QObject *parent) :
     m_latitude = 0.0;
     m_longitude = 0.0;
     m_altitude = 0.0;
-    m_time = QDate::currentDate().toString("yyyy.MM.dd") + " " + QDateTime::currentDateTime().toString("hh:mm:ss");
     m_hasFix = false;
+    m_hour = 0;
+    m_minute = 0;
+    m_second = 0.0;
 
     m_gnss = new PyHALDrotekF9P();
 
@@ -37,8 +39,10 @@ void GPSData::UpdateData() {
     setLongitude(gnss_info[0]);
     setLatitude(gnss_info[1]);
     setAltitude(gnss_info[2]);
-    setTime(QDate::currentDate().toString("yyyy.MM.dd") + " " + QDateTime::currentDateTime().toString("hh:mm:ss"));
     setHasFix(hasFix == 1);
+    setSecond(m_gnss->getTimestamp().sec);
+    setMinute(m_gnss->getTimestamp().min);
+    setHour(m_gnss->getTimestamp().hour);
 
     delete [ ] gnss_info;
 }
@@ -57,15 +61,22 @@ double GPSData::altitude() const
 {
     return m_altitude;
 }
-QString GPSData::time() const
-{
-    return m_time;
-}
 bool GPSData::hasFix() const
 {
     return m_hasFix;
 }
-
+int GPSData::hour() const
+{
+    return m_hour;
+}
+int GPSData::minute() const
+{
+    return m_minute;
+}
+double GPSData::second() const
+{
+    return m_second;
+}
 
 void GPSData::setLatitude(const double latitude)
 {
@@ -94,15 +105,6 @@ void GPSData::setAltitude(const double altitude)
     emit altitudeChanged();
 }
 
-void GPSData::setTime(const QString &time)
-{
-    if (time == m_time)
-        return;
-
-    m_time = time;
-    emit timeChanged();
-}
-
 void GPSData::setHasFix(const bool hasFix)
 {
     if (hasFix == m_hasFix)
@@ -110,4 +112,31 @@ void GPSData::setHasFix(const bool hasFix)
 
     m_hasFix = hasFix;
     emit hasFixChanged();
+}
+
+void GPSData::setHour(const int hour)
+{
+    if (hour == m_hour)
+        return;
+
+    m_hour = hour;
+    emit hourChanged();
+}
+
+void GPSData::setMinute(const int minute)
+{
+    if (minute == m_minute)
+        return;
+
+    m_minute = minute;
+    emit minuteChanged();
+}
+
+void GPSData::setSecond(const double second)
+{
+    if (second == m_second)
+        return;
+
+    m_second = second;
+    emit secondChanged();
 }
