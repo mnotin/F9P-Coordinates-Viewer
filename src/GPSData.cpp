@@ -23,8 +23,6 @@ GPSData::GPSData(QObject *parent) :
         std::cout << "No GPS Found !" << std::endl;
         std::cout << "Please make sure that the application is running as root and that the GNSS device is properly plugged." << std::endl;
     }
-
-
 }
 
 void GPSData::UpdateData() {

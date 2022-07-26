@@ -31,7 +31,6 @@ Window {
                  value: ":/Offline_tiles/"
             }
         }
-        activeMapType: map.supportedMapTypes[2]
         center: QtPositioning.coordinate(gpsData.longitude, gpsData.latitude)
         zoomLevel: 1
 

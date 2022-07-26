@@ -30,7 +30,7 @@ else
 			    x=`realpath --relative-to=. $column_tile_file | cut -d / -f 2`
 			    extension=`realpath --relative-to=. $column_tile_file | cut -d / -f 3 | cut -d . -f 2`
 
-			    cp "$column_tile_file" "$current_dir/Offline_tiles/osm_100-l-3-$zoom_level-$x-$y.$extension"
+			    cp "$column_tile_file" "$current_dir/Offline_tiles/osm_100-l-1-$zoom_level-$x-$y.$extension"
 			    tiles_parsed=$(( tiles_parsed + 1 ))
 			fi
 		    done
