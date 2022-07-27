@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Window 2.14
 import QtQuick.Controls 1.4
-import QtLocation 5.8
+import QtLocation 5.15
 import QtPositioning 5.6
 import io.qt.examples.gps_data 1.0
 
