@@ -11,6 +11,7 @@ To compile the project, you will need the following dependencies:
 - [libserial](https://github.com/crayzeewulf/libserial/)
 - [lapack](https://netlib.org/lapack/)
 - [tbb](https://github.com/oneapi-src/oneTBB)
+- [blas](https://netlib.org/lapack/)
 - [qt5](https://www.qt.io/)
 - [qt5-location](https://www.qt.io/)
 - [qt5-quickcontrols](https://www.qt.io/)
