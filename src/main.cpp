@@ -1,5 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include "headers/mavlink/v2.0/common/mavlink.h"
 
 int main(int argc, char *argv[])
 {

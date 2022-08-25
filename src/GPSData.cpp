@@ -1,5 +1,4 @@
 #include <QDate>
-
 #include <GPSData.h>
 
 GPSData::GPSData(QObject *parent) :

@@ -14,6 +14,7 @@ INCLUDEPATH += headers/
 SOURCES += \
     src/CustomCursor.cpp \
     src/GPSData.cpp \
+    src/GroundControlStation.cpp \
     src/main.cpp\
     src/gps_driver/GPSFix.cpp \
     src/gps_driver/GPSService.cpp \
@@ -26,13 +27,20 @@ SOURCES += \
 HEADERS += \
     headers/CustomCursor.h \
     headers/GPSData.h \
-    headers/gps_driver/nmeaparse/Event.h \
-    headers/gps_driver/nmeaparse/GPSFix.h \
-    headers/gps_driver/nmeaparse/GPSService.h \
-    headers/gps_driver/nmeaparse/nmea.h \
-    headers/gps_driver/nmeaparse/NMEACommand.h \
-    headers/gps_driver/nmeaparse/NMEAParser.h \
-    headers/gps_driver/nmeaparse/NumberConversion.h
+    headers/GroundControlStation.h \
+    headers/gps_driver/nmeaparse/* \
+    headers/mavlink/v2.0/checksum.h \
+    headers/mavlink/v2.0/mavlink_conversions.h \
+    headers/mavlink/v2.0/mavlink_conversions.h \
+    headers/mavlink/v2.0/mavlink_get_info.h \
+    headers/mavlink/v2.0/mavlink_helpers.h \
+    headers/mavlink/v2.0/mavlink_sha256.h \
+    headers/mavlink/v2.0/mavlink_types.h \
+    headers/mavlink/v2.0/message.hpp \
+    headers/mavlink/v2.0/msgmap.hpp \
+    headers/mavlink/v2.0/protocol.h\
+    headers/mavlink/v2.0/common/* \
+    headers/mavlink/v2.0/minimal/*
 
 RESOURCES += qml.qrc
 
