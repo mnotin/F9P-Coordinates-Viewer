@@ -53,26 +53,26 @@
 class GroundControlStation : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(double latitude READ latitude WRITE setLatitude NOTIFY latitudeChanged)
-    Q_PROPERTY(double longitude READ longitude WRITE setLongitude NOTIFY longitudeChanged)
-    Q_PROPERTY(double altitude READ altitude WRITE setAltitude NOTIFY altitudeChanged)
+    Q_PROPERTY(double flyingObjectLatitude READ flyingObjectLatitude WRITE setFlyingObjectLatitude NOTIFY flyingObjectLatitudeChanged)
+    Q_PROPERTY(double flyingObjectLongitude READ flyingObjectLongitude WRITE setFlyingObjectLongitude NOTIFY flyingObjectLongitudeChanged)
+    Q_PROPERTY(double flyingObjectAltitude READ flyingObjectAltitude WRITE setFlyingObjectAltitude NOTIFY flyingObjectAltitudeChanged)
     QML_ELEMENT
 
 public:
     explicit GroundControlStation(QObject *parent = nullptr);
 
-    double latitude() const;
-    double longitude() const;
-    double altitude() const;
+    double flyingObjectLatitude() const;
+    double flyingObjectLongitude() const;
+    double flyingObjectAltitude() const;
 
-    void setLatitude(const double latitude);
-    void setLongitude(const double longitude);
-    void setAltitude(const double altitude);
+    void setFlyingObjectLatitude(const double latitude);
+    void setFlyingObjectLongitude(const double longitude);
+    void setFlyingObjectAltitude(const double altitude);
 
 signals:
-    void latitudeChanged();
-    void longitudeChanged();
-    void altitudeChanged();
+    void flyingObjectLatitudeChanged();
+    void flyingObjectLongitudeChanged();
+    void flyingObjectAltitudeChanged();
 
 public slots:
     void UpdateData();
@@ -80,9 +80,9 @@ public slots:
 private:
     void configureMAVLink();
 
-    double m_latitude;
-    double m_longitude;
-    double m_altitude;
+    double m_flyingObjectLatitude;
+    double m_flyingObjectLongitude;
+    double m_flyingObjectAltitude;
 
     QTimer *m_timer;
 

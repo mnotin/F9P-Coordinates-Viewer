@@ -25,9 +25,9 @@ uint64_t microsSinceEpoch();
 GroundControlStation::GroundControlStation(QObject *parent) :
     QObject(parent)
 {
-    m_latitude = 0.0;
-    m_longitude = 0.0;
-    m_altitude = 0.0;
+    m_flyingObjectLatitude = 0.0;
+    m_flyingObjectLongitude = 0.0;
+    m_flyingObjectAltitude = 0.0;
 
     configureMAVLink();
 
@@ -87,19 +87,21 @@ void GroundControlStation::UpdateData() {
         mavlink_message_t msg;
         mavlink_status_t status;
 
-        std::cout << "Bytes Received: " << (int)m_recsize << std::endl << "Datagram: ";
+        //std::cout << "Bytes Received: " << (int)m_recsize << std::endl << "Datagram: ";
         for (i = 0; i < m_recsize; ++i)
         {
             m_temp = buf[i];
-            printf("%02x ", (unsigned char)m_temp);
+            //printf("%02x ", (unsigned char)m_temp);
             if (mavlink_parse_char(MAVLINK_COMM_0, buf[i], &msg, &status))
             {
                 if (msg.msgid == MAVLINK_MSG_ID_LOCAL_POSITION_NED) {
                     //struct LOCAL_POSITION_NED local_position;
-                    std::cout << std::endl << "--- POSITION ---" << std::endl;
+                    //std::cout << std::endl << "--- POSITION ---" << std::endl;
                     mavlink_local_position_ned_t localPosition;
                     mavlink_msg_local_position_ned_decode(&msg, &localPosition);
                     std::cout << "x: " << localPosition.x << ", y: " << localPosition.y << ", z: " << localPosition.z << std::endl;
+                    setFlyingObjectLatitude(localPosition.x);
+                    setFlyingObjectLongitude(localPosition.y);
                 }
                 /*if (msg.msgid == 32) {
                     mavlink_local_position_ned_t local_position_ned[sizeof(msg.payload64)/8];
@@ -108,52 +110,52 @@ void GroundControlStation::UpdateData() {
                     printf("x: %d, y: %d, z: %d", local_position_ned->x, local_position_ned->y, local_position_ned->z);
                 }*/
                 // Packet received
-                std::cout << std::endl << "Received packet: SYS: " << msg.sysid << ", COMP: " << msg.compid << ", LEN: " << msg.len << ", MSG ID: " << msg.msgid << std::endl;
-                std::cout << "payload: " << msg.payload64 << std::endl;
+                //std::cout << std::endl << "Received packet: SYS: " << msg.sysid << ", COMP: " << msg.compid << ", LEN: " << msg.len << ", MSG ID: " << msg.msgid << std::endl;
+                //std::cout << "payload: " << msg.payload64 << std::endl;
             }
         }
-        std::cout << std::endl;;
+        std::cout << std::endl;
     }
     memset(buf, 0, BUFFER_LENGTH);
 }
 
-double GroundControlStation::latitude() const
+double GroundControlStation::flyingObjectLatitude() const
 {
-    return m_latitude;
+    return m_flyingObjectLatitude;
 }
 
-double GroundControlStation::longitude() const
+double GroundControlStation::flyingObjectLongitude() const
 {
-    return m_longitude;
+    return m_flyingObjectLongitude;
 }
-double GroundControlStation::altitude() const
+double GroundControlStation::flyingObjectAltitude() const
 {
-    return m_altitude;
+    return m_flyingObjectAltitude;
 }
 
-void GroundControlStation::setLatitude(const double latitude)
+void GroundControlStation::setFlyingObjectLatitude(const double latitude)
 {
-    if (latitude == m_latitude)
+    if (latitude == m_flyingObjectLatitude)
         return;
 
-    m_latitude = latitude;
-    emit latitudeChanged();
+    m_flyingObjectLatitude = latitude;
+    emit flyingObjectLatitudeChanged();
 }
 
-void GroundControlStation::setLongitude(const double longitude)
+void GroundControlStation::setFlyingObjectLongitude(const double longitude)
 {
-    if (longitude == m_longitude)
+    if (longitude == m_flyingObjectLongitude)
         return;
 
-    m_longitude = longitude;
-    emit longitudeChanged();
+    m_flyingObjectLongitude = longitude;
+    emit flyingObjectLongitudeChanged();
 }
 
-void GroundControlStation::setAltitude(const double altitude)
+void GroundControlStation::setFlyingObjectAltitude(const double altitude)
 {
-    if (altitude == m_altitude)
+    if (altitude == m_flyingObjectAltitude)
         return;
 
-    m_altitude = altitude;
-    emit altitudeChanged();
+    m_flyingObjectAltitude = altitude;
+    emit flyingObjectAltitudeChanged();
 }
