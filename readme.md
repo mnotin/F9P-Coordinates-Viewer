@@ -46,7 +46,7 @@ To simulate a flying vehicle, you can use the `simulate_flying_vehicle` program 
 A cursor on the map will be automatically updated to the position of this vehicle as it moves.
 To compile it, simply enter the following command in the directory of the program:
 ```
-gcc -std=c99 -I include/mavlink/v2.0/common/ -o simulated_flying_object simulated_flying_object.c
+gcc -std=c99 -I include/mavlink/v2.0/common/ -o simulate_flying_vehicle simulate_flying_vehicle.c
 ```
 And then, launch the executable file while the main application is running:
 ```
