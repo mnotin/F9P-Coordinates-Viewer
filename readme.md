@@ -20,7 +20,7 @@ To compile the project, you will need the following dependencies:
 Follow [Qt's guide](https://doc.qt.io/qt-5/linux-deployment.html) on how to build the application.
 If you have any problem, you may want to check [this useful answer](https://forum.qt.io/topic/98501/static-compile-error-qt5-12-0-bootstrap-private/8) from Qt Forum.
 
-## Use offline tiles
+### Use offline tiles
 If you want to use the application without an internet connection, you will need to download the tiles on your disk.
 To do this, download the most recent version of [JTileDownloader](https://github.com/Zverik/JTileDownloader).
 Next, enter the coordinates of the bounding box you want to download, specify the zoom levels and select a folder to store the tiles.
@@ -40,6 +40,18 @@ Now save and build the project.
 
 Next time you will launch the application, it will try to load the tiles from the Offline_tiles folder first.
 And if you are not connected to the internet, the application will still be able to display the tiles you have downloaded.
+
+### Simulate a flying vehicle
+To simulate a flying vehicle, you can use the `simulate_flying_vehicle` program to send data over UDP to the main application.
+A cursor on the map will be automatically updated to the position of this vehicle as it moves.
+To compile it, simply enter the following command in the directory of the program:
+```
+gcc -std=c99 -I include/mavlink/v2.0/common/ -o simulated_flying_object simulated_flying_object.c
+```
+And then, launch the executable file while the main application is running:
+```
+./simulate_flying_vehicle
+```
 
 ## Credits
 The original version of the GNSS driver used in the project comes from [here](https://github.com/lapo5/HAL-Drotek-F9P).
