@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<mavlink>
+  <!-- XML file for AGU messages definitions for standard.xml  -->
+  <include>standard.xml</include>
+  <version>0</version>
+  <dialect>0</dialect>
+  <enums>
+  </enums>
+  
+  <messages>
+	<message id="13000" name="SYSTEM_STATUS_PACK">
+      <description>System status message.</description>
+	  <field type="uint64_t" name="Log_Timestamp" units="ms">Log timestamp since 1.1.1970 UTC.</field>
+      <field type="uint32_t" name="Core_Module_Status_Mask">Core module status mask</field>
+      <field type="uint32_t" name="Telemetry_Module_Status_Mask">Telemetry module status mask</field>
+      <field type="uint32_t" name="Storage_Module_Status_Mask">Storage module status mask</field>	  
+      <field type="uint32_t" name="Radio_Link_Module_Status_Mask">Radio link module status mask</field>
+      <field type="uint32_t" name="Motor_Control_Module_Status_Mask">Motor control module status mask</field>
+      <field type="uint32_t" name="Guidance_Module_Status_Mask">Guidance module status mask</field>
+      <field type="uint8_t" name="Flight_Phase">Flight phase id</field>
+      <field type="uint8_t" name="Flight_Mode">Flight mode id</field>
+	  <field type="uint32_t" name="Flight_Phase_Time" units="ms">Flight phase execution time</field> 
+    </message>	
+    <message id="13001" name="TELEMETRY_DATA_PACK">
+      <description>Telemetry data message.</description>
+	  <field type="uint64_t" name="Log_Timestamp" units="ms">Log timestamp since 1.1.1970 UTC.</field>
+      <field type="uint64_t" name="GNSS_Timestamp" units="ms">GNSS Timestamp since 1.1.1970 UTC.</field>
+      <field type="int32_t" name="Latitude" units="deg">Latitude 10^7</field>
+	  <field type="int32_t" name="Longitude" units="deg">Longitude 10^7</field>
+	  <field type="uint32_t" name="GNSS_Altitude" units="m">GNSS altitude 10^3</field>
+	  <field type="int16_t" name="Air_Speed_U" units="m/s">Air speed U vector 10^2</field>
+	  <field type="int16_t" name="Air_Speed_V" units="m/s">Air speed V vector 10^2</field>	
+	  <field type="int16_t" name="Air_Speed_W" units="m/s">Air speed W vector 10^2</field>
+	  <field type="int16_t" name="Air_Temperature" units="°C">Air temperature 10^2</field>
+	  <field type="int32_t" name="Altitude_Main_Altimeter" units="m">Altitude from main radar altimeter 10^2</field>
+	  <field type="int32_t" name="Altitude_Payload_Altimeter" units="m">Altitude from payload radar altimeter 10^2</field>
+	  <field type="uint16_t" name="Velocity_Horizontal" units="m/s">Linear velocity horizontal 10^2</field>
+	  <field type="int16_t" name="Velocity_Vertical" units="m/s">Linear velocity vertical 10^2</field>	  
+      <field type="uint16_t" name="Position_Accuracy" units="m">GNSS position accuracy 10^2</field>
+      <field type="uint16_t" name="Speed_Accuracy" units="m/s">GNSS speed accuracy 10^2</field>
+	  <field type="int16_t" name="Acceleration_X" units="m/s^2">Linear acceleration X 10^2</field>
+	  <field type="int16_t" name="Acceleration_Y" units="m/s^2">Linear acceleration Y 10^2</field>
+	  <field type="int16_t" name="Acceleration_Z" units="m/s^2">Linear acceleration Z 10^2</field>	
+	  <field type="float" name="ECEF_Position_X" units="m">ECEF vector position X</field>
+	  <field type="float" name="ECEF_Position_Y" units="m">ECEF vector position Y</field>
+	  <field type="float" name="ECEF_Position_Z" units="m">ECEF vector position Z</field>
+	  <field type="float" name="ECEF_Velocity_X" units="m/s">ECEF vector velocity X</field>
+	  <field type="float" name="ECEF_Velocity_Y" units="m/s">ECEF vector velocity Y</field>
+	  <field type="float" name="ECEF_Velocity_Z" units="m/s">ECEF vector velocity Z</field>	
+	  <field type="int16_t" name="Roll_Angle" units="deg">Roll angle 10^2</field>
+	  <field type="int16_t" name="Pitch_Angle" units="deg">Pitch angle 10^2</field>
+	  <field type="int16_t" name="Yaw_Angle" units="deg">Yaw angle 10^2</field>	
+	  <field type="int16_t" name="Angular_Rate_Roll" units="deg/s">Roll angle 10^2</field>
+	  <field type="int16_t" name="Angular_Rate_Pitch" units="deg/s">Pitch angle 10^2</field>
+	  <field type="int16_t" name="Angular_Rate_Yaw" units="deg/s">Yaw angle 10^2</field>
+	  <field type="float" name="Quaternion_0">Quaternion[0]</field>
+	  <field type="float" name="Quaternion_1">Quaternion[1]</field>
+	  <field type="float" name="Quaternion_2">Quaternion[2]</field>
+	  <field type="float" name="Quaternion_3">Quaternion[3] Scalar component</field>
+	  <field type="uint32_t" name="Telemetry_Status_Mask">Telemetry module status mask</field>
+	  <field type="uint8_t" name="Satellite_Num">Number of GPS satellite in view</field>		  
+    </message>	
+    <message id="13002" name="MOTOR_STATUS_PACK">
+      <description>Motor control module status message.</description>
+	  <field type="uint64_t" name="Log_Timestamp" units="ms">Log timestamp since 1.1.1970 UTC.</field>
+      <field type="int32_t" name="Motor_A_Real_Position">Motor A real position (Adimensional value) 10^3</field>
+	  <field type="int32_t" name="Motor_B_Real_Position">Motor B real position (Adimensional value) 10^3</field>
+      <field type="int32_t" name="Motor_A_Demand_Position">Motor A demand position (Adimensional value) 10^3</field>
+	  <field type="int32_t" name="Motor_B_Demand_Position">Motor B demand position (Adimensional value) 10^3</field>
+	  <field type="int32_t" name="Motor_A_Torque" units="Nm">Motor A torque 10^2</field>
+	  <field type="int32_t" name="Motor_B_Torque" units="Nm">Motor B torque 10^2</field>
+	  <field type="int32_t" name="Motor_A_Temperature" units="°C">Motor A temperature 10^2</field>
+	  <field type="int32_t" name="Motor_B_Temperature" units="°C">Motor B temperature 10^2</field>
+      <field type="uint16_t" name="BMS_Voltage" units="V">Battery management system voltage 10^2</field>
+      <field type="int16_t" name="BMS_Absorption" units="A">Battery management system current absorption 10^2</field>	  
+      <field type="int16_t" name="BMS_Temperature" units="°C">Battery management system temperature 10^2</field>	  
+	  <field type="uint32_t" name="Motor_Control_Status_Mask">Motor control module status mask</field>
+	  <field type="uint32_t" name="Motor_A_Faults_Mask">Motor A faults mask</field>
+	  <field type="uint32_t" name="Motor_B_Faults_Mask">Motor B faults mask</field>
+	  <field type="uint32_t" name="BMS_Faults_Mask">Battery management system faults mask</field>
+    </message>	
+  </messages>
+</mavlink>

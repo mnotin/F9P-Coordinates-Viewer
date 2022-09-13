@@ -64,4 +64,6 @@ DISTFILES += \
     readme.md \
     presentation_image.png \
     import_tiles.sh \
-    .gitignore
+    .gitignore \
+    simulate_flying_vehicle/* \
+    message_definitions/v1.0/*

@@ -53,5 +53,11 @@ And then, launch the executable file while the main application is running:
 ./simulate_flying_vehicle
 ```
 
+### MAVLink library
+
+To generate the MAVLink library, you need the XML files containing the dialects you need. They are in [message_definitions/v1.0](message_definitions/v1.0).
+Then follow the steps of [this guide](https://mavlink.io/en/getting_started/generate_libraries.html) to generate the library.
+Afterwards, simply copy the `mavlink` folder from `generated/include` into the project's `headers` folder.
+
 ## Credits
 The original version of the GNSS driver used in the project comes from [here](https://github.com/lapo5/HAL-Drotek-F9P).
