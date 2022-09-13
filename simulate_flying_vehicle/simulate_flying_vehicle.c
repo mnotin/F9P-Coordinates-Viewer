@@ -52,13 +52,9 @@ int main(int argc, char* argv[])
 	
     char target_ip[100];
     
-    mavlink_local_position_ned_t localPosition;
-    localPosition.x = 0.0; // latitude
-    localPosition.y = 0.0; // longitude
-    localPosition.z = 0.0; // altitude
-    localPosition.vx = 0.0;
-    localPosition.vy = 0.0;
-    localPosition.vz = 0.0;
+    mavlink_telemetry_data_pack_t mavlinkTelemetryDataPack;
+    mavlinkTelemetryDataPack.Latitude = 0;
+    mavlinkTelemetryDataPack.Longitude = 0;
     int sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
     struct sockaddr_in gcAddr; 
     struct sockaddr_in locAddr;
@@ -155,9 +151,43 @@ int main(int argc, char* argv[])
 	bytes_sent = sendto(sock, buf, len, 0, (struct sockaddr*)&gcAddr, sizeof (struct sockaddr_in));
 	
 	/* Send Local Position */
-	mavlink_msg_local_position_ned_pack(1, 200, &msg, microsSinceEpoch(),
-									localPosition.x, localPosition.y, localPosition.z,
-									localPosition.vx, localPosition.vy, localPosition.vz);
+	mavlink_msg_telemetry_data_pack_pack(1, 200, &msg, microsSinceEpoch(),
+	    0, //uint64_t GNSS_Timestamp,
+	    mavlinkTelemetryDataPack.Latitude, //int32_t Latitude,
+	    mavlinkTelemetryDataPack.Longitude, //int32_t Longitude,
+	    0, //uint32_t GNSS_Altitude,
+	    0, //int32_t Altitude_Main_Altimeter,
+	    0, //int32_t Altitude_Payload_Altimeter,
+	    0.0, //float ECEF_Position_X,
+	    0.0, //float ECEF_Position_Y,
+	    0.0, //float ECEF_Position_Z,
+	    0.0, //float ECEF_Velocity_X,
+	    0.0, //float ECEF_Velocity_Y,
+	    0.0, //float ECEF_Velocity_Z,
+	    0.0, //float Quaternion_0,
+	    0.0, //float Quaternion_1,
+	    0.0, //float Quaternion_2,
+	    0.0, //float Quaternion_3,
+	    0, //uint32_t Telemetry_Status_Mask,
+	    0, //int16_t Air_Speed_U,
+	    0, //int16_t Air_Speed_V,
+	    0, //int16_t Air_Speed_W,
+	    0, //int16_t Air_Temperature,
+	    0, //uint16_t Velocity_Horizontal,
+	    0, //int16_t Velocity_Vertical,
+	    0, //uint16_t Position_Accuracy,
+	    0, //uint16_t Speed_Accuracy,
+	    0, //int16_t Acceleration_X,
+	    0, //int16_t Acceleration_Y,
+	    0, //int16_t Acceleration_Z,
+	    0, //int16_t Roll_Angle,
+	    0, //int16_t Pitch_Angle,
+	    0, //int16_t Yaw_Angle,
+	    0, //int16_t Angular_Rate_Roll,
+	    0, //int16_t Angular_Rate_Pitch,
+	    0, //int16_t Angular_Rate_Yaw,
+	    0 //uint8_t Satellite_Num,
+	    );
 	len = mavlink_msg_to_send_buffer(buf, &msg);
 	//mavlink_sign_packet(&signing, signing.secret_key, (uint8_t *) &localPosition, sizeof(localPosition),(uint8_t *) &localPosition, sizeof(localPosition), &(mavlink_get_msg_entry(32)->crc_extra)); // Generates the signature of the message
 	bytes_sent = sendto(sock, buf, len, 0, (struct sockaddr*)&gcAddr, sizeof(struct sockaddr_in));
@@ -177,7 +207,7 @@ int main(int argc, char* argv[])
 	}
 	memset(buf, 0, BUFFER_LENGTH);
 	sleep(1); // Sleep one second
-	localPosition.y += 0.01; // Simulate the movement of the flying object
+	mavlinkTelemetryDataPack.Longitude += 1; // Simulate the movement of the flying object
     }
 }
 

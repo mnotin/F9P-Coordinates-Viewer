@@ -29,18 +29,19 @@ HEADERS += \
     headers/GPSData.h \
     headers/GroundControlStation.h \
     headers/gps_driver/nmeaparse/* \
-    headers/mavlink/v2.0/checksum.h \
-    headers/mavlink/v2.0/mavlink_conversions.h \
-    headers/mavlink/v2.0/mavlink_conversions.h \
-    headers/mavlink/v2.0/mavlink_get_info.h \
-    headers/mavlink/v2.0/mavlink_helpers.h \
-    headers/mavlink/v2.0/mavlink_sha256.h \
-    headers/mavlink/v2.0/mavlink_types.h \
-    headers/mavlink/v2.0/message.hpp \
-    headers/mavlink/v2.0/msgmap.hpp \
-    headers/mavlink/v2.0/protocol.h\
-    headers/mavlink/v2.0/common/* \
-    headers/mavlink/v2.0/minimal/*
+    headers/mavlink/v2.0/AGU/checksum.h \
+    headers/mavlink/v2.0/AGU/mavlink_conversions.h \
+    headers/mavlink/v2.0/AGU/mavlink_conversions.h \
+    headers/mavlink/v2.0/AGU/mavlink_get_info.h \
+    headers/mavlink/v2.0/AGU/mavlink_helpers.h \
+    headers/mavlink/v2.0/AGU/mavlink_sha256.h \
+    headers/mavlink/v2.0/AGU/mavlink_types.h \
+    headers/mavlink/v2.0/AGU/message.hpp \
+    headers/mavlink/v2.0/AGU/msgmap.hpp \
+    headers/mavlink/v2.0/AGU/protocol.h\
+    headers/mavlink/v2.0/AGU/common/* \
+    headers/mavlink/v2.0/AGU/minimal/* \
+    headers/mavlink/v2.0/AGU/AGU_MAVLINK/*
 
 RESOURCES += qml.qrc
 

@@ -46,7 +46,7 @@
 
 /* This assumes you have the mavlink headers on your include path
  or in the same folder as this source file */
-#include <mavlink/v2.0/common/mavlink.h>
+#include <mavlink/v2.0/AGU/AGU_MAVLINK/mavlink.h>
 
 #define BUFFER_LENGTH 2041 // minimum buffer size that can be used with qnx (I don't know why)
 

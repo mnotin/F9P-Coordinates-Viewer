@@ -88,27 +88,23 @@ void GroundControlStation::UpdateData() {
         mavlink_status_t status;
 
         //std::cout << "Bytes Received: " << (int)m_recsize << std::endl << "Datagram: ";
+
         for (i = 0; i < m_recsize; ++i)
         {
             m_temp = buf[i];
-            //printf("%02x ", (unsigned char)m_temp);
+
             if (mavlink_parse_char(MAVLINK_COMM_0, buf[i], &msg, &status))
             {
-                if (msg.msgid == MAVLINK_MSG_ID_LOCAL_POSITION_NED) {
+                if (msg.msgid == MAVLINK_MSG_ID_TELEMETRY_DATA_PACK) {
                     //struct LOCAL_POSITION_NED local_position;
                     //std::cout << std::endl << "--- POSITION ---" << std::endl;
-                    mavlink_local_position_ned_t localPosition;
-                    mavlink_msg_local_position_ned_decode(&msg, &localPosition);
-                    std::cout << "x: " << localPosition.x << ", y: " << localPosition.y << ", z: " << localPosition.z << std::endl;
-                    setFlyingObjectLatitude(localPosition.x);
-                    setFlyingObjectLongitude(localPosition.y);
+                    mavlink_telemetry_data_pack_t mavlinkTelemetry;
+                    mavlink_msg_telemetry_data_pack_decode(&msg, &mavlinkTelemetry);
+                    std::cout << "lat: " << mavlinkTelemetry.Latitude << ", long: " << mavlinkTelemetry.Longitude << std::endl;
+                    setFlyingObjectLatitude(mavlinkTelemetry.Latitude);
+                    setFlyingObjectLongitude(mavlinkTelemetry.Longitude);
                 }
-                /*if (msg.msgid == 32) {
-                    mavlink_local_position_ned_t local_position_ned[sizeof(msg.payload64)/8];
-                    printf("\n-- POSITION FRAME --");
-                    mavlink_msg_local_position_ned_decode(&msg.payload64, &local_position_ned);
-                    printf("x: %d, y: %d, z: %d", local_position_ned->x, local_position_ned->y, local_position_ned->z);
-                }*/
+
                 // Packet received
                 //std::cout << std::endl << "Received packet: SYS: " << msg.sysid << ", COMP: " << msg.compid << ", LEN: " << msg.len << ", MSG ID: " << msg.msgid << std::endl;
                 //std::cout << "payload: " << msg.payload64 << std::endl;
