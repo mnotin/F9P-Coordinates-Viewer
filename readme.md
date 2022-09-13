@@ -46,7 +46,7 @@ To simulate a flying vehicle, you can use the `simulate_flying_vehicle` program 
 A cursor on the map will be automatically updated to the position of this vehicle as it moves.
 To compile it, simply enter the following command in the directory of the program:
 ```
-gcc -std=c99 -I ../headers/mavlink/v2.0/AGU/AGU_MAVLINK/ -o simulate_flying_vehicle simulate_flying_vehicle.c
+gcc -std=c99 -I ../include/mavlink/v2.0/AGU/AGU_MAVLINK/ -o simulate_flying_vehicle simulate_flying_vehicle.c
 ```
 And then, launch the executable file while the main application is running:
 ```
@@ -57,7 +57,7 @@ And then, launch the executable file while the main application is running:
 
 To generate the MAVLink library, you need the XML files containing the dialects you need. They are in [message_definitions/v1.0](message_definitions/v1.0).
 Then follow the steps of [this guide](https://mavlink.io/en/getting_started/generate_libraries.html) to generate the library.
-Afterwards, simply copy the `mavlink` folder from `generated/include` into the project's `headers` folder.
+Afterwards, simply copy the `mavlink` folder from `generated/include` into the project's `include` folder.
 
 ## Credits
 The original version of the GNSS driver used in the project comes from [here](https://github.com/lapo5/HAL-Drotek-F9P).

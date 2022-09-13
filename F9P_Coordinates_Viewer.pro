@@ -9,7 +9,7 @@ QMAKE_LFLAGS += -DHAVE_CBLAS=1
 
 LIBS += -lblas -llapack -ltbb -lserial
 
-INCLUDEPATH += headers/
+INCLUDEPATH += include/
 
 SOURCES += \
     src/CustomCursor.cpp \
@@ -25,23 +25,23 @@ SOURCES += \
     src/gps_driver/HAL_Sirius_F9P_Rover.cc
 
 HEADERS += \
-    headers/CustomCursor.h \
-    headers/GPSData.h \
-    headers/GroundControlStation.h \
-    headers/gps_driver/nmeaparse/* \
-    headers/mavlink/v2.0/AGU/checksum.h \
-    headers/mavlink/v2.0/AGU/mavlink_conversions.h \
-    headers/mavlink/v2.0/AGU/mavlink_conversions.h \
-    headers/mavlink/v2.0/AGU/mavlink_get_info.h \
-    headers/mavlink/v2.0/AGU/mavlink_helpers.h \
-    headers/mavlink/v2.0/AGU/mavlink_sha256.h \
-    headers/mavlink/v2.0/AGU/mavlink_types.h \
-    headers/mavlink/v2.0/AGU/message.hpp \
-    headers/mavlink/v2.0/AGU/msgmap.hpp \
-    headers/mavlink/v2.0/AGU/protocol.h\
-    headers/mavlink/v2.0/AGU/common/* \
-    headers/mavlink/v2.0/AGU/minimal/* \
-    headers/mavlink/v2.0/AGU/AGU_MAVLINK/*
+    include/CustomCursor.h \
+    include/GPSData.h \
+    include/GroundControlStation.h \
+    include/gps_driver/nmeaparse/* \
+    include/mavlink/v2.0/AGU/checksum.h \
+    include/mavlink/v2.0/AGU/mavlink_conversions.h \
+    include/mavlink/v2.0/AGU/mavlink_conversions.h \
+    include/mavlink/v2.0/AGU/mavlink_get_info.h \
+    include/mavlink/v2.0/AGU/mavlink_helpers.h \
+    include/mavlink/v2.0/AGU/mavlink_sha256.h \
+    include/mavlink/v2.0/AGU/mavlink_types.h \
+    include/mavlink/v2.0/AGU/message.hpp \
+    include/mavlink/v2.0/AGU/msgmap.hpp \
+    include/mavlink/v2.0/AGU/protocol.h\
+    include/mavlink/v2.0/AGU/common/* \
+    include/mavlink/v2.0/AGU/minimal/* \
+    include/mavlink/v2.0/AGU/AGU_MAVLINK/*
 
 RESOURCES += qml.qrc
 
