@@ -13,9 +13,9 @@ namespace msg {
  */
 struct TELEMETRY_DATA_PACK : mavlink::Message {
     static constexpr msgid_t MSG_ID = 13001;
-    static constexpr size_t LENGTH = 115;
-    static constexpr size_t MIN_LENGTH = 115;
-    static constexpr uint8_t CRC_EXTRA = 84;
+    static constexpr size_t LENGTH = 119;
+    static constexpr size_t MIN_LENGTH = 119;
+    static constexpr uint8_t CRC_EXTRA = 55;
     static constexpr auto NAME = "TELEMETRY_DATA_PACK";
 
 
@@ -53,7 +53,7 @@ struct TELEMETRY_DATA_PACK : mavlink::Message {
     float Quaternion_1; /*<  Quaternion[1] */
     float Quaternion_2; /*<  Quaternion[2] */
     float Quaternion_3; /*<  Quaternion[3] Scalar component */
-    uint32_t Telemetry_Status_Mask; /*<  Telemetry module status mask */
+    uint64_t Telemetry_Status_Mask; /*<  Telemetry module status mask */
     uint8_t Satellite_Num; /*<  Number of GPS satellite in view */
 
 
@@ -118,80 +118,80 @@ struct TELEMETRY_DATA_PACK : mavlink::Message {
 
         map << Log_Timestamp;                 // offset: 0
         map << GNSS_Timestamp;                // offset: 8
-        map << Latitude;                      // offset: 16
-        map << Longitude;                     // offset: 20
-        map << GNSS_Altitude;                 // offset: 24
-        map << Altitude_Main_Altimeter;       // offset: 28
-        map << Altitude_Payload_Altimeter;    // offset: 32
-        map << ECEF_Position_X;               // offset: 36
-        map << ECEF_Position_Y;               // offset: 40
-        map << ECEF_Position_Z;               // offset: 44
-        map << ECEF_Velocity_X;               // offset: 48
-        map << ECEF_Velocity_Y;               // offset: 52
-        map << ECEF_Velocity_Z;               // offset: 56
-        map << Quaternion_0;                  // offset: 60
-        map << Quaternion_1;                  // offset: 64
-        map << Quaternion_2;                  // offset: 68
-        map << Quaternion_3;                  // offset: 72
-        map << Telemetry_Status_Mask;         // offset: 76
-        map << Air_Speed_U;                   // offset: 80
-        map << Air_Speed_V;                   // offset: 82
-        map << Air_Speed_W;                   // offset: 84
-        map << Air_Temperature;               // offset: 86
-        map << Velocity_Horizontal;           // offset: 88
-        map << Velocity_Vertical;             // offset: 90
-        map << Position_Accuracy;             // offset: 92
-        map << Speed_Accuracy;                // offset: 94
-        map << Acceleration_X;                // offset: 96
-        map << Acceleration_Y;                // offset: 98
-        map << Acceleration_Z;                // offset: 100
-        map << Roll_Angle;                    // offset: 102
-        map << Pitch_Angle;                   // offset: 104
-        map << Yaw_Angle;                     // offset: 106
-        map << Angular_Rate_Roll;             // offset: 108
-        map << Angular_Rate_Pitch;            // offset: 110
-        map << Angular_Rate_Yaw;              // offset: 112
-        map << Satellite_Num;                 // offset: 114
+        map << Telemetry_Status_Mask;         // offset: 16
+        map << Latitude;                      // offset: 24
+        map << Longitude;                     // offset: 28
+        map << GNSS_Altitude;                 // offset: 32
+        map << Altitude_Main_Altimeter;       // offset: 36
+        map << Altitude_Payload_Altimeter;    // offset: 40
+        map << ECEF_Position_X;               // offset: 44
+        map << ECEF_Position_Y;               // offset: 48
+        map << ECEF_Position_Z;               // offset: 52
+        map << ECEF_Velocity_X;               // offset: 56
+        map << ECEF_Velocity_Y;               // offset: 60
+        map << ECEF_Velocity_Z;               // offset: 64
+        map << Quaternion_0;                  // offset: 68
+        map << Quaternion_1;                  // offset: 72
+        map << Quaternion_2;                  // offset: 76
+        map << Quaternion_3;                  // offset: 80
+        map << Air_Speed_U;                   // offset: 84
+        map << Air_Speed_V;                   // offset: 86
+        map << Air_Speed_W;                   // offset: 88
+        map << Air_Temperature;               // offset: 90
+        map << Velocity_Horizontal;           // offset: 92
+        map << Velocity_Vertical;             // offset: 94
+        map << Position_Accuracy;             // offset: 96
+        map << Speed_Accuracy;                // offset: 98
+        map << Acceleration_X;                // offset: 100
+        map << Acceleration_Y;                // offset: 102
+        map << Acceleration_Z;                // offset: 104
+        map << Roll_Angle;                    // offset: 106
+        map << Pitch_Angle;                   // offset: 108
+        map << Yaw_Angle;                     // offset: 110
+        map << Angular_Rate_Roll;             // offset: 112
+        map << Angular_Rate_Pitch;            // offset: 114
+        map << Angular_Rate_Yaw;              // offset: 116
+        map << Satellite_Num;                 // offset: 118
     }
 
     inline void deserialize(mavlink::MsgMap &map) override
     {
         map >> Log_Timestamp;                 // offset: 0
         map >> GNSS_Timestamp;                // offset: 8
-        map >> Latitude;                      // offset: 16
-        map >> Longitude;                     // offset: 20
-        map >> GNSS_Altitude;                 // offset: 24
-        map >> Altitude_Main_Altimeter;       // offset: 28
-        map >> Altitude_Payload_Altimeter;    // offset: 32
-        map >> ECEF_Position_X;               // offset: 36
-        map >> ECEF_Position_Y;               // offset: 40
-        map >> ECEF_Position_Z;               // offset: 44
-        map >> ECEF_Velocity_X;               // offset: 48
-        map >> ECEF_Velocity_Y;               // offset: 52
-        map >> ECEF_Velocity_Z;               // offset: 56
-        map >> Quaternion_0;                  // offset: 60
-        map >> Quaternion_1;                  // offset: 64
-        map >> Quaternion_2;                  // offset: 68
-        map >> Quaternion_3;                  // offset: 72
-        map >> Telemetry_Status_Mask;         // offset: 76
-        map >> Air_Speed_U;                   // offset: 80
-        map >> Air_Speed_V;                   // offset: 82
-        map >> Air_Speed_W;                   // offset: 84
-        map >> Air_Temperature;               // offset: 86
-        map >> Velocity_Horizontal;           // offset: 88
-        map >> Velocity_Vertical;             // offset: 90
-        map >> Position_Accuracy;             // offset: 92
-        map >> Speed_Accuracy;                // offset: 94
-        map >> Acceleration_X;                // offset: 96
-        map >> Acceleration_Y;                // offset: 98
-        map >> Acceleration_Z;                // offset: 100
-        map >> Roll_Angle;                    // offset: 102
-        map >> Pitch_Angle;                   // offset: 104
-        map >> Yaw_Angle;                     // offset: 106
-        map >> Angular_Rate_Roll;             // offset: 108
-        map >> Angular_Rate_Pitch;            // offset: 110
-        map >> Angular_Rate_Yaw;              // offset: 112
-        map >> Satellite_Num;                 // offset: 114
+        map >> Telemetry_Status_Mask;         // offset: 16
+        map >> Latitude;                      // offset: 24
+        map >> Longitude;                     // offset: 28
+        map >> GNSS_Altitude;                 // offset: 32
+        map >> Altitude_Main_Altimeter;       // offset: 36
+        map >> Altitude_Payload_Altimeter;    // offset: 40
+        map >> ECEF_Position_X;               // offset: 44
+        map >> ECEF_Position_Y;               // offset: 48
+        map >> ECEF_Position_Z;               // offset: 52
+        map >> ECEF_Velocity_X;               // offset: 56
+        map >> ECEF_Velocity_Y;               // offset: 60
+        map >> ECEF_Velocity_Z;               // offset: 64
+        map >> Quaternion_0;                  // offset: 68
+        map >> Quaternion_1;                  // offset: 72
+        map >> Quaternion_2;                  // offset: 76
+        map >> Quaternion_3;                  // offset: 80
+        map >> Air_Speed_U;                   // offset: 84
+        map >> Air_Speed_V;                   // offset: 86
+        map >> Air_Speed_W;                   // offset: 88
+        map >> Air_Temperature;               // offset: 90
+        map >> Velocity_Horizontal;           // offset: 92
+        map >> Velocity_Vertical;             // offset: 94
+        map >> Position_Accuracy;             // offset: 96
+        map >> Speed_Accuracy;                // offset: 98
+        map >> Acceleration_X;                // offset: 100
+        map >> Acceleration_Y;                // offset: 102
+        map >> Acceleration_Z;                // offset: 104
+        map >> Roll_Angle;                    // offset: 106
+        map >> Pitch_Angle;                   // offset: 108
+        map >> Yaw_Angle;                     // offset: 110
+        map >> Angular_Rate_Roll;             // offset: 112
+        map >> Angular_Rate_Pitch;            // offset: 114
+        map >> Angular_Rate_Yaw;              // offset: 116
+        map >> Satellite_Num;                 // offset: 118
     }
 };
 

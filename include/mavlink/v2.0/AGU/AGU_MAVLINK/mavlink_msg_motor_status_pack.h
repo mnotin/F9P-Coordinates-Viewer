@@ -12,24 +12,24 @@ typedef struct __mavlink_motor_status_pack_t {
  int32_t Motor_B_Demand_Position; /*<  Motor B demand position (Adimensional value) 10^3*/
  int32_t Motor_A_Torque; /*< [Nm] Motor A torque 10^2*/
  int32_t Motor_B_Torque; /*< [Nm] Motor B torque 10^2*/
- int32_t Motor_A_Temperature; /*< [°C] Motor A temperature 10^2*/
- int32_t Motor_B_Temperature; /*< [°C] Motor B temperature 10^2*/
  uint32_t Motor_Control_Status_Mask; /*<  Motor control module status mask*/
  uint32_t Motor_A_Faults_Mask; /*<  Motor A faults mask*/
  uint32_t Motor_B_Faults_Mask; /*<  Motor B faults mask*/
  uint32_t BMS_Faults_Mask; /*<  Battery management system faults mask*/
+ int16_t Motor_A_Temperature; /*< [°C] Motor A temperature 10^2*/
+ int16_t Motor_B_Temperature; /*< [°C] Motor B temperature 10^2*/
  uint16_t BMS_Voltage; /*< [V] Battery management system voltage 10^2*/
  int16_t BMS_Absorption; /*< [A] Battery management system current absorption 10^2*/
  int16_t BMS_Temperature; /*< [°C] Battery management system temperature 10^2*/
 } mavlink_motor_status_pack_t;
 
-#define MAVLINK_MSG_ID_MOTOR_STATUS_PACK_LEN 62
-#define MAVLINK_MSG_ID_MOTOR_STATUS_PACK_MIN_LEN 62
-#define MAVLINK_MSG_ID_13002_LEN 62
-#define MAVLINK_MSG_ID_13002_MIN_LEN 62
+#define MAVLINK_MSG_ID_MOTOR_STATUS_PACK_LEN 58
+#define MAVLINK_MSG_ID_MOTOR_STATUS_PACK_MIN_LEN 58
+#define MAVLINK_MSG_ID_13002_LEN 58
+#define MAVLINK_MSG_ID_13002_MIN_LEN 58
 
-#define MAVLINK_MSG_ID_MOTOR_STATUS_PACK_CRC 86
-#define MAVLINK_MSG_ID_13002_CRC 86
+#define MAVLINK_MSG_ID_MOTOR_STATUS_PACK_CRC 197
+#define MAVLINK_MSG_ID_13002_CRC 197
 
 
 
@@ -45,15 +45,15 @@ typedef struct __mavlink_motor_status_pack_t {
          { "Motor_B_Demand_Position", NULL, MAVLINK_TYPE_INT32_T, 0, 20, offsetof(mavlink_motor_status_pack_t, Motor_B_Demand_Position) }, \
          { "Motor_A_Torque", NULL, MAVLINK_TYPE_INT32_T, 0, 24, offsetof(mavlink_motor_status_pack_t, Motor_A_Torque) }, \
          { "Motor_B_Torque", NULL, MAVLINK_TYPE_INT32_T, 0, 28, offsetof(mavlink_motor_status_pack_t, Motor_B_Torque) }, \
-         { "Motor_A_Temperature", NULL, MAVLINK_TYPE_INT32_T, 0, 32, offsetof(mavlink_motor_status_pack_t, Motor_A_Temperature) }, \
-         { "Motor_B_Temperature", NULL, MAVLINK_TYPE_INT32_T, 0, 36, offsetof(mavlink_motor_status_pack_t, Motor_B_Temperature) }, \
-         { "BMS_Voltage", NULL, MAVLINK_TYPE_UINT16_T, 0, 56, offsetof(mavlink_motor_status_pack_t, BMS_Voltage) }, \
-         { "BMS_Absorption", NULL, MAVLINK_TYPE_INT16_T, 0, 58, offsetof(mavlink_motor_status_pack_t, BMS_Absorption) }, \
-         { "BMS_Temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 60, offsetof(mavlink_motor_status_pack_t, BMS_Temperature) }, \
-         { "Motor_Control_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 40, offsetof(mavlink_motor_status_pack_t, Motor_Control_Status_Mask) }, \
-         { "Motor_A_Faults_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 44, offsetof(mavlink_motor_status_pack_t, Motor_A_Faults_Mask) }, \
-         { "Motor_B_Faults_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 48, offsetof(mavlink_motor_status_pack_t, Motor_B_Faults_Mask) }, \
-         { "BMS_Faults_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 52, offsetof(mavlink_motor_status_pack_t, BMS_Faults_Mask) }, \
+         { "Motor_A_Temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 48, offsetof(mavlink_motor_status_pack_t, Motor_A_Temperature) }, \
+         { "Motor_B_Temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 50, offsetof(mavlink_motor_status_pack_t, Motor_B_Temperature) }, \
+         { "BMS_Voltage", NULL, MAVLINK_TYPE_UINT16_T, 0, 52, offsetof(mavlink_motor_status_pack_t, BMS_Voltage) }, \
+         { "BMS_Absorption", NULL, MAVLINK_TYPE_INT16_T, 0, 54, offsetof(mavlink_motor_status_pack_t, BMS_Absorption) }, \
+         { "BMS_Temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 56, offsetof(mavlink_motor_status_pack_t, BMS_Temperature) }, \
+         { "Motor_Control_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 32, offsetof(mavlink_motor_status_pack_t, Motor_Control_Status_Mask) }, \
+         { "Motor_A_Faults_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 36, offsetof(mavlink_motor_status_pack_t, Motor_A_Faults_Mask) }, \
+         { "Motor_B_Faults_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 40, offsetof(mavlink_motor_status_pack_t, Motor_B_Faults_Mask) }, \
+         { "BMS_Faults_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 44, offsetof(mavlink_motor_status_pack_t, BMS_Faults_Mask) }, \
          } \
 }
 #else
@@ -67,15 +67,15 @@ typedef struct __mavlink_motor_status_pack_t {
          { "Motor_B_Demand_Position", NULL, MAVLINK_TYPE_INT32_T, 0, 20, offsetof(mavlink_motor_status_pack_t, Motor_B_Demand_Position) }, \
          { "Motor_A_Torque", NULL, MAVLINK_TYPE_INT32_T, 0, 24, offsetof(mavlink_motor_status_pack_t, Motor_A_Torque) }, \
          { "Motor_B_Torque", NULL, MAVLINK_TYPE_INT32_T, 0, 28, offsetof(mavlink_motor_status_pack_t, Motor_B_Torque) }, \
-         { "Motor_A_Temperature", NULL, MAVLINK_TYPE_INT32_T, 0, 32, offsetof(mavlink_motor_status_pack_t, Motor_A_Temperature) }, \
-         { "Motor_B_Temperature", NULL, MAVLINK_TYPE_INT32_T, 0, 36, offsetof(mavlink_motor_status_pack_t, Motor_B_Temperature) }, \
-         { "BMS_Voltage", NULL, MAVLINK_TYPE_UINT16_T, 0, 56, offsetof(mavlink_motor_status_pack_t, BMS_Voltage) }, \
-         { "BMS_Absorption", NULL, MAVLINK_TYPE_INT16_T, 0, 58, offsetof(mavlink_motor_status_pack_t, BMS_Absorption) }, \
-         { "BMS_Temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 60, offsetof(mavlink_motor_status_pack_t, BMS_Temperature) }, \
-         { "Motor_Control_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 40, offsetof(mavlink_motor_status_pack_t, Motor_Control_Status_Mask) }, \
-         { "Motor_A_Faults_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 44, offsetof(mavlink_motor_status_pack_t, Motor_A_Faults_Mask) }, \
-         { "Motor_B_Faults_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 48, offsetof(mavlink_motor_status_pack_t, Motor_B_Faults_Mask) }, \
-         { "BMS_Faults_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 52, offsetof(mavlink_motor_status_pack_t, BMS_Faults_Mask) }, \
+         { "Motor_A_Temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 48, offsetof(mavlink_motor_status_pack_t, Motor_A_Temperature) }, \
+         { "Motor_B_Temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 50, offsetof(mavlink_motor_status_pack_t, Motor_B_Temperature) }, \
+         { "BMS_Voltage", NULL, MAVLINK_TYPE_UINT16_T, 0, 52, offsetof(mavlink_motor_status_pack_t, BMS_Voltage) }, \
+         { "BMS_Absorption", NULL, MAVLINK_TYPE_INT16_T, 0, 54, offsetof(mavlink_motor_status_pack_t, BMS_Absorption) }, \
+         { "BMS_Temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 56, offsetof(mavlink_motor_status_pack_t, BMS_Temperature) }, \
+         { "Motor_Control_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 32, offsetof(mavlink_motor_status_pack_t, Motor_Control_Status_Mask) }, \
+         { "Motor_A_Faults_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 36, offsetof(mavlink_motor_status_pack_t, Motor_A_Faults_Mask) }, \
+         { "Motor_B_Faults_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 40, offsetof(mavlink_motor_status_pack_t, Motor_B_Faults_Mask) }, \
+         { "BMS_Faults_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 44, offsetof(mavlink_motor_status_pack_t, BMS_Faults_Mask) }, \
          } \
 }
 #endif
@@ -105,7 +105,7 @@ typedef struct __mavlink_motor_status_pack_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_motor_status_pack_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint64_t Log_Timestamp, int32_t Motor_A_Real_Position, int32_t Motor_B_Real_Position, int32_t Motor_A_Demand_Position, int32_t Motor_B_Demand_Position, int32_t Motor_A_Torque, int32_t Motor_B_Torque, int32_t Motor_A_Temperature, int32_t Motor_B_Temperature, uint16_t BMS_Voltage, int16_t BMS_Absorption, int16_t BMS_Temperature, uint32_t Motor_Control_Status_Mask, uint32_t Motor_A_Faults_Mask, uint32_t Motor_B_Faults_Mask, uint32_t BMS_Faults_Mask)
+                               uint64_t Log_Timestamp, int32_t Motor_A_Real_Position, int32_t Motor_B_Real_Position, int32_t Motor_A_Demand_Position, int32_t Motor_B_Demand_Position, int32_t Motor_A_Torque, int32_t Motor_B_Torque, int16_t Motor_A_Temperature, int16_t Motor_B_Temperature, uint16_t BMS_Voltage, int16_t BMS_Absorption, int16_t BMS_Temperature, uint32_t Motor_Control_Status_Mask, uint32_t Motor_A_Faults_Mask, uint32_t Motor_B_Faults_Mask, uint32_t BMS_Faults_Mask)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MOTOR_STATUS_PACK_LEN];
@@ -116,15 +116,15 @@ static inline uint16_t mavlink_msg_motor_status_pack_pack(uint8_t system_id, uin
     _mav_put_int32_t(buf, 20, Motor_B_Demand_Position);
     _mav_put_int32_t(buf, 24, Motor_A_Torque);
     _mav_put_int32_t(buf, 28, Motor_B_Torque);
-    _mav_put_int32_t(buf, 32, Motor_A_Temperature);
-    _mav_put_int32_t(buf, 36, Motor_B_Temperature);
-    _mav_put_uint32_t(buf, 40, Motor_Control_Status_Mask);
-    _mav_put_uint32_t(buf, 44, Motor_A_Faults_Mask);
-    _mav_put_uint32_t(buf, 48, Motor_B_Faults_Mask);
-    _mav_put_uint32_t(buf, 52, BMS_Faults_Mask);
-    _mav_put_uint16_t(buf, 56, BMS_Voltage);
-    _mav_put_int16_t(buf, 58, BMS_Absorption);
-    _mav_put_int16_t(buf, 60, BMS_Temperature);
+    _mav_put_uint32_t(buf, 32, Motor_Control_Status_Mask);
+    _mav_put_uint32_t(buf, 36, Motor_A_Faults_Mask);
+    _mav_put_uint32_t(buf, 40, Motor_B_Faults_Mask);
+    _mav_put_uint32_t(buf, 44, BMS_Faults_Mask);
+    _mav_put_int16_t(buf, 48, Motor_A_Temperature);
+    _mav_put_int16_t(buf, 50, Motor_B_Temperature);
+    _mav_put_uint16_t(buf, 52, BMS_Voltage);
+    _mav_put_int16_t(buf, 54, BMS_Absorption);
+    _mav_put_int16_t(buf, 56, BMS_Temperature);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_MOTOR_STATUS_PACK_LEN);
 #else
@@ -136,12 +136,12 @@ static inline uint16_t mavlink_msg_motor_status_pack_pack(uint8_t system_id, uin
     packet.Motor_B_Demand_Position = Motor_B_Demand_Position;
     packet.Motor_A_Torque = Motor_A_Torque;
     packet.Motor_B_Torque = Motor_B_Torque;
-    packet.Motor_A_Temperature = Motor_A_Temperature;
-    packet.Motor_B_Temperature = Motor_B_Temperature;
     packet.Motor_Control_Status_Mask = Motor_Control_Status_Mask;
     packet.Motor_A_Faults_Mask = Motor_A_Faults_Mask;
     packet.Motor_B_Faults_Mask = Motor_B_Faults_Mask;
     packet.BMS_Faults_Mask = BMS_Faults_Mask;
+    packet.Motor_A_Temperature = Motor_A_Temperature;
+    packet.Motor_B_Temperature = Motor_B_Temperature;
     packet.BMS_Voltage = BMS_Voltage;
     packet.BMS_Absorption = BMS_Absorption;
     packet.BMS_Temperature = BMS_Temperature;
@@ -179,7 +179,7 @@ static inline uint16_t mavlink_msg_motor_status_pack_pack(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_motor_status_pack_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint64_t Log_Timestamp,int32_t Motor_A_Real_Position,int32_t Motor_B_Real_Position,int32_t Motor_A_Demand_Position,int32_t Motor_B_Demand_Position,int32_t Motor_A_Torque,int32_t Motor_B_Torque,int32_t Motor_A_Temperature,int32_t Motor_B_Temperature,uint16_t BMS_Voltage,int16_t BMS_Absorption,int16_t BMS_Temperature,uint32_t Motor_Control_Status_Mask,uint32_t Motor_A_Faults_Mask,uint32_t Motor_B_Faults_Mask,uint32_t BMS_Faults_Mask)
+                                   uint64_t Log_Timestamp,int32_t Motor_A_Real_Position,int32_t Motor_B_Real_Position,int32_t Motor_A_Demand_Position,int32_t Motor_B_Demand_Position,int32_t Motor_A_Torque,int32_t Motor_B_Torque,int16_t Motor_A_Temperature,int16_t Motor_B_Temperature,uint16_t BMS_Voltage,int16_t BMS_Absorption,int16_t BMS_Temperature,uint32_t Motor_Control_Status_Mask,uint32_t Motor_A_Faults_Mask,uint32_t Motor_B_Faults_Mask,uint32_t BMS_Faults_Mask)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MOTOR_STATUS_PACK_LEN];
@@ -190,15 +190,15 @@ static inline uint16_t mavlink_msg_motor_status_pack_pack_chan(uint8_t system_id
     _mav_put_int32_t(buf, 20, Motor_B_Demand_Position);
     _mav_put_int32_t(buf, 24, Motor_A_Torque);
     _mav_put_int32_t(buf, 28, Motor_B_Torque);
-    _mav_put_int32_t(buf, 32, Motor_A_Temperature);
-    _mav_put_int32_t(buf, 36, Motor_B_Temperature);
-    _mav_put_uint32_t(buf, 40, Motor_Control_Status_Mask);
-    _mav_put_uint32_t(buf, 44, Motor_A_Faults_Mask);
-    _mav_put_uint32_t(buf, 48, Motor_B_Faults_Mask);
-    _mav_put_uint32_t(buf, 52, BMS_Faults_Mask);
-    _mav_put_uint16_t(buf, 56, BMS_Voltage);
-    _mav_put_int16_t(buf, 58, BMS_Absorption);
-    _mav_put_int16_t(buf, 60, BMS_Temperature);
+    _mav_put_uint32_t(buf, 32, Motor_Control_Status_Mask);
+    _mav_put_uint32_t(buf, 36, Motor_A_Faults_Mask);
+    _mav_put_uint32_t(buf, 40, Motor_B_Faults_Mask);
+    _mav_put_uint32_t(buf, 44, BMS_Faults_Mask);
+    _mav_put_int16_t(buf, 48, Motor_A_Temperature);
+    _mav_put_int16_t(buf, 50, Motor_B_Temperature);
+    _mav_put_uint16_t(buf, 52, BMS_Voltage);
+    _mav_put_int16_t(buf, 54, BMS_Absorption);
+    _mav_put_int16_t(buf, 56, BMS_Temperature);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_MOTOR_STATUS_PACK_LEN);
 #else
@@ -210,12 +210,12 @@ static inline uint16_t mavlink_msg_motor_status_pack_pack_chan(uint8_t system_id
     packet.Motor_B_Demand_Position = Motor_B_Demand_Position;
     packet.Motor_A_Torque = Motor_A_Torque;
     packet.Motor_B_Torque = Motor_B_Torque;
-    packet.Motor_A_Temperature = Motor_A_Temperature;
-    packet.Motor_B_Temperature = Motor_B_Temperature;
     packet.Motor_Control_Status_Mask = Motor_Control_Status_Mask;
     packet.Motor_A_Faults_Mask = Motor_A_Faults_Mask;
     packet.Motor_B_Faults_Mask = Motor_B_Faults_Mask;
     packet.BMS_Faults_Mask = BMS_Faults_Mask;
+    packet.Motor_A_Temperature = Motor_A_Temperature;
+    packet.Motor_B_Temperature = Motor_B_Temperature;
     packet.BMS_Voltage = BMS_Voltage;
     packet.BMS_Absorption = BMS_Absorption;
     packet.BMS_Temperature = BMS_Temperature;
@@ -277,7 +277,7 @@ static inline uint16_t mavlink_msg_motor_status_pack_encode_chan(uint8_t system_
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_motor_status_pack_send(mavlink_channel_t chan, uint64_t Log_Timestamp, int32_t Motor_A_Real_Position, int32_t Motor_B_Real_Position, int32_t Motor_A_Demand_Position, int32_t Motor_B_Demand_Position, int32_t Motor_A_Torque, int32_t Motor_B_Torque, int32_t Motor_A_Temperature, int32_t Motor_B_Temperature, uint16_t BMS_Voltage, int16_t BMS_Absorption, int16_t BMS_Temperature, uint32_t Motor_Control_Status_Mask, uint32_t Motor_A_Faults_Mask, uint32_t Motor_B_Faults_Mask, uint32_t BMS_Faults_Mask)
+static inline void mavlink_msg_motor_status_pack_send(mavlink_channel_t chan, uint64_t Log_Timestamp, int32_t Motor_A_Real_Position, int32_t Motor_B_Real_Position, int32_t Motor_A_Demand_Position, int32_t Motor_B_Demand_Position, int32_t Motor_A_Torque, int32_t Motor_B_Torque, int16_t Motor_A_Temperature, int16_t Motor_B_Temperature, uint16_t BMS_Voltage, int16_t BMS_Absorption, int16_t BMS_Temperature, uint32_t Motor_Control_Status_Mask, uint32_t Motor_A_Faults_Mask, uint32_t Motor_B_Faults_Mask, uint32_t BMS_Faults_Mask)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MOTOR_STATUS_PACK_LEN];
@@ -288,15 +288,15 @@ static inline void mavlink_msg_motor_status_pack_send(mavlink_channel_t chan, ui
     _mav_put_int32_t(buf, 20, Motor_B_Demand_Position);
     _mav_put_int32_t(buf, 24, Motor_A_Torque);
     _mav_put_int32_t(buf, 28, Motor_B_Torque);
-    _mav_put_int32_t(buf, 32, Motor_A_Temperature);
-    _mav_put_int32_t(buf, 36, Motor_B_Temperature);
-    _mav_put_uint32_t(buf, 40, Motor_Control_Status_Mask);
-    _mav_put_uint32_t(buf, 44, Motor_A_Faults_Mask);
-    _mav_put_uint32_t(buf, 48, Motor_B_Faults_Mask);
-    _mav_put_uint32_t(buf, 52, BMS_Faults_Mask);
-    _mav_put_uint16_t(buf, 56, BMS_Voltage);
-    _mav_put_int16_t(buf, 58, BMS_Absorption);
-    _mav_put_int16_t(buf, 60, BMS_Temperature);
+    _mav_put_uint32_t(buf, 32, Motor_Control_Status_Mask);
+    _mav_put_uint32_t(buf, 36, Motor_A_Faults_Mask);
+    _mav_put_uint32_t(buf, 40, Motor_B_Faults_Mask);
+    _mav_put_uint32_t(buf, 44, BMS_Faults_Mask);
+    _mav_put_int16_t(buf, 48, Motor_A_Temperature);
+    _mav_put_int16_t(buf, 50, Motor_B_Temperature);
+    _mav_put_uint16_t(buf, 52, BMS_Voltage);
+    _mav_put_int16_t(buf, 54, BMS_Absorption);
+    _mav_put_int16_t(buf, 56, BMS_Temperature);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOTOR_STATUS_PACK, buf, MAVLINK_MSG_ID_MOTOR_STATUS_PACK_MIN_LEN, MAVLINK_MSG_ID_MOTOR_STATUS_PACK_LEN, MAVLINK_MSG_ID_MOTOR_STATUS_PACK_CRC);
 #else
@@ -308,12 +308,12 @@ static inline void mavlink_msg_motor_status_pack_send(mavlink_channel_t chan, ui
     packet.Motor_B_Demand_Position = Motor_B_Demand_Position;
     packet.Motor_A_Torque = Motor_A_Torque;
     packet.Motor_B_Torque = Motor_B_Torque;
-    packet.Motor_A_Temperature = Motor_A_Temperature;
-    packet.Motor_B_Temperature = Motor_B_Temperature;
     packet.Motor_Control_Status_Mask = Motor_Control_Status_Mask;
     packet.Motor_A_Faults_Mask = Motor_A_Faults_Mask;
     packet.Motor_B_Faults_Mask = Motor_B_Faults_Mask;
     packet.BMS_Faults_Mask = BMS_Faults_Mask;
+    packet.Motor_A_Temperature = Motor_A_Temperature;
+    packet.Motor_B_Temperature = Motor_B_Temperature;
     packet.BMS_Voltage = BMS_Voltage;
     packet.BMS_Absorption = BMS_Absorption;
     packet.BMS_Temperature = BMS_Temperature;
@@ -344,7 +344,7 @@ static inline void mavlink_msg_motor_status_pack_send_struct(mavlink_channel_t c
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_motor_status_pack_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t Log_Timestamp, int32_t Motor_A_Real_Position, int32_t Motor_B_Real_Position, int32_t Motor_A_Demand_Position, int32_t Motor_B_Demand_Position, int32_t Motor_A_Torque, int32_t Motor_B_Torque, int32_t Motor_A_Temperature, int32_t Motor_B_Temperature, uint16_t BMS_Voltage, int16_t BMS_Absorption, int16_t BMS_Temperature, uint32_t Motor_Control_Status_Mask, uint32_t Motor_A_Faults_Mask, uint32_t Motor_B_Faults_Mask, uint32_t BMS_Faults_Mask)
+static inline void mavlink_msg_motor_status_pack_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t Log_Timestamp, int32_t Motor_A_Real_Position, int32_t Motor_B_Real_Position, int32_t Motor_A_Demand_Position, int32_t Motor_B_Demand_Position, int32_t Motor_A_Torque, int32_t Motor_B_Torque, int16_t Motor_A_Temperature, int16_t Motor_B_Temperature, uint16_t BMS_Voltage, int16_t BMS_Absorption, int16_t BMS_Temperature, uint32_t Motor_Control_Status_Mask, uint32_t Motor_A_Faults_Mask, uint32_t Motor_B_Faults_Mask, uint32_t BMS_Faults_Mask)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -355,15 +355,15 @@ static inline void mavlink_msg_motor_status_pack_send_buf(mavlink_message_t *msg
     _mav_put_int32_t(buf, 20, Motor_B_Demand_Position);
     _mav_put_int32_t(buf, 24, Motor_A_Torque);
     _mav_put_int32_t(buf, 28, Motor_B_Torque);
-    _mav_put_int32_t(buf, 32, Motor_A_Temperature);
-    _mav_put_int32_t(buf, 36, Motor_B_Temperature);
-    _mav_put_uint32_t(buf, 40, Motor_Control_Status_Mask);
-    _mav_put_uint32_t(buf, 44, Motor_A_Faults_Mask);
-    _mav_put_uint32_t(buf, 48, Motor_B_Faults_Mask);
-    _mav_put_uint32_t(buf, 52, BMS_Faults_Mask);
-    _mav_put_uint16_t(buf, 56, BMS_Voltage);
-    _mav_put_int16_t(buf, 58, BMS_Absorption);
-    _mav_put_int16_t(buf, 60, BMS_Temperature);
+    _mav_put_uint32_t(buf, 32, Motor_Control_Status_Mask);
+    _mav_put_uint32_t(buf, 36, Motor_A_Faults_Mask);
+    _mav_put_uint32_t(buf, 40, Motor_B_Faults_Mask);
+    _mav_put_uint32_t(buf, 44, BMS_Faults_Mask);
+    _mav_put_int16_t(buf, 48, Motor_A_Temperature);
+    _mav_put_int16_t(buf, 50, Motor_B_Temperature);
+    _mav_put_uint16_t(buf, 52, BMS_Voltage);
+    _mav_put_int16_t(buf, 54, BMS_Absorption);
+    _mav_put_int16_t(buf, 56, BMS_Temperature);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MOTOR_STATUS_PACK, buf, MAVLINK_MSG_ID_MOTOR_STATUS_PACK_MIN_LEN, MAVLINK_MSG_ID_MOTOR_STATUS_PACK_LEN, MAVLINK_MSG_ID_MOTOR_STATUS_PACK_CRC);
 #else
@@ -375,12 +375,12 @@ static inline void mavlink_msg_motor_status_pack_send_buf(mavlink_message_t *msg
     packet->Motor_B_Demand_Position = Motor_B_Demand_Position;
     packet->Motor_A_Torque = Motor_A_Torque;
     packet->Motor_B_Torque = Motor_B_Torque;
-    packet->Motor_A_Temperature = Motor_A_Temperature;
-    packet->Motor_B_Temperature = Motor_B_Temperature;
     packet->Motor_Control_Status_Mask = Motor_Control_Status_Mask;
     packet->Motor_A_Faults_Mask = Motor_A_Faults_Mask;
     packet->Motor_B_Faults_Mask = Motor_B_Faults_Mask;
     packet->BMS_Faults_Mask = BMS_Faults_Mask;
+    packet->Motor_A_Temperature = Motor_A_Temperature;
+    packet->Motor_B_Temperature = Motor_B_Temperature;
     packet->BMS_Voltage = BMS_Voltage;
     packet->BMS_Absorption = BMS_Absorption;
     packet->BMS_Temperature = BMS_Temperature;
@@ -470,9 +470,9 @@ static inline int32_t mavlink_msg_motor_status_pack_get_Motor_B_Torque(const mav
  *
  * @return [°C] Motor A temperature 10^2
  */
-static inline int32_t mavlink_msg_motor_status_pack_get_Motor_A_Temperature(const mavlink_message_t* msg)
+static inline int16_t mavlink_msg_motor_status_pack_get_Motor_A_Temperature(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int32_t(msg,  32);
+    return _MAV_RETURN_int16_t(msg,  48);
 }
 
 /**
@@ -480,9 +480,9 @@ static inline int32_t mavlink_msg_motor_status_pack_get_Motor_A_Temperature(cons
  *
  * @return [°C] Motor B temperature 10^2
  */
-static inline int32_t mavlink_msg_motor_status_pack_get_Motor_B_Temperature(const mavlink_message_t* msg)
+static inline int16_t mavlink_msg_motor_status_pack_get_Motor_B_Temperature(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int32_t(msg,  36);
+    return _MAV_RETURN_int16_t(msg,  50);
 }
 
 /**
@@ -492,7 +492,7 @@ static inline int32_t mavlink_msg_motor_status_pack_get_Motor_B_Temperature(cons
  */
 static inline uint16_t mavlink_msg_motor_status_pack_get_BMS_Voltage(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint16_t(msg,  56);
+    return _MAV_RETURN_uint16_t(msg,  52);
 }
 
 /**
@@ -502,7 +502,7 @@ static inline uint16_t mavlink_msg_motor_status_pack_get_BMS_Voltage(const mavli
  */
 static inline int16_t mavlink_msg_motor_status_pack_get_BMS_Absorption(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  58);
+    return _MAV_RETURN_int16_t(msg,  54);
 }
 
 /**
@@ -512,7 +512,7 @@ static inline int16_t mavlink_msg_motor_status_pack_get_BMS_Absorption(const mav
  */
 static inline int16_t mavlink_msg_motor_status_pack_get_BMS_Temperature(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  60);
+    return _MAV_RETURN_int16_t(msg,  56);
 }
 
 /**
@@ -522,7 +522,7 @@ static inline int16_t mavlink_msg_motor_status_pack_get_BMS_Temperature(const ma
  */
 static inline uint32_t mavlink_msg_motor_status_pack_get_Motor_Control_Status_Mask(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint32_t(msg,  40);
+    return _MAV_RETURN_uint32_t(msg,  32);
 }
 
 /**
@@ -532,7 +532,7 @@ static inline uint32_t mavlink_msg_motor_status_pack_get_Motor_Control_Status_Ma
  */
 static inline uint32_t mavlink_msg_motor_status_pack_get_Motor_A_Faults_Mask(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint32_t(msg,  44);
+    return _MAV_RETURN_uint32_t(msg,  36);
 }
 
 /**
@@ -542,7 +542,7 @@ static inline uint32_t mavlink_msg_motor_status_pack_get_Motor_A_Faults_Mask(con
  */
 static inline uint32_t mavlink_msg_motor_status_pack_get_Motor_B_Faults_Mask(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint32_t(msg,  48);
+    return _MAV_RETURN_uint32_t(msg,  40);
 }
 
 /**
@@ -552,7 +552,7 @@ static inline uint32_t mavlink_msg_motor_status_pack_get_Motor_B_Faults_Mask(con
  */
 static inline uint32_t mavlink_msg_motor_status_pack_get_BMS_Faults_Mask(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint32_t(msg,  52);
+    return _MAV_RETURN_uint32_t(msg,  44);
 }
 
 /**
@@ -571,12 +571,12 @@ static inline void mavlink_msg_motor_status_pack_decode(const mavlink_message_t*
     motor_status_pack->Motor_B_Demand_Position = mavlink_msg_motor_status_pack_get_Motor_B_Demand_Position(msg);
     motor_status_pack->Motor_A_Torque = mavlink_msg_motor_status_pack_get_Motor_A_Torque(msg);
     motor_status_pack->Motor_B_Torque = mavlink_msg_motor_status_pack_get_Motor_B_Torque(msg);
-    motor_status_pack->Motor_A_Temperature = mavlink_msg_motor_status_pack_get_Motor_A_Temperature(msg);
-    motor_status_pack->Motor_B_Temperature = mavlink_msg_motor_status_pack_get_Motor_B_Temperature(msg);
     motor_status_pack->Motor_Control_Status_Mask = mavlink_msg_motor_status_pack_get_Motor_Control_Status_Mask(msg);
     motor_status_pack->Motor_A_Faults_Mask = mavlink_msg_motor_status_pack_get_Motor_A_Faults_Mask(msg);
     motor_status_pack->Motor_B_Faults_Mask = mavlink_msg_motor_status_pack_get_Motor_B_Faults_Mask(msg);
     motor_status_pack->BMS_Faults_Mask = mavlink_msg_motor_status_pack_get_BMS_Faults_Mask(msg);
+    motor_status_pack->Motor_A_Temperature = mavlink_msg_motor_status_pack_get_Motor_A_Temperature(msg);
+    motor_status_pack->Motor_B_Temperature = mavlink_msg_motor_status_pack_get_Motor_B_Temperature(msg);
     motor_status_pack->BMS_Voltage = mavlink_msg_motor_status_pack_get_BMS_Voltage(msg);
     motor_status_pack->BMS_Absorption = mavlink_msg_motor_status_pack_get_BMS_Absorption(msg);
     motor_status_pack->BMS_Temperature = mavlink_msg_motor_status_pack_get_BMS_Temperature(msg);

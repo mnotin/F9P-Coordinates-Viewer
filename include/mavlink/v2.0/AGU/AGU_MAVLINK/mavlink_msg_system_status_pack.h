@@ -6,8 +6,8 @@
 
 typedef struct __mavlink_system_status_pack_t {
  uint64_t Log_Timestamp; /*< [ms] Log timestamp since 1.1.1970 UTC.*/
+ uint64_t Telemetry_Module_Status_Mask; /*<  Telemetry module status mask*/
  uint32_t Core_Module_Status_Mask; /*<  Core module status mask*/
- uint32_t Telemetry_Module_Status_Mask; /*<  Telemetry module status mask*/
  uint32_t Storage_Module_Status_Mask; /*<  Storage module status mask*/
  uint32_t Radio_Link_Module_Status_Mask; /*<  Radio link module status mask*/
  uint32_t Motor_Control_Module_Status_Mask; /*<  Motor control module status mask*/
@@ -17,13 +17,13 @@ typedef struct __mavlink_system_status_pack_t {
  uint8_t Flight_Mode; /*<  Flight mode id*/
 } mavlink_system_status_pack_t;
 
-#define MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_LEN 38
-#define MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_MIN_LEN 38
-#define MAVLINK_MSG_ID_13000_LEN 38
-#define MAVLINK_MSG_ID_13000_MIN_LEN 38
+#define MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_LEN 42
+#define MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_MIN_LEN 42
+#define MAVLINK_MSG_ID_13000_LEN 42
+#define MAVLINK_MSG_ID_13000_MIN_LEN 42
 
-#define MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_CRC 54
-#define MAVLINK_MSG_ID_13000_CRC 54
+#define MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_CRC 210
+#define MAVLINK_MSG_ID_13000_CRC 210
 
 
 
@@ -33,15 +33,15 @@ typedef struct __mavlink_system_status_pack_t {
     "SYSTEM_STATUS_PACK", \
     10, \
     {  { "Log_Timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_system_status_pack_t, Log_Timestamp) }, \
-         { "Core_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_system_status_pack_t, Core_Module_Status_Mask) }, \
-         { "Telemetry_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 12, offsetof(mavlink_system_status_pack_t, Telemetry_Module_Status_Mask) }, \
-         { "Storage_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 16, offsetof(mavlink_system_status_pack_t, Storage_Module_Status_Mask) }, \
-         { "Radio_Link_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 20, offsetof(mavlink_system_status_pack_t, Radio_Link_Module_Status_Mask) }, \
-         { "Motor_Control_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 24, offsetof(mavlink_system_status_pack_t, Motor_Control_Module_Status_Mask) }, \
-         { "Guidance_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 28, offsetof(mavlink_system_status_pack_t, Guidance_Module_Status_Mask) }, \
-         { "Flight_Phase", NULL, MAVLINK_TYPE_UINT8_T, 0, 36, offsetof(mavlink_system_status_pack_t, Flight_Phase) }, \
-         { "Flight_Mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 37, offsetof(mavlink_system_status_pack_t, Flight_Mode) }, \
-         { "Flight_Phase_Time", NULL, MAVLINK_TYPE_UINT32_T, 0, 32, offsetof(mavlink_system_status_pack_t, Flight_Phase_Time) }, \
+         { "Core_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 16, offsetof(mavlink_system_status_pack_t, Core_Module_Status_Mask) }, \
+         { "Telemetry_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_system_status_pack_t, Telemetry_Module_Status_Mask) }, \
+         { "Storage_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 20, offsetof(mavlink_system_status_pack_t, Storage_Module_Status_Mask) }, \
+         { "Radio_Link_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 24, offsetof(mavlink_system_status_pack_t, Radio_Link_Module_Status_Mask) }, \
+         { "Motor_Control_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 28, offsetof(mavlink_system_status_pack_t, Motor_Control_Module_Status_Mask) }, \
+         { "Guidance_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 32, offsetof(mavlink_system_status_pack_t, Guidance_Module_Status_Mask) }, \
+         { "Flight_Phase", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_system_status_pack_t, Flight_Phase) }, \
+         { "Flight_Mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_system_status_pack_t, Flight_Mode) }, \
+         { "Flight_Phase_Time", NULL, MAVLINK_TYPE_UINT32_T, 0, 36, offsetof(mavlink_system_status_pack_t, Flight_Phase_Time) }, \
          } \
 }
 #else
@@ -49,15 +49,15 @@ typedef struct __mavlink_system_status_pack_t {
     "SYSTEM_STATUS_PACK", \
     10, \
     {  { "Log_Timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_system_status_pack_t, Log_Timestamp) }, \
-         { "Core_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_system_status_pack_t, Core_Module_Status_Mask) }, \
-         { "Telemetry_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 12, offsetof(mavlink_system_status_pack_t, Telemetry_Module_Status_Mask) }, \
-         { "Storage_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 16, offsetof(mavlink_system_status_pack_t, Storage_Module_Status_Mask) }, \
-         { "Radio_Link_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 20, offsetof(mavlink_system_status_pack_t, Radio_Link_Module_Status_Mask) }, \
-         { "Motor_Control_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 24, offsetof(mavlink_system_status_pack_t, Motor_Control_Module_Status_Mask) }, \
-         { "Guidance_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 28, offsetof(mavlink_system_status_pack_t, Guidance_Module_Status_Mask) }, \
-         { "Flight_Phase", NULL, MAVLINK_TYPE_UINT8_T, 0, 36, offsetof(mavlink_system_status_pack_t, Flight_Phase) }, \
-         { "Flight_Mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 37, offsetof(mavlink_system_status_pack_t, Flight_Mode) }, \
-         { "Flight_Phase_Time", NULL, MAVLINK_TYPE_UINT32_T, 0, 32, offsetof(mavlink_system_status_pack_t, Flight_Phase_Time) }, \
+         { "Core_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 16, offsetof(mavlink_system_status_pack_t, Core_Module_Status_Mask) }, \
+         { "Telemetry_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_system_status_pack_t, Telemetry_Module_Status_Mask) }, \
+         { "Storage_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 20, offsetof(mavlink_system_status_pack_t, Storage_Module_Status_Mask) }, \
+         { "Radio_Link_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 24, offsetof(mavlink_system_status_pack_t, Radio_Link_Module_Status_Mask) }, \
+         { "Motor_Control_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 28, offsetof(mavlink_system_status_pack_t, Motor_Control_Module_Status_Mask) }, \
+         { "Guidance_Module_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 32, offsetof(mavlink_system_status_pack_t, Guidance_Module_Status_Mask) }, \
+         { "Flight_Phase", NULL, MAVLINK_TYPE_UINT8_T, 0, 40, offsetof(mavlink_system_status_pack_t, Flight_Phase) }, \
+         { "Flight_Mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 41, offsetof(mavlink_system_status_pack_t, Flight_Mode) }, \
+         { "Flight_Phase_Time", NULL, MAVLINK_TYPE_UINT32_T, 0, 36, offsetof(mavlink_system_status_pack_t, Flight_Phase_Time) }, \
          } \
 }
 #endif
@@ -81,27 +81,27 @@ typedef struct __mavlink_system_status_pack_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_system_status_pack_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint64_t Log_Timestamp, uint32_t Core_Module_Status_Mask, uint32_t Telemetry_Module_Status_Mask, uint32_t Storage_Module_Status_Mask, uint32_t Radio_Link_Module_Status_Mask, uint32_t Motor_Control_Module_Status_Mask, uint32_t Guidance_Module_Status_Mask, uint8_t Flight_Phase, uint8_t Flight_Mode, uint32_t Flight_Phase_Time)
+                               uint64_t Log_Timestamp, uint32_t Core_Module_Status_Mask, uint64_t Telemetry_Module_Status_Mask, uint32_t Storage_Module_Status_Mask, uint32_t Radio_Link_Module_Status_Mask, uint32_t Motor_Control_Module_Status_Mask, uint32_t Guidance_Module_Status_Mask, uint8_t Flight_Phase, uint8_t Flight_Mode, uint32_t Flight_Phase_Time)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_LEN];
     _mav_put_uint64_t(buf, 0, Log_Timestamp);
-    _mav_put_uint32_t(buf, 8, Core_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 12, Telemetry_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 16, Storage_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 20, Radio_Link_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 24, Motor_Control_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 28, Guidance_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 32, Flight_Phase_Time);
-    _mav_put_uint8_t(buf, 36, Flight_Phase);
-    _mav_put_uint8_t(buf, 37, Flight_Mode);
+    _mav_put_uint64_t(buf, 8, Telemetry_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 16, Core_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 20, Storage_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 24, Radio_Link_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 28, Motor_Control_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 32, Guidance_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 36, Flight_Phase_Time);
+    _mav_put_uint8_t(buf, 40, Flight_Phase);
+    _mav_put_uint8_t(buf, 41, Flight_Mode);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_LEN);
 #else
     mavlink_system_status_pack_t packet;
     packet.Log_Timestamp = Log_Timestamp;
-    packet.Core_Module_Status_Mask = Core_Module_Status_Mask;
     packet.Telemetry_Module_Status_Mask = Telemetry_Module_Status_Mask;
+    packet.Core_Module_Status_Mask = Core_Module_Status_Mask;
     packet.Storage_Module_Status_Mask = Storage_Module_Status_Mask;
     packet.Radio_Link_Module_Status_Mask = Radio_Link_Module_Status_Mask;
     packet.Motor_Control_Module_Status_Mask = Motor_Control_Module_Status_Mask;
@@ -137,27 +137,27 @@ static inline uint16_t mavlink_msg_system_status_pack_pack(uint8_t system_id, ui
  */
 static inline uint16_t mavlink_msg_system_status_pack_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint64_t Log_Timestamp,uint32_t Core_Module_Status_Mask,uint32_t Telemetry_Module_Status_Mask,uint32_t Storage_Module_Status_Mask,uint32_t Radio_Link_Module_Status_Mask,uint32_t Motor_Control_Module_Status_Mask,uint32_t Guidance_Module_Status_Mask,uint8_t Flight_Phase,uint8_t Flight_Mode,uint32_t Flight_Phase_Time)
+                                   uint64_t Log_Timestamp,uint32_t Core_Module_Status_Mask,uint64_t Telemetry_Module_Status_Mask,uint32_t Storage_Module_Status_Mask,uint32_t Radio_Link_Module_Status_Mask,uint32_t Motor_Control_Module_Status_Mask,uint32_t Guidance_Module_Status_Mask,uint8_t Flight_Phase,uint8_t Flight_Mode,uint32_t Flight_Phase_Time)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_LEN];
     _mav_put_uint64_t(buf, 0, Log_Timestamp);
-    _mav_put_uint32_t(buf, 8, Core_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 12, Telemetry_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 16, Storage_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 20, Radio_Link_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 24, Motor_Control_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 28, Guidance_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 32, Flight_Phase_Time);
-    _mav_put_uint8_t(buf, 36, Flight_Phase);
-    _mav_put_uint8_t(buf, 37, Flight_Mode);
+    _mav_put_uint64_t(buf, 8, Telemetry_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 16, Core_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 20, Storage_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 24, Radio_Link_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 28, Motor_Control_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 32, Guidance_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 36, Flight_Phase_Time);
+    _mav_put_uint8_t(buf, 40, Flight_Phase);
+    _mav_put_uint8_t(buf, 41, Flight_Mode);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_LEN);
 #else
     mavlink_system_status_pack_t packet;
     packet.Log_Timestamp = Log_Timestamp;
-    packet.Core_Module_Status_Mask = Core_Module_Status_Mask;
     packet.Telemetry_Module_Status_Mask = Telemetry_Module_Status_Mask;
+    packet.Core_Module_Status_Mask = Core_Module_Status_Mask;
     packet.Storage_Module_Status_Mask = Storage_Module_Status_Mask;
     packet.Radio_Link_Module_Status_Mask = Radio_Link_Module_Status_Mask;
     packet.Motor_Control_Module_Status_Mask = Motor_Control_Module_Status_Mask;
@@ -217,27 +217,27 @@ static inline uint16_t mavlink_msg_system_status_pack_encode_chan(uint8_t system
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_system_status_pack_send(mavlink_channel_t chan, uint64_t Log_Timestamp, uint32_t Core_Module_Status_Mask, uint32_t Telemetry_Module_Status_Mask, uint32_t Storage_Module_Status_Mask, uint32_t Radio_Link_Module_Status_Mask, uint32_t Motor_Control_Module_Status_Mask, uint32_t Guidance_Module_Status_Mask, uint8_t Flight_Phase, uint8_t Flight_Mode, uint32_t Flight_Phase_Time)
+static inline void mavlink_msg_system_status_pack_send(mavlink_channel_t chan, uint64_t Log_Timestamp, uint32_t Core_Module_Status_Mask, uint64_t Telemetry_Module_Status_Mask, uint32_t Storage_Module_Status_Mask, uint32_t Radio_Link_Module_Status_Mask, uint32_t Motor_Control_Module_Status_Mask, uint32_t Guidance_Module_Status_Mask, uint8_t Flight_Phase, uint8_t Flight_Mode, uint32_t Flight_Phase_Time)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_LEN];
     _mav_put_uint64_t(buf, 0, Log_Timestamp);
-    _mav_put_uint32_t(buf, 8, Core_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 12, Telemetry_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 16, Storage_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 20, Radio_Link_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 24, Motor_Control_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 28, Guidance_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 32, Flight_Phase_Time);
-    _mav_put_uint8_t(buf, 36, Flight_Phase);
-    _mav_put_uint8_t(buf, 37, Flight_Mode);
+    _mav_put_uint64_t(buf, 8, Telemetry_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 16, Core_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 20, Storage_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 24, Radio_Link_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 28, Motor_Control_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 32, Guidance_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 36, Flight_Phase_Time);
+    _mav_put_uint8_t(buf, 40, Flight_Phase);
+    _mav_put_uint8_t(buf, 41, Flight_Mode);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SYSTEM_STATUS_PACK, buf, MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_MIN_LEN, MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_LEN, MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_CRC);
 #else
     mavlink_system_status_pack_t packet;
     packet.Log_Timestamp = Log_Timestamp;
-    packet.Core_Module_Status_Mask = Core_Module_Status_Mask;
     packet.Telemetry_Module_Status_Mask = Telemetry_Module_Status_Mask;
+    packet.Core_Module_Status_Mask = Core_Module_Status_Mask;
     packet.Storage_Module_Status_Mask = Storage_Module_Status_Mask;
     packet.Radio_Link_Module_Status_Mask = Radio_Link_Module_Status_Mask;
     packet.Motor_Control_Module_Status_Mask = Motor_Control_Module_Status_Mask;
@@ -272,27 +272,27 @@ static inline void mavlink_msg_system_status_pack_send_struct(mavlink_channel_t 
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_system_status_pack_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t Log_Timestamp, uint32_t Core_Module_Status_Mask, uint32_t Telemetry_Module_Status_Mask, uint32_t Storage_Module_Status_Mask, uint32_t Radio_Link_Module_Status_Mask, uint32_t Motor_Control_Module_Status_Mask, uint32_t Guidance_Module_Status_Mask, uint8_t Flight_Phase, uint8_t Flight_Mode, uint32_t Flight_Phase_Time)
+static inline void mavlink_msg_system_status_pack_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t Log_Timestamp, uint32_t Core_Module_Status_Mask, uint64_t Telemetry_Module_Status_Mask, uint32_t Storage_Module_Status_Mask, uint32_t Radio_Link_Module_Status_Mask, uint32_t Motor_Control_Module_Status_Mask, uint32_t Guidance_Module_Status_Mask, uint8_t Flight_Phase, uint8_t Flight_Mode, uint32_t Flight_Phase_Time)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint64_t(buf, 0, Log_Timestamp);
-    _mav_put_uint32_t(buf, 8, Core_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 12, Telemetry_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 16, Storage_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 20, Radio_Link_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 24, Motor_Control_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 28, Guidance_Module_Status_Mask);
-    _mav_put_uint32_t(buf, 32, Flight_Phase_Time);
-    _mav_put_uint8_t(buf, 36, Flight_Phase);
-    _mav_put_uint8_t(buf, 37, Flight_Mode);
+    _mav_put_uint64_t(buf, 8, Telemetry_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 16, Core_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 20, Storage_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 24, Radio_Link_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 28, Motor_Control_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 32, Guidance_Module_Status_Mask);
+    _mav_put_uint32_t(buf, 36, Flight_Phase_Time);
+    _mav_put_uint8_t(buf, 40, Flight_Phase);
+    _mav_put_uint8_t(buf, 41, Flight_Mode);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_SYSTEM_STATUS_PACK, buf, MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_MIN_LEN, MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_LEN, MAVLINK_MSG_ID_SYSTEM_STATUS_PACK_CRC);
 #else
     mavlink_system_status_pack_t *packet = (mavlink_system_status_pack_t *)msgbuf;
     packet->Log_Timestamp = Log_Timestamp;
-    packet->Core_Module_Status_Mask = Core_Module_Status_Mask;
     packet->Telemetry_Module_Status_Mask = Telemetry_Module_Status_Mask;
+    packet->Core_Module_Status_Mask = Core_Module_Status_Mask;
     packet->Storage_Module_Status_Mask = Storage_Module_Status_Mask;
     packet->Radio_Link_Module_Status_Mask = Radio_Link_Module_Status_Mask;
     packet->Motor_Control_Module_Status_Mask = Motor_Control_Module_Status_Mask;
@@ -328,7 +328,7 @@ static inline uint64_t mavlink_msg_system_status_pack_get_Log_Timestamp(const ma
  */
 static inline uint32_t mavlink_msg_system_status_pack_get_Core_Module_Status_Mask(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint32_t(msg,  8);
+    return _MAV_RETURN_uint32_t(msg,  16);
 }
 
 /**
@@ -336,9 +336,9 @@ static inline uint32_t mavlink_msg_system_status_pack_get_Core_Module_Status_Mas
  *
  * @return  Telemetry module status mask
  */
-static inline uint32_t mavlink_msg_system_status_pack_get_Telemetry_Module_Status_Mask(const mavlink_message_t* msg)
+static inline uint64_t mavlink_msg_system_status_pack_get_Telemetry_Module_Status_Mask(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint32_t(msg,  12);
+    return _MAV_RETURN_uint64_t(msg,  8);
 }
 
 /**
@@ -348,7 +348,7 @@ static inline uint32_t mavlink_msg_system_status_pack_get_Telemetry_Module_Statu
  */
 static inline uint32_t mavlink_msg_system_status_pack_get_Storage_Module_Status_Mask(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint32_t(msg,  16);
+    return _MAV_RETURN_uint32_t(msg,  20);
 }
 
 /**
@@ -358,7 +358,7 @@ static inline uint32_t mavlink_msg_system_status_pack_get_Storage_Module_Status_
  */
 static inline uint32_t mavlink_msg_system_status_pack_get_Radio_Link_Module_Status_Mask(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint32_t(msg,  20);
+    return _MAV_RETURN_uint32_t(msg,  24);
 }
 
 /**
@@ -368,7 +368,7 @@ static inline uint32_t mavlink_msg_system_status_pack_get_Radio_Link_Module_Stat
  */
 static inline uint32_t mavlink_msg_system_status_pack_get_Motor_Control_Module_Status_Mask(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint32_t(msg,  24);
+    return _MAV_RETURN_uint32_t(msg,  28);
 }
 
 /**
@@ -378,7 +378,7 @@ static inline uint32_t mavlink_msg_system_status_pack_get_Motor_Control_Module_S
  */
 static inline uint32_t mavlink_msg_system_status_pack_get_Guidance_Module_Status_Mask(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint32_t(msg,  28);
+    return _MAV_RETURN_uint32_t(msg,  32);
 }
 
 /**
@@ -388,7 +388,7 @@ static inline uint32_t mavlink_msg_system_status_pack_get_Guidance_Module_Status
  */
 static inline uint8_t mavlink_msg_system_status_pack_get_Flight_Phase(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  36);
+    return _MAV_RETURN_uint8_t(msg,  40);
 }
 
 /**
@@ -398,7 +398,7 @@ static inline uint8_t mavlink_msg_system_status_pack_get_Flight_Phase(const mavl
  */
 static inline uint8_t mavlink_msg_system_status_pack_get_Flight_Mode(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  37);
+    return _MAV_RETURN_uint8_t(msg,  41);
 }
 
 /**
@@ -408,7 +408,7 @@ static inline uint8_t mavlink_msg_system_status_pack_get_Flight_Mode(const mavli
  */
 static inline uint32_t mavlink_msg_system_status_pack_get_Flight_Phase_Time(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint32_t(msg,  32);
+    return _MAV_RETURN_uint32_t(msg,  36);
 }
 
 /**
@@ -421,8 +421,8 @@ static inline void mavlink_msg_system_status_pack_decode(const mavlink_message_t
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     system_status_pack->Log_Timestamp = mavlink_msg_system_status_pack_get_Log_Timestamp(msg);
-    system_status_pack->Core_Module_Status_Mask = mavlink_msg_system_status_pack_get_Core_Module_Status_Mask(msg);
     system_status_pack->Telemetry_Module_Status_Mask = mavlink_msg_system_status_pack_get_Telemetry_Module_Status_Mask(msg);
+    system_status_pack->Core_Module_Status_Mask = mavlink_msg_system_status_pack_get_Core_Module_Status_Mask(msg);
     system_status_pack->Storage_Module_Status_Mask = mavlink_msg_system_status_pack_get_Storage_Module_Status_Mask(msg);
     system_status_pack->Radio_Link_Module_Status_Mask = mavlink_msg_system_status_pack_get_Radio_Link_Module_Status_Mask(msg);
     system_status_pack->Motor_Control_Module_Status_Mask = mavlink_msg_system_status_pack_get_Motor_Control_Module_Status_Mask(msg);

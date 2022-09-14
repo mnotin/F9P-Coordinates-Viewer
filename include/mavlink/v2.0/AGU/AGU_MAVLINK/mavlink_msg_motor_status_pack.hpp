@@ -13,9 +13,9 @@ namespace msg {
  */
 struct MOTOR_STATUS_PACK : mavlink::Message {
     static constexpr msgid_t MSG_ID = 13002;
-    static constexpr size_t LENGTH = 62;
-    static constexpr size_t MIN_LENGTH = 62;
-    static constexpr uint8_t CRC_EXTRA = 86;
+    static constexpr size_t LENGTH = 58;
+    static constexpr size_t MIN_LENGTH = 58;
+    static constexpr uint8_t CRC_EXTRA = 197;
     static constexpr auto NAME = "MOTOR_STATUS_PACK";
 
 
@@ -26,8 +26,8 @@ struct MOTOR_STATUS_PACK : mavlink::Message {
     int32_t Motor_B_Demand_Position; /*<  Motor B demand position (Adimensional value) 10^3 */
     int32_t Motor_A_Torque; /*< [Nm] Motor A torque 10^2 */
     int32_t Motor_B_Torque; /*< [Nm] Motor B torque 10^2 */
-    int32_t Motor_A_Temperature; /*< [°C] Motor A temperature 10^2 */
-    int32_t Motor_B_Temperature; /*< [°C] Motor B temperature 10^2 */
+    int16_t Motor_A_Temperature; /*< [°C] Motor A temperature 10^2 */
+    int16_t Motor_B_Temperature; /*< [°C] Motor B temperature 10^2 */
     uint16_t BMS_Voltage; /*< [V] Battery management system voltage 10^2 */
     int16_t BMS_Absorption; /*< [A] Battery management system current absorption 10^2 */
     int16_t BMS_Temperature; /*< [°C] Battery management system temperature 10^2 */
@@ -83,15 +83,15 @@ struct MOTOR_STATUS_PACK : mavlink::Message {
         map << Motor_B_Demand_Position;       // offset: 20
         map << Motor_A_Torque;                // offset: 24
         map << Motor_B_Torque;                // offset: 28
-        map << Motor_A_Temperature;           // offset: 32
-        map << Motor_B_Temperature;           // offset: 36
-        map << Motor_Control_Status_Mask;     // offset: 40
-        map << Motor_A_Faults_Mask;           // offset: 44
-        map << Motor_B_Faults_Mask;           // offset: 48
-        map << BMS_Faults_Mask;               // offset: 52
-        map << BMS_Voltage;                   // offset: 56
-        map << BMS_Absorption;                // offset: 58
-        map << BMS_Temperature;               // offset: 60
+        map << Motor_Control_Status_Mask;     // offset: 32
+        map << Motor_A_Faults_Mask;           // offset: 36
+        map << Motor_B_Faults_Mask;           // offset: 40
+        map << BMS_Faults_Mask;               // offset: 44
+        map << Motor_A_Temperature;           // offset: 48
+        map << Motor_B_Temperature;           // offset: 50
+        map << BMS_Voltage;                   // offset: 52
+        map << BMS_Absorption;                // offset: 54
+        map << BMS_Temperature;               // offset: 56
     }
 
     inline void deserialize(mavlink::MsgMap &map) override
@@ -103,15 +103,15 @@ struct MOTOR_STATUS_PACK : mavlink::Message {
         map >> Motor_B_Demand_Position;       // offset: 20
         map >> Motor_A_Torque;                // offset: 24
         map >> Motor_B_Torque;                // offset: 28
-        map >> Motor_A_Temperature;           // offset: 32
-        map >> Motor_B_Temperature;           // offset: 36
-        map >> Motor_Control_Status_Mask;     // offset: 40
-        map >> Motor_A_Faults_Mask;           // offset: 44
-        map >> Motor_B_Faults_Mask;           // offset: 48
-        map >> BMS_Faults_Mask;               // offset: 52
-        map >> BMS_Voltage;                   // offset: 56
-        map >> BMS_Absorption;                // offset: 58
-        map >> BMS_Temperature;               // offset: 60
+        map >> Motor_Control_Status_Mask;     // offset: 32
+        map >> Motor_A_Faults_Mask;           // offset: 36
+        map >> Motor_B_Faults_Mask;           // offset: 40
+        map >> BMS_Faults_Mask;               // offset: 44
+        map >> Motor_A_Temperature;           // offset: 48
+        map >> Motor_B_Temperature;           // offset: 50
+        map >> BMS_Voltage;                   // offset: 52
+        map >> BMS_Absorption;                // offset: 54
+        map >> BMS_Temperature;               // offset: 56
     }
 };
 

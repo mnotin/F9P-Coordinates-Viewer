@@ -7,6 +7,7 @@
 typedef struct __mavlink_telemetry_data_pack_t {
  uint64_t Log_Timestamp; /*< [ms] Log timestamp since 1.1.1970 UTC.*/
  uint64_t GNSS_Timestamp; /*< [ms] GNSS Timestamp since 1.1.1970 UTC.*/
+ uint64_t Telemetry_Status_Mask; /*<  Telemetry module status mask*/
  int32_t Latitude; /*< [deg] Latitude 10^7*/
  int32_t Longitude; /*< [deg] Longitude 10^7*/
  uint32_t GNSS_Altitude; /*< [m] GNSS altitude 10^3*/
@@ -22,7 +23,6 @@ typedef struct __mavlink_telemetry_data_pack_t {
  float Quaternion_1; /*<  Quaternion[1]*/
  float Quaternion_2; /*<  Quaternion[2]*/
  float Quaternion_3; /*<  Quaternion[3] Scalar component*/
- uint32_t Telemetry_Status_Mask; /*<  Telemetry module status mask*/
  int16_t Air_Speed_U; /*< [m/s] Air speed U vector 10^2*/
  int16_t Air_Speed_V; /*< [m/s] Air speed V vector 10^2*/
  int16_t Air_Speed_W; /*< [m/s] Air speed W vector 10^2*/
@@ -43,13 +43,13 @@ typedef struct __mavlink_telemetry_data_pack_t {
  uint8_t Satellite_Num; /*<  Number of GPS satellite in view*/
 } mavlink_telemetry_data_pack_t;
 
-#define MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_LEN 115
-#define MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_MIN_LEN 115
-#define MAVLINK_MSG_ID_13001_LEN 115
-#define MAVLINK_MSG_ID_13001_MIN_LEN 115
+#define MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_LEN 119
+#define MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_MIN_LEN 119
+#define MAVLINK_MSG_ID_13001_LEN 119
+#define MAVLINK_MSG_ID_13001_MIN_LEN 119
 
-#define MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_CRC 84
-#define MAVLINK_MSG_ID_13001_CRC 84
+#define MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_CRC 55
+#define MAVLINK_MSG_ID_13001_CRC 55
 
 
 
@@ -60,40 +60,40 @@ typedef struct __mavlink_telemetry_data_pack_t {
     36, \
     {  { "Log_Timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_telemetry_data_pack_t, Log_Timestamp) }, \
          { "GNSS_Timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_telemetry_data_pack_t, GNSS_Timestamp) }, \
-         { "Latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_telemetry_data_pack_t, Latitude) }, \
-         { "Longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 20, offsetof(mavlink_telemetry_data_pack_t, Longitude) }, \
-         { "GNSS_Altitude", NULL, MAVLINK_TYPE_UINT32_T, 0, 24, offsetof(mavlink_telemetry_data_pack_t, GNSS_Altitude) }, \
-         { "Air_Speed_U", NULL, MAVLINK_TYPE_INT16_T, 0, 80, offsetof(mavlink_telemetry_data_pack_t, Air_Speed_U) }, \
-         { "Air_Speed_V", NULL, MAVLINK_TYPE_INT16_T, 0, 82, offsetof(mavlink_telemetry_data_pack_t, Air_Speed_V) }, \
-         { "Air_Speed_W", NULL, MAVLINK_TYPE_INT16_T, 0, 84, offsetof(mavlink_telemetry_data_pack_t, Air_Speed_W) }, \
-         { "Air_Temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 86, offsetof(mavlink_telemetry_data_pack_t, Air_Temperature) }, \
-         { "Altitude_Main_Altimeter", NULL, MAVLINK_TYPE_INT32_T, 0, 28, offsetof(mavlink_telemetry_data_pack_t, Altitude_Main_Altimeter) }, \
-         { "Altitude_Payload_Altimeter", NULL, MAVLINK_TYPE_INT32_T, 0, 32, offsetof(mavlink_telemetry_data_pack_t, Altitude_Payload_Altimeter) }, \
-         { "Velocity_Horizontal", NULL, MAVLINK_TYPE_UINT16_T, 0, 88, offsetof(mavlink_telemetry_data_pack_t, Velocity_Horizontal) }, \
-         { "Velocity_Vertical", NULL, MAVLINK_TYPE_INT16_T, 0, 90, offsetof(mavlink_telemetry_data_pack_t, Velocity_Vertical) }, \
-         { "Position_Accuracy", NULL, MAVLINK_TYPE_UINT16_T, 0, 92, offsetof(mavlink_telemetry_data_pack_t, Position_Accuracy) }, \
-         { "Speed_Accuracy", NULL, MAVLINK_TYPE_UINT16_T, 0, 94, offsetof(mavlink_telemetry_data_pack_t, Speed_Accuracy) }, \
-         { "Acceleration_X", NULL, MAVLINK_TYPE_INT16_T, 0, 96, offsetof(mavlink_telemetry_data_pack_t, Acceleration_X) }, \
-         { "Acceleration_Y", NULL, MAVLINK_TYPE_INT16_T, 0, 98, offsetof(mavlink_telemetry_data_pack_t, Acceleration_Y) }, \
-         { "Acceleration_Z", NULL, MAVLINK_TYPE_INT16_T, 0, 100, offsetof(mavlink_telemetry_data_pack_t, Acceleration_Z) }, \
-         { "ECEF_Position_X", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_telemetry_data_pack_t, ECEF_Position_X) }, \
-         { "ECEF_Position_Y", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_telemetry_data_pack_t, ECEF_Position_Y) }, \
-         { "ECEF_Position_Z", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_telemetry_data_pack_t, ECEF_Position_Z) }, \
-         { "ECEF_Velocity_X", NULL, MAVLINK_TYPE_FLOAT, 0, 48, offsetof(mavlink_telemetry_data_pack_t, ECEF_Velocity_X) }, \
-         { "ECEF_Velocity_Y", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_telemetry_data_pack_t, ECEF_Velocity_Y) }, \
-         { "ECEF_Velocity_Z", NULL, MAVLINK_TYPE_FLOAT, 0, 56, offsetof(mavlink_telemetry_data_pack_t, ECEF_Velocity_Z) }, \
-         { "Roll_Angle", NULL, MAVLINK_TYPE_INT16_T, 0, 102, offsetof(mavlink_telemetry_data_pack_t, Roll_Angle) }, \
-         { "Pitch_Angle", NULL, MAVLINK_TYPE_INT16_T, 0, 104, offsetof(mavlink_telemetry_data_pack_t, Pitch_Angle) }, \
-         { "Yaw_Angle", NULL, MAVLINK_TYPE_INT16_T, 0, 106, offsetof(mavlink_telemetry_data_pack_t, Yaw_Angle) }, \
-         { "Angular_Rate_Roll", NULL, MAVLINK_TYPE_INT16_T, 0, 108, offsetof(mavlink_telemetry_data_pack_t, Angular_Rate_Roll) }, \
-         { "Angular_Rate_Pitch", NULL, MAVLINK_TYPE_INT16_T, 0, 110, offsetof(mavlink_telemetry_data_pack_t, Angular_Rate_Pitch) }, \
-         { "Angular_Rate_Yaw", NULL, MAVLINK_TYPE_INT16_T, 0, 112, offsetof(mavlink_telemetry_data_pack_t, Angular_Rate_Yaw) }, \
-         { "Quaternion_0", NULL, MAVLINK_TYPE_FLOAT, 0, 60, offsetof(mavlink_telemetry_data_pack_t, Quaternion_0) }, \
-         { "Quaternion_1", NULL, MAVLINK_TYPE_FLOAT, 0, 64, offsetof(mavlink_telemetry_data_pack_t, Quaternion_1) }, \
-         { "Quaternion_2", NULL, MAVLINK_TYPE_FLOAT, 0, 68, offsetof(mavlink_telemetry_data_pack_t, Quaternion_2) }, \
-         { "Quaternion_3", NULL, MAVLINK_TYPE_FLOAT, 0, 72, offsetof(mavlink_telemetry_data_pack_t, Quaternion_3) }, \
-         { "Telemetry_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 76, offsetof(mavlink_telemetry_data_pack_t, Telemetry_Status_Mask) }, \
-         { "Satellite_Num", NULL, MAVLINK_TYPE_UINT8_T, 0, 114, offsetof(mavlink_telemetry_data_pack_t, Satellite_Num) }, \
+         { "Latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 24, offsetof(mavlink_telemetry_data_pack_t, Latitude) }, \
+         { "Longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 28, offsetof(mavlink_telemetry_data_pack_t, Longitude) }, \
+         { "GNSS_Altitude", NULL, MAVLINK_TYPE_UINT32_T, 0, 32, offsetof(mavlink_telemetry_data_pack_t, GNSS_Altitude) }, \
+         { "Air_Speed_U", NULL, MAVLINK_TYPE_INT16_T, 0, 84, offsetof(mavlink_telemetry_data_pack_t, Air_Speed_U) }, \
+         { "Air_Speed_V", NULL, MAVLINK_TYPE_INT16_T, 0, 86, offsetof(mavlink_telemetry_data_pack_t, Air_Speed_V) }, \
+         { "Air_Speed_W", NULL, MAVLINK_TYPE_INT16_T, 0, 88, offsetof(mavlink_telemetry_data_pack_t, Air_Speed_W) }, \
+         { "Air_Temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 90, offsetof(mavlink_telemetry_data_pack_t, Air_Temperature) }, \
+         { "Altitude_Main_Altimeter", NULL, MAVLINK_TYPE_INT32_T, 0, 36, offsetof(mavlink_telemetry_data_pack_t, Altitude_Main_Altimeter) }, \
+         { "Altitude_Payload_Altimeter", NULL, MAVLINK_TYPE_INT32_T, 0, 40, offsetof(mavlink_telemetry_data_pack_t, Altitude_Payload_Altimeter) }, \
+         { "Velocity_Horizontal", NULL, MAVLINK_TYPE_UINT16_T, 0, 92, offsetof(mavlink_telemetry_data_pack_t, Velocity_Horizontal) }, \
+         { "Velocity_Vertical", NULL, MAVLINK_TYPE_INT16_T, 0, 94, offsetof(mavlink_telemetry_data_pack_t, Velocity_Vertical) }, \
+         { "Position_Accuracy", NULL, MAVLINK_TYPE_UINT16_T, 0, 96, offsetof(mavlink_telemetry_data_pack_t, Position_Accuracy) }, \
+         { "Speed_Accuracy", NULL, MAVLINK_TYPE_UINT16_T, 0, 98, offsetof(mavlink_telemetry_data_pack_t, Speed_Accuracy) }, \
+         { "Acceleration_X", NULL, MAVLINK_TYPE_INT16_T, 0, 100, offsetof(mavlink_telemetry_data_pack_t, Acceleration_X) }, \
+         { "Acceleration_Y", NULL, MAVLINK_TYPE_INT16_T, 0, 102, offsetof(mavlink_telemetry_data_pack_t, Acceleration_Y) }, \
+         { "Acceleration_Z", NULL, MAVLINK_TYPE_INT16_T, 0, 104, offsetof(mavlink_telemetry_data_pack_t, Acceleration_Z) }, \
+         { "ECEF_Position_X", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_telemetry_data_pack_t, ECEF_Position_X) }, \
+         { "ECEF_Position_Y", NULL, MAVLINK_TYPE_FLOAT, 0, 48, offsetof(mavlink_telemetry_data_pack_t, ECEF_Position_Y) }, \
+         { "ECEF_Position_Z", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_telemetry_data_pack_t, ECEF_Position_Z) }, \
+         { "ECEF_Velocity_X", NULL, MAVLINK_TYPE_FLOAT, 0, 56, offsetof(mavlink_telemetry_data_pack_t, ECEF_Velocity_X) }, \
+         { "ECEF_Velocity_Y", NULL, MAVLINK_TYPE_FLOAT, 0, 60, offsetof(mavlink_telemetry_data_pack_t, ECEF_Velocity_Y) }, \
+         { "ECEF_Velocity_Z", NULL, MAVLINK_TYPE_FLOAT, 0, 64, offsetof(mavlink_telemetry_data_pack_t, ECEF_Velocity_Z) }, \
+         { "Roll_Angle", NULL, MAVLINK_TYPE_INT16_T, 0, 106, offsetof(mavlink_telemetry_data_pack_t, Roll_Angle) }, \
+         { "Pitch_Angle", NULL, MAVLINK_TYPE_INT16_T, 0, 108, offsetof(mavlink_telemetry_data_pack_t, Pitch_Angle) }, \
+         { "Yaw_Angle", NULL, MAVLINK_TYPE_INT16_T, 0, 110, offsetof(mavlink_telemetry_data_pack_t, Yaw_Angle) }, \
+         { "Angular_Rate_Roll", NULL, MAVLINK_TYPE_INT16_T, 0, 112, offsetof(mavlink_telemetry_data_pack_t, Angular_Rate_Roll) }, \
+         { "Angular_Rate_Pitch", NULL, MAVLINK_TYPE_INT16_T, 0, 114, offsetof(mavlink_telemetry_data_pack_t, Angular_Rate_Pitch) }, \
+         { "Angular_Rate_Yaw", NULL, MAVLINK_TYPE_INT16_T, 0, 116, offsetof(mavlink_telemetry_data_pack_t, Angular_Rate_Yaw) }, \
+         { "Quaternion_0", NULL, MAVLINK_TYPE_FLOAT, 0, 68, offsetof(mavlink_telemetry_data_pack_t, Quaternion_0) }, \
+         { "Quaternion_1", NULL, MAVLINK_TYPE_FLOAT, 0, 72, offsetof(mavlink_telemetry_data_pack_t, Quaternion_1) }, \
+         { "Quaternion_2", NULL, MAVLINK_TYPE_FLOAT, 0, 76, offsetof(mavlink_telemetry_data_pack_t, Quaternion_2) }, \
+         { "Quaternion_3", NULL, MAVLINK_TYPE_FLOAT, 0, 80, offsetof(mavlink_telemetry_data_pack_t, Quaternion_3) }, \
+         { "Telemetry_Status_Mask", NULL, MAVLINK_TYPE_UINT64_T, 0, 16, offsetof(mavlink_telemetry_data_pack_t, Telemetry_Status_Mask) }, \
+         { "Satellite_Num", NULL, MAVLINK_TYPE_UINT8_T, 0, 118, offsetof(mavlink_telemetry_data_pack_t, Satellite_Num) }, \
          } \
 }
 #else
@@ -102,40 +102,40 @@ typedef struct __mavlink_telemetry_data_pack_t {
     36, \
     {  { "Log_Timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_telemetry_data_pack_t, Log_Timestamp) }, \
          { "GNSS_Timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_telemetry_data_pack_t, GNSS_Timestamp) }, \
-         { "Latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 16, offsetof(mavlink_telemetry_data_pack_t, Latitude) }, \
-         { "Longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 20, offsetof(mavlink_telemetry_data_pack_t, Longitude) }, \
-         { "GNSS_Altitude", NULL, MAVLINK_TYPE_UINT32_T, 0, 24, offsetof(mavlink_telemetry_data_pack_t, GNSS_Altitude) }, \
-         { "Air_Speed_U", NULL, MAVLINK_TYPE_INT16_T, 0, 80, offsetof(mavlink_telemetry_data_pack_t, Air_Speed_U) }, \
-         { "Air_Speed_V", NULL, MAVLINK_TYPE_INT16_T, 0, 82, offsetof(mavlink_telemetry_data_pack_t, Air_Speed_V) }, \
-         { "Air_Speed_W", NULL, MAVLINK_TYPE_INT16_T, 0, 84, offsetof(mavlink_telemetry_data_pack_t, Air_Speed_W) }, \
-         { "Air_Temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 86, offsetof(mavlink_telemetry_data_pack_t, Air_Temperature) }, \
-         { "Altitude_Main_Altimeter", NULL, MAVLINK_TYPE_INT32_T, 0, 28, offsetof(mavlink_telemetry_data_pack_t, Altitude_Main_Altimeter) }, \
-         { "Altitude_Payload_Altimeter", NULL, MAVLINK_TYPE_INT32_T, 0, 32, offsetof(mavlink_telemetry_data_pack_t, Altitude_Payload_Altimeter) }, \
-         { "Velocity_Horizontal", NULL, MAVLINK_TYPE_UINT16_T, 0, 88, offsetof(mavlink_telemetry_data_pack_t, Velocity_Horizontal) }, \
-         { "Velocity_Vertical", NULL, MAVLINK_TYPE_INT16_T, 0, 90, offsetof(mavlink_telemetry_data_pack_t, Velocity_Vertical) }, \
-         { "Position_Accuracy", NULL, MAVLINK_TYPE_UINT16_T, 0, 92, offsetof(mavlink_telemetry_data_pack_t, Position_Accuracy) }, \
-         { "Speed_Accuracy", NULL, MAVLINK_TYPE_UINT16_T, 0, 94, offsetof(mavlink_telemetry_data_pack_t, Speed_Accuracy) }, \
-         { "Acceleration_X", NULL, MAVLINK_TYPE_INT16_T, 0, 96, offsetof(mavlink_telemetry_data_pack_t, Acceleration_X) }, \
-         { "Acceleration_Y", NULL, MAVLINK_TYPE_INT16_T, 0, 98, offsetof(mavlink_telemetry_data_pack_t, Acceleration_Y) }, \
-         { "Acceleration_Z", NULL, MAVLINK_TYPE_INT16_T, 0, 100, offsetof(mavlink_telemetry_data_pack_t, Acceleration_Z) }, \
-         { "ECEF_Position_X", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_telemetry_data_pack_t, ECEF_Position_X) }, \
-         { "ECEF_Position_Y", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_telemetry_data_pack_t, ECEF_Position_Y) }, \
-         { "ECEF_Position_Z", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_telemetry_data_pack_t, ECEF_Position_Z) }, \
-         { "ECEF_Velocity_X", NULL, MAVLINK_TYPE_FLOAT, 0, 48, offsetof(mavlink_telemetry_data_pack_t, ECEF_Velocity_X) }, \
-         { "ECEF_Velocity_Y", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_telemetry_data_pack_t, ECEF_Velocity_Y) }, \
-         { "ECEF_Velocity_Z", NULL, MAVLINK_TYPE_FLOAT, 0, 56, offsetof(mavlink_telemetry_data_pack_t, ECEF_Velocity_Z) }, \
-         { "Roll_Angle", NULL, MAVLINK_TYPE_INT16_T, 0, 102, offsetof(mavlink_telemetry_data_pack_t, Roll_Angle) }, \
-         { "Pitch_Angle", NULL, MAVLINK_TYPE_INT16_T, 0, 104, offsetof(mavlink_telemetry_data_pack_t, Pitch_Angle) }, \
-         { "Yaw_Angle", NULL, MAVLINK_TYPE_INT16_T, 0, 106, offsetof(mavlink_telemetry_data_pack_t, Yaw_Angle) }, \
-         { "Angular_Rate_Roll", NULL, MAVLINK_TYPE_INT16_T, 0, 108, offsetof(mavlink_telemetry_data_pack_t, Angular_Rate_Roll) }, \
-         { "Angular_Rate_Pitch", NULL, MAVLINK_TYPE_INT16_T, 0, 110, offsetof(mavlink_telemetry_data_pack_t, Angular_Rate_Pitch) }, \
-         { "Angular_Rate_Yaw", NULL, MAVLINK_TYPE_INT16_T, 0, 112, offsetof(mavlink_telemetry_data_pack_t, Angular_Rate_Yaw) }, \
-         { "Quaternion_0", NULL, MAVLINK_TYPE_FLOAT, 0, 60, offsetof(mavlink_telemetry_data_pack_t, Quaternion_0) }, \
-         { "Quaternion_1", NULL, MAVLINK_TYPE_FLOAT, 0, 64, offsetof(mavlink_telemetry_data_pack_t, Quaternion_1) }, \
-         { "Quaternion_2", NULL, MAVLINK_TYPE_FLOAT, 0, 68, offsetof(mavlink_telemetry_data_pack_t, Quaternion_2) }, \
-         { "Quaternion_3", NULL, MAVLINK_TYPE_FLOAT, 0, 72, offsetof(mavlink_telemetry_data_pack_t, Quaternion_3) }, \
-         { "Telemetry_Status_Mask", NULL, MAVLINK_TYPE_UINT32_T, 0, 76, offsetof(mavlink_telemetry_data_pack_t, Telemetry_Status_Mask) }, \
-         { "Satellite_Num", NULL, MAVLINK_TYPE_UINT8_T, 0, 114, offsetof(mavlink_telemetry_data_pack_t, Satellite_Num) }, \
+         { "Latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 24, offsetof(mavlink_telemetry_data_pack_t, Latitude) }, \
+         { "Longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 28, offsetof(mavlink_telemetry_data_pack_t, Longitude) }, \
+         { "GNSS_Altitude", NULL, MAVLINK_TYPE_UINT32_T, 0, 32, offsetof(mavlink_telemetry_data_pack_t, GNSS_Altitude) }, \
+         { "Air_Speed_U", NULL, MAVLINK_TYPE_INT16_T, 0, 84, offsetof(mavlink_telemetry_data_pack_t, Air_Speed_U) }, \
+         { "Air_Speed_V", NULL, MAVLINK_TYPE_INT16_T, 0, 86, offsetof(mavlink_telemetry_data_pack_t, Air_Speed_V) }, \
+         { "Air_Speed_W", NULL, MAVLINK_TYPE_INT16_T, 0, 88, offsetof(mavlink_telemetry_data_pack_t, Air_Speed_W) }, \
+         { "Air_Temperature", NULL, MAVLINK_TYPE_INT16_T, 0, 90, offsetof(mavlink_telemetry_data_pack_t, Air_Temperature) }, \
+         { "Altitude_Main_Altimeter", NULL, MAVLINK_TYPE_INT32_T, 0, 36, offsetof(mavlink_telemetry_data_pack_t, Altitude_Main_Altimeter) }, \
+         { "Altitude_Payload_Altimeter", NULL, MAVLINK_TYPE_INT32_T, 0, 40, offsetof(mavlink_telemetry_data_pack_t, Altitude_Payload_Altimeter) }, \
+         { "Velocity_Horizontal", NULL, MAVLINK_TYPE_UINT16_T, 0, 92, offsetof(mavlink_telemetry_data_pack_t, Velocity_Horizontal) }, \
+         { "Velocity_Vertical", NULL, MAVLINK_TYPE_INT16_T, 0, 94, offsetof(mavlink_telemetry_data_pack_t, Velocity_Vertical) }, \
+         { "Position_Accuracy", NULL, MAVLINK_TYPE_UINT16_T, 0, 96, offsetof(mavlink_telemetry_data_pack_t, Position_Accuracy) }, \
+         { "Speed_Accuracy", NULL, MAVLINK_TYPE_UINT16_T, 0, 98, offsetof(mavlink_telemetry_data_pack_t, Speed_Accuracy) }, \
+         { "Acceleration_X", NULL, MAVLINK_TYPE_INT16_T, 0, 100, offsetof(mavlink_telemetry_data_pack_t, Acceleration_X) }, \
+         { "Acceleration_Y", NULL, MAVLINK_TYPE_INT16_T, 0, 102, offsetof(mavlink_telemetry_data_pack_t, Acceleration_Y) }, \
+         { "Acceleration_Z", NULL, MAVLINK_TYPE_INT16_T, 0, 104, offsetof(mavlink_telemetry_data_pack_t, Acceleration_Z) }, \
+         { "ECEF_Position_X", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_telemetry_data_pack_t, ECEF_Position_X) }, \
+         { "ECEF_Position_Y", NULL, MAVLINK_TYPE_FLOAT, 0, 48, offsetof(mavlink_telemetry_data_pack_t, ECEF_Position_Y) }, \
+         { "ECEF_Position_Z", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_telemetry_data_pack_t, ECEF_Position_Z) }, \
+         { "ECEF_Velocity_X", NULL, MAVLINK_TYPE_FLOAT, 0, 56, offsetof(mavlink_telemetry_data_pack_t, ECEF_Velocity_X) }, \
+         { "ECEF_Velocity_Y", NULL, MAVLINK_TYPE_FLOAT, 0, 60, offsetof(mavlink_telemetry_data_pack_t, ECEF_Velocity_Y) }, \
+         { "ECEF_Velocity_Z", NULL, MAVLINK_TYPE_FLOAT, 0, 64, offsetof(mavlink_telemetry_data_pack_t, ECEF_Velocity_Z) }, \
+         { "Roll_Angle", NULL, MAVLINK_TYPE_INT16_T, 0, 106, offsetof(mavlink_telemetry_data_pack_t, Roll_Angle) }, \
+         { "Pitch_Angle", NULL, MAVLINK_TYPE_INT16_T, 0, 108, offsetof(mavlink_telemetry_data_pack_t, Pitch_Angle) }, \
+         { "Yaw_Angle", NULL, MAVLINK_TYPE_INT16_T, 0, 110, offsetof(mavlink_telemetry_data_pack_t, Yaw_Angle) }, \
+         { "Angular_Rate_Roll", NULL, MAVLINK_TYPE_INT16_T, 0, 112, offsetof(mavlink_telemetry_data_pack_t, Angular_Rate_Roll) }, \
+         { "Angular_Rate_Pitch", NULL, MAVLINK_TYPE_INT16_T, 0, 114, offsetof(mavlink_telemetry_data_pack_t, Angular_Rate_Pitch) }, \
+         { "Angular_Rate_Yaw", NULL, MAVLINK_TYPE_INT16_T, 0, 116, offsetof(mavlink_telemetry_data_pack_t, Angular_Rate_Yaw) }, \
+         { "Quaternion_0", NULL, MAVLINK_TYPE_FLOAT, 0, 68, offsetof(mavlink_telemetry_data_pack_t, Quaternion_0) }, \
+         { "Quaternion_1", NULL, MAVLINK_TYPE_FLOAT, 0, 72, offsetof(mavlink_telemetry_data_pack_t, Quaternion_1) }, \
+         { "Quaternion_2", NULL, MAVLINK_TYPE_FLOAT, 0, 76, offsetof(mavlink_telemetry_data_pack_t, Quaternion_2) }, \
+         { "Quaternion_3", NULL, MAVLINK_TYPE_FLOAT, 0, 80, offsetof(mavlink_telemetry_data_pack_t, Quaternion_3) }, \
+         { "Telemetry_Status_Mask", NULL, MAVLINK_TYPE_UINT64_T, 0, 16, offsetof(mavlink_telemetry_data_pack_t, Telemetry_Status_Mask) }, \
+         { "Satellite_Num", NULL, MAVLINK_TYPE_UINT8_T, 0, 118, offsetof(mavlink_telemetry_data_pack_t, Satellite_Num) }, \
          } \
 }
 #endif
@@ -185,52 +185,53 @@ typedef struct __mavlink_telemetry_data_pack_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_telemetry_data_pack_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint64_t Log_Timestamp, uint64_t GNSS_Timestamp, int32_t Latitude, int32_t Longitude, uint32_t GNSS_Altitude, int16_t Air_Speed_U, int16_t Air_Speed_V, int16_t Air_Speed_W, int16_t Air_Temperature, int32_t Altitude_Main_Altimeter, int32_t Altitude_Payload_Altimeter, uint16_t Velocity_Horizontal, int16_t Velocity_Vertical, uint16_t Position_Accuracy, uint16_t Speed_Accuracy, int16_t Acceleration_X, int16_t Acceleration_Y, int16_t Acceleration_Z, float ECEF_Position_X, float ECEF_Position_Y, float ECEF_Position_Z, float ECEF_Velocity_X, float ECEF_Velocity_Y, float ECEF_Velocity_Z, int16_t Roll_Angle, int16_t Pitch_Angle, int16_t Yaw_Angle, int16_t Angular_Rate_Roll, int16_t Angular_Rate_Pitch, int16_t Angular_Rate_Yaw, float Quaternion_0, float Quaternion_1, float Quaternion_2, float Quaternion_3, uint32_t Telemetry_Status_Mask, uint8_t Satellite_Num)
+                               uint64_t Log_Timestamp, uint64_t GNSS_Timestamp, int32_t Latitude, int32_t Longitude, uint32_t GNSS_Altitude, int16_t Air_Speed_U, int16_t Air_Speed_V, int16_t Air_Speed_W, int16_t Air_Temperature, int32_t Altitude_Main_Altimeter, int32_t Altitude_Payload_Altimeter, uint16_t Velocity_Horizontal, int16_t Velocity_Vertical, uint16_t Position_Accuracy, uint16_t Speed_Accuracy, int16_t Acceleration_X, int16_t Acceleration_Y, int16_t Acceleration_Z, float ECEF_Position_X, float ECEF_Position_Y, float ECEF_Position_Z, float ECEF_Velocity_X, float ECEF_Velocity_Y, float ECEF_Velocity_Z, int16_t Roll_Angle, int16_t Pitch_Angle, int16_t Yaw_Angle, int16_t Angular_Rate_Roll, int16_t Angular_Rate_Pitch, int16_t Angular_Rate_Yaw, float Quaternion_0, float Quaternion_1, float Quaternion_2, float Quaternion_3, uint64_t Telemetry_Status_Mask, uint8_t Satellite_Num)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_LEN];
     _mav_put_uint64_t(buf, 0, Log_Timestamp);
     _mav_put_uint64_t(buf, 8, GNSS_Timestamp);
-    _mav_put_int32_t(buf, 16, Latitude);
-    _mav_put_int32_t(buf, 20, Longitude);
-    _mav_put_uint32_t(buf, 24, GNSS_Altitude);
-    _mav_put_int32_t(buf, 28, Altitude_Main_Altimeter);
-    _mav_put_int32_t(buf, 32, Altitude_Payload_Altimeter);
-    _mav_put_float(buf, 36, ECEF_Position_X);
-    _mav_put_float(buf, 40, ECEF_Position_Y);
-    _mav_put_float(buf, 44, ECEF_Position_Z);
-    _mav_put_float(buf, 48, ECEF_Velocity_X);
-    _mav_put_float(buf, 52, ECEF_Velocity_Y);
-    _mav_put_float(buf, 56, ECEF_Velocity_Z);
-    _mav_put_float(buf, 60, Quaternion_0);
-    _mav_put_float(buf, 64, Quaternion_1);
-    _mav_put_float(buf, 68, Quaternion_2);
-    _mav_put_float(buf, 72, Quaternion_3);
-    _mav_put_uint32_t(buf, 76, Telemetry_Status_Mask);
-    _mav_put_int16_t(buf, 80, Air_Speed_U);
-    _mav_put_int16_t(buf, 82, Air_Speed_V);
-    _mav_put_int16_t(buf, 84, Air_Speed_W);
-    _mav_put_int16_t(buf, 86, Air_Temperature);
-    _mav_put_uint16_t(buf, 88, Velocity_Horizontal);
-    _mav_put_int16_t(buf, 90, Velocity_Vertical);
-    _mav_put_uint16_t(buf, 92, Position_Accuracy);
-    _mav_put_uint16_t(buf, 94, Speed_Accuracy);
-    _mav_put_int16_t(buf, 96, Acceleration_X);
-    _mav_put_int16_t(buf, 98, Acceleration_Y);
-    _mav_put_int16_t(buf, 100, Acceleration_Z);
-    _mav_put_int16_t(buf, 102, Roll_Angle);
-    _mav_put_int16_t(buf, 104, Pitch_Angle);
-    _mav_put_int16_t(buf, 106, Yaw_Angle);
-    _mav_put_int16_t(buf, 108, Angular_Rate_Roll);
-    _mav_put_int16_t(buf, 110, Angular_Rate_Pitch);
-    _mav_put_int16_t(buf, 112, Angular_Rate_Yaw);
-    _mav_put_uint8_t(buf, 114, Satellite_Num);
+    _mav_put_uint64_t(buf, 16, Telemetry_Status_Mask);
+    _mav_put_int32_t(buf, 24, Latitude);
+    _mav_put_int32_t(buf, 28, Longitude);
+    _mav_put_uint32_t(buf, 32, GNSS_Altitude);
+    _mav_put_int32_t(buf, 36, Altitude_Main_Altimeter);
+    _mav_put_int32_t(buf, 40, Altitude_Payload_Altimeter);
+    _mav_put_float(buf, 44, ECEF_Position_X);
+    _mav_put_float(buf, 48, ECEF_Position_Y);
+    _mav_put_float(buf, 52, ECEF_Position_Z);
+    _mav_put_float(buf, 56, ECEF_Velocity_X);
+    _mav_put_float(buf, 60, ECEF_Velocity_Y);
+    _mav_put_float(buf, 64, ECEF_Velocity_Z);
+    _mav_put_float(buf, 68, Quaternion_0);
+    _mav_put_float(buf, 72, Quaternion_1);
+    _mav_put_float(buf, 76, Quaternion_2);
+    _mav_put_float(buf, 80, Quaternion_3);
+    _mav_put_int16_t(buf, 84, Air_Speed_U);
+    _mav_put_int16_t(buf, 86, Air_Speed_V);
+    _mav_put_int16_t(buf, 88, Air_Speed_W);
+    _mav_put_int16_t(buf, 90, Air_Temperature);
+    _mav_put_uint16_t(buf, 92, Velocity_Horizontal);
+    _mav_put_int16_t(buf, 94, Velocity_Vertical);
+    _mav_put_uint16_t(buf, 96, Position_Accuracy);
+    _mav_put_uint16_t(buf, 98, Speed_Accuracy);
+    _mav_put_int16_t(buf, 100, Acceleration_X);
+    _mav_put_int16_t(buf, 102, Acceleration_Y);
+    _mav_put_int16_t(buf, 104, Acceleration_Z);
+    _mav_put_int16_t(buf, 106, Roll_Angle);
+    _mav_put_int16_t(buf, 108, Pitch_Angle);
+    _mav_put_int16_t(buf, 110, Yaw_Angle);
+    _mav_put_int16_t(buf, 112, Angular_Rate_Roll);
+    _mav_put_int16_t(buf, 114, Angular_Rate_Pitch);
+    _mav_put_int16_t(buf, 116, Angular_Rate_Yaw);
+    _mav_put_uint8_t(buf, 118, Satellite_Num);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_LEN);
 #else
     mavlink_telemetry_data_pack_t packet;
     packet.Log_Timestamp = Log_Timestamp;
     packet.GNSS_Timestamp = GNSS_Timestamp;
+    packet.Telemetry_Status_Mask = Telemetry_Status_Mask;
     packet.Latitude = Latitude;
     packet.Longitude = Longitude;
     packet.GNSS_Altitude = GNSS_Altitude;
@@ -246,7 +247,6 @@ static inline uint16_t mavlink_msg_telemetry_data_pack_pack(uint8_t system_id, u
     packet.Quaternion_1 = Quaternion_1;
     packet.Quaternion_2 = Quaternion_2;
     packet.Quaternion_3 = Quaternion_3;
-    packet.Telemetry_Status_Mask = Telemetry_Status_Mask;
     packet.Air_Speed_U = Air_Speed_U;
     packet.Air_Speed_V = Air_Speed_V;
     packet.Air_Speed_W = Air_Speed_W;
@@ -319,52 +319,53 @@ static inline uint16_t mavlink_msg_telemetry_data_pack_pack(uint8_t system_id, u
  */
 static inline uint16_t mavlink_msg_telemetry_data_pack_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint64_t Log_Timestamp,uint64_t GNSS_Timestamp,int32_t Latitude,int32_t Longitude,uint32_t GNSS_Altitude,int16_t Air_Speed_U,int16_t Air_Speed_V,int16_t Air_Speed_W,int16_t Air_Temperature,int32_t Altitude_Main_Altimeter,int32_t Altitude_Payload_Altimeter,uint16_t Velocity_Horizontal,int16_t Velocity_Vertical,uint16_t Position_Accuracy,uint16_t Speed_Accuracy,int16_t Acceleration_X,int16_t Acceleration_Y,int16_t Acceleration_Z,float ECEF_Position_X,float ECEF_Position_Y,float ECEF_Position_Z,float ECEF_Velocity_X,float ECEF_Velocity_Y,float ECEF_Velocity_Z,int16_t Roll_Angle,int16_t Pitch_Angle,int16_t Yaw_Angle,int16_t Angular_Rate_Roll,int16_t Angular_Rate_Pitch,int16_t Angular_Rate_Yaw,float Quaternion_0,float Quaternion_1,float Quaternion_2,float Quaternion_3,uint32_t Telemetry_Status_Mask,uint8_t Satellite_Num)
+                                   uint64_t Log_Timestamp,uint64_t GNSS_Timestamp,int32_t Latitude,int32_t Longitude,uint32_t GNSS_Altitude,int16_t Air_Speed_U,int16_t Air_Speed_V,int16_t Air_Speed_W,int16_t Air_Temperature,int32_t Altitude_Main_Altimeter,int32_t Altitude_Payload_Altimeter,uint16_t Velocity_Horizontal,int16_t Velocity_Vertical,uint16_t Position_Accuracy,uint16_t Speed_Accuracy,int16_t Acceleration_X,int16_t Acceleration_Y,int16_t Acceleration_Z,float ECEF_Position_X,float ECEF_Position_Y,float ECEF_Position_Z,float ECEF_Velocity_X,float ECEF_Velocity_Y,float ECEF_Velocity_Z,int16_t Roll_Angle,int16_t Pitch_Angle,int16_t Yaw_Angle,int16_t Angular_Rate_Roll,int16_t Angular_Rate_Pitch,int16_t Angular_Rate_Yaw,float Quaternion_0,float Quaternion_1,float Quaternion_2,float Quaternion_3,uint64_t Telemetry_Status_Mask,uint8_t Satellite_Num)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_LEN];
     _mav_put_uint64_t(buf, 0, Log_Timestamp);
     _mav_put_uint64_t(buf, 8, GNSS_Timestamp);
-    _mav_put_int32_t(buf, 16, Latitude);
-    _mav_put_int32_t(buf, 20, Longitude);
-    _mav_put_uint32_t(buf, 24, GNSS_Altitude);
-    _mav_put_int32_t(buf, 28, Altitude_Main_Altimeter);
-    _mav_put_int32_t(buf, 32, Altitude_Payload_Altimeter);
-    _mav_put_float(buf, 36, ECEF_Position_X);
-    _mav_put_float(buf, 40, ECEF_Position_Y);
-    _mav_put_float(buf, 44, ECEF_Position_Z);
-    _mav_put_float(buf, 48, ECEF_Velocity_X);
-    _mav_put_float(buf, 52, ECEF_Velocity_Y);
-    _mav_put_float(buf, 56, ECEF_Velocity_Z);
-    _mav_put_float(buf, 60, Quaternion_0);
-    _mav_put_float(buf, 64, Quaternion_1);
-    _mav_put_float(buf, 68, Quaternion_2);
-    _mav_put_float(buf, 72, Quaternion_3);
-    _mav_put_uint32_t(buf, 76, Telemetry_Status_Mask);
-    _mav_put_int16_t(buf, 80, Air_Speed_U);
-    _mav_put_int16_t(buf, 82, Air_Speed_V);
-    _mav_put_int16_t(buf, 84, Air_Speed_W);
-    _mav_put_int16_t(buf, 86, Air_Temperature);
-    _mav_put_uint16_t(buf, 88, Velocity_Horizontal);
-    _mav_put_int16_t(buf, 90, Velocity_Vertical);
-    _mav_put_uint16_t(buf, 92, Position_Accuracy);
-    _mav_put_uint16_t(buf, 94, Speed_Accuracy);
-    _mav_put_int16_t(buf, 96, Acceleration_X);
-    _mav_put_int16_t(buf, 98, Acceleration_Y);
-    _mav_put_int16_t(buf, 100, Acceleration_Z);
-    _mav_put_int16_t(buf, 102, Roll_Angle);
-    _mav_put_int16_t(buf, 104, Pitch_Angle);
-    _mav_put_int16_t(buf, 106, Yaw_Angle);
-    _mav_put_int16_t(buf, 108, Angular_Rate_Roll);
-    _mav_put_int16_t(buf, 110, Angular_Rate_Pitch);
-    _mav_put_int16_t(buf, 112, Angular_Rate_Yaw);
-    _mav_put_uint8_t(buf, 114, Satellite_Num);
+    _mav_put_uint64_t(buf, 16, Telemetry_Status_Mask);
+    _mav_put_int32_t(buf, 24, Latitude);
+    _mav_put_int32_t(buf, 28, Longitude);
+    _mav_put_uint32_t(buf, 32, GNSS_Altitude);
+    _mav_put_int32_t(buf, 36, Altitude_Main_Altimeter);
+    _mav_put_int32_t(buf, 40, Altitude_Payload_Altimeter);
+    _mav_put_float(buf, 44, ECEF_Position_X);
+    _mav_put_float(buf, 48, ECEF_Position_Y);
+    _mav_put_float(buf, 52, ECEF_Position_Z);
+    _mav_put_float(buf, 56, ECEF_Velocity_X);
+    _mav_put_float(buf, 60, ECEF_Velocity_Y);
+    _mav_put_float(buf, 64, ECEF_Velocity_Z);
+    _mav_put_float(buf, 68, Quaternion_0);
+    _mav_put_float(buf, 72, Quaternion_1);
+    _mav_put_float(buf, 76, Quaternion_2);
+    _mav_put_float(buf, 80, Quaternion_3);
+    _mav_put_int16_t(buf, 84, Air_Speed_U);
+    _mav_put_int16_t(buf, 86, Air_Speed_V);
+    _mav_put_int16_t(buf, 88, Air_Speed_W);
+    _mav_put_int16_t(buf, 90, Air_Temperature);
+    _mav_put_uint16_t(buf, 92, Velocity_Horizontal);
+    _mav_put_int16_t(buf, 94, Velocity_Vertical);
+    _mav_put_uint16_t(buf, 96, Position_Accuracy);
+    _mav_put_uint16_t(buf, 98, Speed_Accuracy);
+    _mav_put_int16_t(buf, 100, Acceleration_X);
+    _mav_put_int16_t(buf, 102, Acceleration_Y);
+    _mav_put_int16_t(buf, 104, Acceleration_Z);
+    _mav_put_int16_t(buf, 106, Roll_Angle);
+    _mav_put_int16_t(buf, 108, Pitch_Angle);
+    _mav_put_int16_t(buf, 110, Yaw_Angle);
+    _mav_put_int16_t(buf, 112, Angular_Rate_Roll);
+    _mav_put_int16_t(buf, 114, Angular_Rate_Pitch);
+    _mav_put_int16_t(buf, 116, Angular_Rate_Yaw);
+    _mav_put_uint8_t(buf, 118, Satellite_Num);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_LEN);
 #else
     mavlink_telemetry_data_pack_t packet;
     packet.Log_Timestamp = Log_Timestamp;
     packet.GNSS_Timestamp = GNSS_Timestamp;
+    packet.Telemetry_Status_Mask = Telemetry_Status_Mask;
     packet.Latitude = Latitude;
     packet.Longitude = Longitude;
     packet.GNSS_Altitude = GNSS_Altitude;
@@ -380,7 +381,6 @@ static inline uint16_t mavlink_msg_telemetry_data_pack_pack_chan(uint8_t system_
     packet.Quaternion_1 = Quaternion_1;
     packet.Quaternion_2 = Quaternion_2;
     packet.Quaternion_3 = Quaternion_3;
-    packet.Telemetry_Status_Mask = Telemetry_Status_Mask;
     packet.Air_Speed_U = Air_Speed_U;
     packet.Air_Speed_V = Air_Speed_V;
     packet.Air_Speed_W = Air_Speed_W;
@@ -477,52 +477,53 @@ static inline uint16_t mavlink_msg_telemetry_data_pack_encode_chan(uint8_t syste
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_telemetry_data_pack_send(mavlink_channel_t chan, uint64_t Log_Timestamp, uint64_t GNSS_Timestamp, int32_t Latitude, int32_t Longitude, uint32_t GNSS_Altitude, int16_t Air_Speed_U, int16_t Air_Speed_V, int16_t Air_Speed_W, int16_t Air_Temperature, int32_t Altitude_Main_Altimeter, int32_t Altitude_Payload_Altimeter, uint16_t Velocity_Horizontal, int16_t Velocity_Vertical, uint16_t Position_Accuracy, uint16_t Speed_Accuracy, int16_t Acceleration_X, int16_t Acceleration_Y, int16_t Acceleration_Z, float ECEF_Position_X, float ECEF_Position_Y, float ECEF_Position_Z, float ECEF_Velocity_X, float ECEF_Velocity_Y, float ECEF_Velocity_Z, int16_t Roll_Angle, int16_t Pitch_Angle, int16_t Yaw_Angle, int16_t Angular_Rate_Roll, int16_t Angular_Rate_Pitch, int16_t Angular_Rate_Yaw, float Quaternion_0, float Quaternion_1, float Quaternion_2, float Quaternion_3, uint32_t Telemetry_Status_Mask, uint8_t Satellite_Num)
+static inline void mavlink_msg_telemetry_data_pack_send(mavlink_channel_t chan, uint64_t Log_Timestamp, uint64_t GNSS_Timestamp, int32_t Latitude, int32_t Longitude, uint32_t GNSS_Altitude, int16_t Air_Speed_U, int16_t Air_Speed_V, int16_t Air_Speed_W, int16_t Air_Temperature, int32_t Altitude_Main_Altimeter, int32_t Altitude_Payload_Altimeter, uint16_t Velocity_Horizontal, int16_t Velocity_Vertical, uint16_t Position_Accuracy, uint16_t Speed_Accuracy, int16_t Acceleration_X, int16_t Acceleration_Y, int16_t Acceleration_Z, float ECEF_Position_X, float ECEF_Position_Y, float ECEF_Position_Z, float ECEF_Velocity_X, float ECEF_Velocity_Y, float ECEF_Velocity_Z, int16_t Roll_Angle, int16_t Pitch_Angle, int16_t Yaw_Angle, int16_t Angular_Rate_Roll, int16_t Angular_Rate_Pitch, int16_t Angular_Rate_Yaw, float Quaternion_0, float Quaternion_1, float Quaternion_2, float Quaternion_3, uint64_t Telemetry_Status_Mask, uint8_t Satellite_Num)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_LEN];
     _mav_put_uint64_t(buf, 0, Log_Timestamp);
     _mav_put_uint64_t(buf, 8, GNSS_Timestamp);
-    _mav_put_int32_t(buf, 16, Latitude);
-    _mav_put_int32_t(buf, 20, Longitude);
-    _mav_put_uint32_t(buf, 24, GNSS_Altitude);
-    _mav_put_int32_t(buf, 28, Altitude_Main_Altimeter);
-    _mav_put_int32_t(buf, 32, Altitude_Payload_Altimeter);
-    _mav_put_float(buf, 36, ECEF_Position_X);
-    _mav_put_float(buf, 40, ECEF_Position_Y);
-    _mav_put_float(buf, 44, ECEF_Position_Z);
-    _mav_put_float(buf, 48, ECEF_Velocity_X);
-    _mav_put_float(buf, 52, ECEF_Velocity_Y);
-    _mav_put_float(buf, 56, ECEF_Velocity_Z);
-    _mav_put_float(buf, 60, Quaternion_0);
-    _mav_put_float(buf, 64, Quaternion_1);
-    _mav_put_float(buf, 68, Quaternion_2);
-    _mav_put_float(buf, 72, Quaternion_3);
-    _mav_put_uint32_t(buf, 76, Telemetry_Status_Mask);
-    _mav_put_int16_t(buf, 80, Air_Speed_U);
-    _mav_put_int16_t(buf, 82, Air_Speed_V);
-    _mav_put_int16_t(buf, 84, Air_Speed_W);
-    _mav_put_int16_t(buf, 86, Air_Temperature);
-    _mav_put_uint16_t(buf, 88, Velocity_Horizontal);
-    _mav_put_int16_t(buf, 90, Velocity_Vertical);
-    _mav_put_uint16_t(buf, 92, Position_Accuracy);
-    _mav_put_uint16_t(buf, 94, Speed_Accuracy);
-    _mav_put_int16_t(buf, 96, Acceleration_X);
-    _mav_put_int16_t(buf, 98, Acceleration_Y);
-    _mav_put_int16_t(buf, 100, Acceleration_Z);
-    _mav_put_int16_t(buf, 102, Roll_Angle);
-    _mav_put_int16_t(buf, 104, Pitch_Angle);
-    _mav_put_int16_t(buf, 106, Yaw_Angle);
-    _mav_put_int16_t(buf, 108, Angular_Rate_Roll);
-    _mav_put_int16_t(buf, 110, Angular_Rate_Pitch);
-    _mav_put_int16_t(buf, 112, Angular_Rate_Yaw);
-    _mav_put_uint8_t(buf, 114, Satellite_Num);
+    _mav_put_uint64_t(buf, 16, Telemetry_Status_Mask);
+    _mav_put_int32_t(buf, 24, Latitude);
+    _mav_put_int32_t(buf, 28, Longitude);
+    _mav_put_uint32_t(buf, 32, GNSS_Altitude);
+    _mav_put_int32_t(buf, 36, Altitude_Main_Altimeter);
+    _mav_put_int32_t(buf, 40, Altitude_Payload_Altimeter);
+    _mav_put_float(buf, 44, ECEF_Position_X);
+    _mav_put_float(buf, 48, ECEF_Position_Y);
+    _mav_put_float(buf, 52, ECEF_Position_Z);
+    _mav_put_float(buf, 56, ECEF_Velocity_X);
+    _mav_put_float(buf, 60, ECEF_Velocity_Y);
+    _mav_put_float(buf, 64, ECEF_Velocity_Z);
+    _mav_put_float(buf, 68, Quaternion_0);
+    _mav_put_float(buf, 72, Quaternion_1);
+    _mav_put_float(buf, 76, Quaternion_2);
+    _mav_put_float(buf, 80, Quaternion_3);
+    _mav_put_int16_t(buf, 84, Air_Speed_U);
+    _mav_put_int16_t(buf, 86, Air_Speed_V);
+    _mav_put_int16_t(buf, 88, Air_Speed_W);
+    _mav_put_int16_t(buf, 90, Air_Temperature);
+    _mav_put_uint16_t(buf, 92, Velocity_Horizontal);
+    _mav_put_int16_t(buf, 94, Velocity_Vertical);
+    _mav_put_uint16_t(buf, 96, Position_Accuracy);
+    _mav_put_uint16_t(buf, 98, Speed_Accuracy);
+    _mav_put_int16_t(buf, 100, Acceleration_X);
+    _mav_put_int16_t(buf, 102, Acceleration_Y);
+    _mav_put_int16_t(buf, 104, Acceleration_Z);
+    _mav_put_int16_t(buf, 106, Roll_Angle);
+    _mav_put_int16_t(buf, 108, Pitch_Angle);
+    _mav_put_int16_t(buf, 110, Yaw_Angle);
+    _mav_put_int16_t(buf, 112, Angular_Rate_Roll);
+    _mav_put_int16_t(buf, 114, Angular_Rate_Pitch);
+    _mav_put_int16_t(buf, 116, Angular_Rate_Yaw);
+    _mav_put_uint8_t(buf, 118, Satellite_Num);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TELEMETRY_DATA_PACK, buf, MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_MIN_LEN, MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_LEN, MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_CRC);
 #else
     mavlink_telemetry_data_pack_t packet;
     packet.Log_Timestamp = Log_Timestamp;
     packet.GNSS_Timestamp = GNSS_Timestamp;
+    packet.Telemetry_Status_Mask = Telemetry_Status_Mask;
     packet.Latitude = Latitude;
     packet.Longitude = Longitude;
     packet.GNSS_Altitude = GNSS_Altitude;
@@ -538,7 +539,6 @@ static inline void mavlink_msg_telemetry_data_pack_send(mavlink_channel_t chan, 
     packet.Quaternion_1 = Quaternion_1;
     packet.Quaternion_2 = Quaternion_2;
     packet.Quaternion_3 = Quaternion_3;
-    packet.Telemetry_Status_Mask = Telemetry_Status_Mask;
     packet.Air_Speed_U = Air_Speed_U;
     packet.Air_Speed_V = Air_Speed_V;
     packet.Air_Speed_W = Air_Speed_W;
@@ -584,52 +584,53 @@ static inline void mavlink_msg_telemetry_data_pack_send_struct(mavlink_channel_t
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_telemetry_data_pack_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t Log_Timestamp, uint64_t GNSS_Timestamp, int32_t Latitude, int32_t Longitude, uint32_t GNSS_Altitude, int16_t Air_Speed_U, int16_t Air_Speed_V, int16_t Air_Speed_W, int16_t Air_Temperature, int32_t Altitude_Main_Altimeter, int32_t Altitude_Payload_Altimeter, uint16_t Velocity_Horizontal, int16_t Velocity_Vertical, uint16_t Position_Accuracy, uint16_t Speed_Accuracy, int16_t Acceleration_X, int16_t Acceleration_Y, int16_t Acceleration_Z, float ECEF_Position_X, float ECEF_Position_Y, float ECEF_Position_Z, float ECEF_Velocity_X, float ECEF_Velocity_Y, float ECEF_Velocity_Z, int16_t Roll_Angle, int16_t Pitch_Angle, int16_t Yaw_Angle, int16_t Angular_Rate_Roll, int16_t Angular_Rate_Pitch, int16_t Angular_Rate_Yaw, float Quaternion_0, float Quaternion_1, float Quaternion_2, float Quaternion_3, uint32_t Telemetry_Status_Mask, uint8_t Satellite_Num)
+static inline void mavlink_msg_telemetry_data_pack_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t Log_Timestamp, uint64_t GNSS_Timestamp, int32_t Latitude, int32_t Longitude, uint32_t GNSS_Altitude, int16_t Air_Speed_U, int16_t Air_Speed_V, int16_t Air_Speed_W, int16_t Air_Temperature, int32_t Altitude_Main_Altimeter, int32_t Altitude_Payload_Altimeter, uint16_t Velocity_Horizontal, int16_t Velocity_Vertical, uint16_t Position_Accuracy, uint16_t Speed_Accuracy, int16_t Acceleration_X, int16_t Acceleration_Y, int16_t Acceleration_Z, float ECEF_Position_X, float ECEF_Position_Y, float ECEF_Position_Z, float ECEF_Velocity_X, float ECEF_Velocity_Y, float ECEF_Velocity_Z, int16_t Roll_Angle, int16_t Pitch_Angle, int16_t Yaw_Angle, int16_t Angular_Rate_Roll, int16_t Angular_Rate_Pitch, int16_t Angular_Rate_Yaw, float Quaternion_0, float Quaternion_1, float Quaternion_2, float Quaternion_3, uint64_t Telemetry_Status_Mask, uint8_t Satellite_Num)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint64_t(buf, 0, Log_Timestamp);
     _mav_put_uint64_t(buf, 8, GNSS_Timestamp);
-    _mav_put_int32_t(buf, 16, Latitude);
-    _mav_put_int32_t(buf, 20, Longitude);
-    _mav_put_uint32_t(buf, 24, GNSS_Altitude);
-    _mav_put_int32_t(buf, 28, Altitude_Main_Altimeter);
-    _mav_put_int32_t(buf, 32, Altitude_Payload_Altimeter);
-    _mav_put_float(buf, 36, ECEF_Position_X);
-    _mav_put_float(buf, 40, ECEF_Position_Y);
-    _mav_put_float(buf, 44, ECEF_Position_Z);
-    _mav_put_float(buf, 48, ECEF_Velocity_X);
-    _mav_put_float(buf, 52, ECEF_Velocity_Y);
-    _mav_put_float(buf, 56, ECEF_Velocity_Z);
-    _mav_put_float(buf, 60, Quaternion_0);
-    _mav_put_float(buf, 64, Quaternion_1);
-    _mav_put_float(buf, 68, Quaternion_2);
-    _mav_put_float(buf, 72, Quaternion_3);
-    _mav_put_uint32_t(buf, 76, Telemetry_Status_Mask);
-    _mav_put_int16_t(buf, 80, Air_Speed_U);
-    _mav_put_int16_t(buf, 82, Air_Speed_V);
-    _mav_put_int16_t(buf, 84, Air_Speed_W);
-    _mav_put_int16_t(buf, 86, Air_Temperature);
-    _mav_put_uint16_t(buf, 88, Velocity_Horizontal);
-    _mav_put_int16_t(buf, 90, Velocity_Vertical);
-    _mav_put_uint16_t(buf, 92, Position_Accuracy);
-    _mav_put_uint16_t(buf, 94, Speed_Accuracy);
-    _mav_put_int16_t(buf, 96, Acceleration_X);
-    _mav_put_int16_t(buf, 98, Acceleration_Y);
-    _mav_put_int16_t(buf, 100, Acceleration_Z);
-    _mav_put_int16_t(buf, 102, Roll_Angle);
-    _mav_put_int16_t(buf, 104, Pitch_Angle);
-    _mav_put_int16_t(buf, 106, Yaw_Angle);
-    _mav_put_int16_t(buf, 108, Angular_Rate_Roll);
-    _mav_put_int16_t(buf, 110, Angular_Rate_Pitch);
-    _mav_put_int16_t(buf, 112, Angular_Rate_Yaw);
-    _mav_put_uint8_t(buf, 114, Satellite_Num);
+    _mav_put_uint64_t(buf, 16, Telemetry_Status_Mask);
+    _mav_put_int32_t(buf, 24, Latitude);
+    _mav_put_int32_t(buf, 28, Longitude);
+    _mav_put_uint32_t(buf, 32, GNSS_Altitude);
+    _mav_put_int32_t(buf, 36, Altitude_Main_Altimeter);
+    _mav_put_int32_t(buf, 40, Altitude_Payload_Altimeter);
+    _mav_put_float(buf, 44, ECEF_Position_X);
+    _mav_put_float(buf, 48, ECEF_Position_Y);
+    _mav_put_float(buf, 52, ECEF_Position_Z);
+    _mav_put_float(buf, 56, ECEF_Velocity_X);
+    _mav_put_float(buf, 60, ECEF_Velocity_Y);
+    _mav_put_float(buf, 64, ECEF_Velocity_Z);
+    _mav_put_float(buf, 68, Quaternion_0);
+    _mav_put_float(buf, 72, Quaternion_1);
+    _mav_put_float(buf, 76, Quaternion_2);
+    _mav_put_float(buf, 80, Quaternion_3);
+    _mav_put_int16_t(buf, 84, Air_Speed_U);
+    _mav_put_int16_t(buf, 86, Air_Speed_V);
+    _mav_put_int16_t(buf, 88, Air_Speed_W);
+    _mav_put_int16_t(buf, 90, Air_Temperature);
+    _mav_put_uint16_t(buf, 92, Velocity_Horizontal);
+    _mav_put_int16_t(buf, 94, Velocity_Vertical);
+    _mav_put_uint16_t(buf, 96, Position_Accuracy);
+    _mav_put_uint16_t(buf, 98, Speed_Accuracy);
+    _mav_put_int16_t(buf, 100, Acceleration_X);
+    _mav_put_int16_t(buf, 102, Acceleration_Y);
+    _mav_put_int16_t(buf, 104, Acceleration_Z);
+    _mav_put_int16_t(buf, 106, Roll_Angle);
+    _mav_put_int16_t(buf, 108, Pitch_Angle);
+    _mav_put_int16_t(buf, 110, Yaw_Angle);
+    _mav_put_int16_t(buf, 112, Angular_Rate_Roll);
+    _mav_put_int16_t(buf, 114, Angular_Rate_Pitch);
+    _mav_put_int16_t(buf, 116, Angular_Rate_Yaw);
+    _mav_put_uint8_t(buf, 118, Satellite_Num);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TELEMETRY_DATA_PACK, buf, MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_MIN_LEN, MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_LEN, MAVLINK_MSG_ID_TELEMETRY_DATA_PACK_CRC);
 #else
     mavlink_telemetry_data_pack_t *packet = (mavlink_telemetry_data_pack_t *)msgbuf;
     packet->Log_Timestamp = Log_Timestamp;
     packet->GNSS_Timestamp = GNSS_Timestamp;
+    packet->Telemetry_Status_Mask = Telemetry_Status_Mask;
     packet->Latitude = Latitude;
     packet->Longitude = Longitude;
     packet->GNSS_Altitude = GNSS_Altitude;
@@ -645,7 +646,6 @@ static inline void mavlink_msg_telemetry_data_pack_send_buf(mavlink_message_t *m
     packet->Quaternion_1 = Quaternion_1;
     packet->Quaternion_2 = Quaternion_2;
     packet->Quaternion_3 = Quaternion_3;
-    packet->Telemetry_Status_Mask = Telemetry_Status_Mask;
     packet->Air_Speed_U = Air_Speed_U;
     packet->Air_Speed_V = Air_Speed_V;
     packet->Air_Speed_W = Air_Speed_W;
@@ -702,7 +702,7 @@ static inline uint64_t mavlink_msg_telemetry_data_pack_get_GNSS_Timestamp(const 
  */
 static inline int32_t mavlink_msg_telemetry_data_pack_get_Latitude(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int32_t(msg,  16);
+    return _MAV_RETURN_int32_t(msg,  24);
 }
 
 /**
@@ -712,7 +712,7 @@ static inline int32_t mavlink_msg_telemetry_data_pack_get_Latitude(const mavlink
  */
 static inline int32_t mavlink_msg_telemetry_data_pack_get_Longitude(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int32_t(msg,  20);
+    return _MAV_RETURN_int32_t(msg,  28);
 }
 
 /**
@@ -722,7 +722,7 @@ static inline int32_t mavlink_msg_telemetry_data_pack_get_Longitude(const mavlin
  */
 static inline uint32_t mavlink_msg_telemetry_data_pack_get_GNSS_Altitude(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint32_t(msg,  24);
+    return _MAV_RETURN_uint32_t(msg,  32);
 }
 
 /**
@@ -732,7 +732,7 @@ static inline uint32_t mavlink_msg_telemetry_data_pack_get_GNSS_Altitude(const m
  */
 static inline int16_t mavlink_msg_telemetry_data_pack_get_Air_Speed_U(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  80);
+    return _MAV_RETURN_int16_t(msg,  84);
 }
 
 /**
@@ -742,7 +742,7 @@ static inline int16_t mavlink_msg_telemetry_data_pack_get_Air_Speed_U(const mavl
  */
 static inline int16_t mavlink_msg_telemetry_data_pack_get_Air_Speed_V(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  82);
+    return _MAV_RETURN_int16_t(msg,  86);
 }
 
 /**
@@ -752,7 +752,7 @@ static inline int16_t mavlink_msg_telemetry_data_pack_get_Air_Speed_V(const mavl
  */
 static inline int16_t mavlink_msg_telemetry_data_pack_get_Air_Speed_W(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  84);
+    return _MAV_RETURN_int16_t(msg,  88);
 }
 
 /**
@@ -762,7 +762,7 @@ static inline int16_t mavlink_msg_telemetry_data_pack_get_Air_Speed_W(const mavl
  */
 static inline int16_t mavlink_msg_telemetry_data_pack_get_Air_Temperature(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  86);
+    return _MAV_RETURN_int16_t(msg,  90);
 }
 
 /**
@@ -772,7 +772,7 @@ static inline int16_t mavlink_msg_telemetry_data_pack_get_Air_Temperature(const 
  */
 static inline int32_t mavlink_msg_telemetry_data_pack_get_Altitude_Main_Altimeter(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int32_t(msg,  28);
+    return _MAV_RETURN_int32_t(msg,  36);
 }
 
 /**
@@ -782,7 +782,7 @@ static inline int32_t mavlink_msg_telemetry_data_pack_get_Altitude_Main_Altimete
  */
 static inline int32_t mavlink_msg_telemetry_data_pack_get_Altitude_Payload_Altimeter(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int32_t(msg,  32);
+    return _MAV_RETURN_int32_t(msg,  40);
 }
 
 /**
@@ -792,7 +792,7 @@ static inline int32_t mavlink_msg_telemetry_data_pack_get_Altitude_Payload_Altim
  */
 static inline uint16_t mavlink_msg_telemetry_data_pack_get_Velocity_Horizontal(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint16_t(msg,  88);
+    return _MAV_RETURN_uint16_t(msg,  92);
 }
 
 /**
@@ -802,7 +802,7 @@ static inline uint16_t mavlink_msg_telemetry_data_pack_get_Velocity_Horizontal(c
  */
 static inline int16_t mavlink_msg_telemetry_data_pack_get_Velocity_Vertical(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  90);
+    return _MAV_RETURN_int16_t(msg,  94);
 }
 
 /**
@@ -812,7 +812,7 @@ static inline int16_t mavlink_msg_telemetry_data_pack_get_Velocity_Vertical(cons
  */
 static inline uint16_t mavlink_msg_telemetry_data_pack_get_Position_Accuracy(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint16_t(msg,  92);
+    return _MAV_RETURN_uint16_t(msg,  96);
 }
 
 /**
@@ -822,7 +822,7 @@ static inline uint16_t mavlink_msg_telemetry_data_pack_get_Position_Accuracy(con
  */
 static inline uint16_t mavlink_msg_telemetry_data_pack_get_Speed_Accuracy(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint16_t(msg,  94);
+    return _MAV_RETURN_uint16_t(msg,  98);
 }
 
 /**
@@ -832,7 +832,7 @@ static inline uint16_t mavlink_msg_telemetry_data_pack_get_Speed_Accuracy(const 
  */
 static inline int16_t mavlink_msg_telemetry_data_pack_get_Acceleration_X(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  96);
+    return _MAV_RETURN_int16_t(msg,  100);
 }
 
 /**
@@ -842,7 +842,7 @@ static inline int16_t mavlink_msg_telemetry_data_pack_get_Acceleration_X(const m
  */
 static inline int16_t mavlink_msg_telemetry_data_pack_get_Acceleration_Y(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  98);
+    return _MAV_RETURN_int16_t(msg,  102);
 }
 
 /**
@@ -852,7 +852,7 @@ static inline int16_t mavlink_msg_telemetry_data_pack_get_Acceleration_Y(const m
  */
 static inline int16_t mavlink_msg_telemetry_data_pack_get_Acceleration_Z(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  100);
+    return _MAV_RETURN_int16_t(msg,  104);
 }
 
 /**
@@ -862,7 +862,7 @@ static inline int16_t mavlink_msg_telemetry_data_pack_get_Acceleration_Z(const m
  */
 static inline float mavlink_msg_telemetry_data_pack_get_ECEF_Position_X(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_float(msg,  36);
+    return _MAV_RETURN_float(msg,  44);
 }
 
 /**
@@ -872,7 +872,7 @@ static inline float mavlink_msg_telemetry_data_pack_get_ECEF_Position_X(const ma
  */
 static inline float mavlink_msg_telemetry_data_pack_get_ECEF_Position_Y(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_float(msg,  40);
+    return _MAV_RETURN_float(msg,  48);
 }
 
 /**
@@ -882,7 +882,7 @@ static inline float mavlink_msg_telemetry_data_pack_get_ECEF_Position_Y(const ma
  */
 static inline float mavlink_msg_telemetry_data_pack_get_ECEF_Position_Z(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_float(msg,  44);
+    return _MAV_RETURN_float(msg,  52);
 }
 
 /**
@@ -892,7 +892,7 @@ static inline float mavlink_msg_telemetry_data_pack_get_ECEF_Position_Z(const ma
  */
 static inline float mavlink_msg_telemetry_data_pack_get_ECEF_Velocity_X(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_float(msg,  48);
+    return _MAV_RETURN_float(msg,  56);
 }
 
 /**
@@ -902,7 +902,7 @@ static inline float mavlink_msg_telemetry_data_pack_get_ECEF_Velocity_X(const ma
  */
 static inline float mavlink_msg_telemetry_data_pack_get_ECEF_Velocity_Y(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_float(msg,  52);
+    return _MAV_RETURN_float(msg,  60);
 }
 
 /**
@@ -912,7 +912,7 @@ static inline float mavlink_msg_telemetry_data_pack_get_ECEF_Velocity_Y(const ma
  */
 static inline float mavlink_msg_telemetry_data_pack_get_ECEF_Velocity_Z(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_float(msg,  56);
+    return _MAV_RETURN_float(msg,  64);
 }
 
 /**
@@ -922,7 +922,7 @@ static inline float mavlink_msg_telemetry_data_pack_get_ECEF_Velocity_Z(const ma
  */
 static inline int16_t mavlink_msg_telemetry_data_pack_get_Roll_Angle(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  102);
+    return _MAV_RETURN_int16_t(msg,  106);
 }
 
 /**
@@ -932,7 +932,7 @@ static inline int16_t mavlink_msg_telemetry_data_pack_get_Roll_Angle(const mavli
  */
 static inline int16_t mavlink_msg_telemetry_data_pack_get_Pitch_Angle(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  104);
+    return _MAV_RETURN_int16_t(msg,  108);
 }
 
 /**
@@ -942,7 +942,7 @@ static inline int16_t mavlink_msg_telemetry_data_pack_get_Pitch_Angle(const mavl
  */
 static inline int16_t mavlink_msg_telemetry_data_pack_get_Yaw_Angle(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  106);
+    return _MAV_RETURN_int16_t(msg,  110);
 }
 
 /**
@@ -952,7 +952,7 @@ static inline int16_t mavlink_msg_telemetry_data_pack_get_Yaw_Angle(const mavlin
  */
 static inline int16_t mavlink_msg_telemetry_data_pack_get_Angular_Rate_Roll(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  108);
+    return _MAV_RETURN_int16_t(msg,  112);
 }
 
 /**
@@ -962,7 +962,7 @@ static inline int16_t mavlink_msg_telemetry_data_pack_get_Angular_Rate_Roll(cons
  */
 static inline int16_t mavlink_msg_telemetry_data_pack_get_Angular_Rate_Pitch(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  110);
+    return _MAV_RETURN_int16_t(msg,  114);
 }
 
 /**
@@ -972,7 +972,7 @@ static inline int16_t mavlink_msg_telemetry_data_pack_get_Angular_Rate_Pitch(con
  */
 static inline int16_t mavlink_msg_telemetry_data_pack_get_Angular_Rate_Yaw(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  112);
+    return _MAV_RETURN_int16_t(msg,  116);
 }
 
 /**
@@ -982,7 +982,7 @@ static inline int16_t mavlink_msg_telemetry_data_pack_get_Angular_Rate_Yaw(const
  */
 static inline float mavlink_msg_telemetry_data_pack_get_Quaternion_0(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_float(msg,  60);
+    return _MAV_RETURN_float(msg,  68);
 }
 
 /**
@@ -992,7 +992,7 @@ static inline float mavlink_msg_telemetry_data_pack_get_Quaternion_0(const mavli
  */
 static inline float mavlink_msg_telemetry_data_pack_get_Quaternion_1(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_float(msg,  64);
+    return _MAV_RETURN_float(msg,  72);
 }
 
 /**
@@ -1002,7 +1002,7 @@ static inline float mavlink_msg_telemetry_data_pack_get_Quaternion_1(const mavli
  */
 static inline float mavlink_msg_telemetry_data_pack_get_Quaternion_2(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_float(msg,  68);
+    return _MAV_RETURN_float(msg,  76);
 }
 
 /**
@@ -1012,7 +1012,7 @@ static inline float mavlink_msg_telemetry_data_pack_get_Quaternion_2(const mavli
  */
 static inline float mavlink_msg_telemetry_data_pack_get_Quaternion_3(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_float(msg,  72);
+    return _MAV_RETURN_float(msg,  80);
 }
 
 /**
@@ -1020,9 +1020,9 @@ static inline float mavlink_msg_telemetry_data_pack_get_Quaternion_3(const mavli
  *
  * @return  Telemetry module status mask
  */
-static inline uint32_t mavlink_msg_telemetry_data_pack_get_Telemetry_Status_Mask(const mavlink_message_t* msg)
+static inline uint64_t mavlink_msg_telemetry_data_pack_get_Telemetry_Status_Mask(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint32_t(msg,  76);
+    return _MAV_RETURN_uint64_t(msg,  16);
 }
 
 /**
@@ -1032,7 +1032,7 @@ static inline uint32_t mavlink_msg_telemetry_data_pack_get_Telemetry_Status_Mask
  */
 static inline uint8_t mavlink_msg_telemetry_data_pack_get_Satellite_Num(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  114);
+    return _MAV_RETURN_uint8_t(msg,  118);
 }
 
 /**
@@ -1046,6 +1046,7 @@ static inline void mavlink_msg_telemetry_data_pack_decode(const mavlink_message_
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     telemetry_data_pack->Log_Timestamp = mavlink_msg_telemetry_data_pack_get_Log_Timestamp(msg);
     telemetry_data_pack->GNSS_Timestamp = mavlink_msg_telemetry_data_pack_get_GNSS_Timestamp(msg);
+    telemetry_data_pack->Telemetry_Status_Mask = mavlink_msg_telemetry_data_pack_get_Telemetry_Status_Mask(msg);
     telemetry_data_pack->Latitude = mavlink_msg_telemetry_data_pack_get_Latitude(msg);
     telemetry_data_pack->Longitude = mavlink_msg_telemetry_data_pack_get_Longitude(msg);
     telemetry_data_pack->GNSS_Altitude = mavlink_msg_telemetry_data_pack_get_GNSS_Altitude(msg);
@@ -1061,7 +1062,6 @@ static inline void mavlink_msg_telemetry_data_pack_decode(const mavlink_message_
     telemetry_data_pack->Quaternion_1 = mavlink_msg_telemetry_data_pack_get_Quaternion_1(msg);
     telemetry_data_pack->Quaternion_2 = mavlink_msg_telemetry_data_pack_get_Quaternion_2(msg);
     telemetry_data_pack->Quaternion_3 = mavlink_msg_telemetry_data_pack_get_Quaternion_3(msg);
-    telemetry_data_pack->Telemetry_Status_Mask = mavlink_msg_telemetry_data_pack_get_Telemetry_Status_Mask(msg);
     telemetry_data_pack->Air_Speed_U = mavlink_msg_telemetry_data_pack_get_Air_Speed_U(msg);
     telemetry_data_pack->Air_Speed_V = mavlink_msg_telemetry_data_pack_get_Air_Speed_V(msg);
     telemetry_data_pack->Air_Speed_W = mavlink_msg_telemetry_data_pack_get_Air_Speed_W(msg);

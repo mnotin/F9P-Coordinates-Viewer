@@ -37,13 +37,13 @@ static void mavlink_test_system_status_pack(uint8_t system_id, uint8_t component
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_system_status_pack_t packet_in = {
-        93372036854775807ULL,963497880,963498088,963498296,963498504,963498712,963498920,963499128,113,180
+        93372036854775807ULL,93372036854776311ULL,963498296,963498504,963498712,963498920,963499128,963499336,125,192
     };
     mavlink_system_status_pack_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.Log_Timestamp = packet_in.Log_Timestamp;
-        packet1.Core_Module_Status_Mask = packet_in.Core_Module_Status_Mask;
         packet1.Telemetry_Module_Status_Mask = packet_in.Telemetry_Module_Status_Mask;
+        packet1.Core_Module_Status_Mask = packet_in.Core_Module_Status_Mask;
         packet1.Storage_Module_Status_Mask = packet_in.Storage_Module_Status_Mask;
         packet1.Radio_Link_Module_Status_Mask = packet_in.Radio_Link_Module_Status_Mask;
         packet1.Motor_Control_Module_Status_Mask = packet_in.Motor_Control_Module_Status_Mask;
@@ -105,12 +105,13 @@ static void mavlink_test_telemetry_data_pack(uint8_t system_id, uint8_t componen
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_telemetry_data_pack_t packet_in = {
-        93372036854775807ULL,93372036854776311ULL,963498296,963498504,963498712,963498920,963499128,269.0,297.0,325.0,353.0,381.0,409.0,437.0,465.0,493.0,521.0,963501416,21395,21499,21603,21707,21811,21915,22019,22123,22227,22331,22435,22539,22643,22747,22851,22955,23059,219
+        93372036854775807ULL,93372036854776311ULL,93372036854776815ULL,963498712,963498920,963499128,963499336,963499544,325.0,353.0,381.0,409.0,437.0,465.0,493.0,521.0,549.0,577.0,21603,21707,21811,21915,22019,22123,22227,22331,22435,22539,22643,22747,22851,22955,23059,23163,23267,231
     };
     mavlink_telemetry_data_pack_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.Log_Timestamp = packet_in.Log_Timestamp;
         packet1.GNSS_Timestamp = packet_in.GNSS_Timestamp;
+        packet1.Telemetry_Status_Mask = packet_in.Telemetry_Status_Mask;
         packet1.Latitude = packet_in.Latitude;
         packet1.Longitude = packet_in.Longitude;
         packet1.GNSS_Altitude = packet_in.GNSS_Altitude;
@@ -126,7 +127,6 @@ static void mavlink_test_telemetry_data_pack(uint8_t system_id, uint8_t componen
         packet1.Quaternion_1 = packet_in.Quaternion_1;
         packet1.Quaternion_2 = packet_in.Quaternion_2;
         packet1.Quaternion_3 = packet_in.Quaternion_3;
-        packet1.Telemetry_Status_Mask = packet_in.Telemetry_Status_Mask;
         packet1.Air_Speed_U = packet_in.Air_Speed_U;
         packet1.Air_Speed_V = packet_in.Air_Speed_V;
         packet1.Air_Speed_W = packet_in.Air_Speed_W;
@@ -199,7 +199,7 @@ static void mavlink_test_motor_status_pack(uint8_t system_id, uint8_t component_
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_motor_status_pack_t packet_in = {
-        93372036854775807ULL,963497880,963498088,963498296,963498504,963498712,963498920,963499128,963499336,963499544,963499752,963499960,963500168,20147,20251,20355
+        93372036854775807ULL,963497880,963498088,963498296,963498504,963498712,963498920,963499128,963499336,963499544,963499752,19731,19835,19939,20043,20147
     };
     mavlink_motor_status_pack_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -210,12 +210,12 @@ static void mavlink_test_motor_status_pack(uint8_t system_id, uint8_t component_
         packet1.Motor_B_Demand_Position = packet_in.Motor_B_Demand_Position;
         packet1.Motor_A_Torque = packet_in.Motor_A_Torque;
         packet1.Motor_B_Torque = packet_in.Motor_B_Torque;
-        packet1.Motor_A_Temperature = packet_in.Motor_A_Temperature;
-        packet1.Motor_B_Temperature = packet_in.Motor_B_Temperature;
         packet1.Motor_Control_Status_Mask = packet_in.Motor_Control_Status_Mask;
         packet1.Motor_A_Faults_Mask = packet_in.Motor_A_Faults_Mask;
         packet1.Motor_B_Faults_Mask = packet_in.Motor_B_Faults_Mask;
         packet1.BMS_Faults_Mask = packet_in.BMS_Faults_Mask;
+        packet1.Motor_A_Temperature = packet_in.Motor_A_Temperature;
+        packet1.Motor_B_Temperature = packet_in.Motor_B_Temperature;
         packet1.BMS_Voltage = packet_in.BMS_Voltage;
         packet1.BMS_Absorption = packet_in.BMS_Absorption;
         packet1.BMS_Temperature = packet_in.BMS_Temperature;

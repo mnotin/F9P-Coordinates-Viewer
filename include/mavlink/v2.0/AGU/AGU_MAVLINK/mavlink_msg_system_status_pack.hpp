@@ -13,15 +13,15 @@ namespace msg {
  */
 struct SYSTEM_STATUS_PACK : mavlink::Message {
     static constexpr msgid_t MSG_ID = 13000;
-    static constexpr size_t LENGTH = 38;
-    static constexpr size_t MIN_LENGTH = 38;
-    static constexpr uint8_t CRC_EXTRA = 54;
+    static constexpr size_t LENGTH = 42;
+    static constexpr size_t MIN_LENGTH = 42;
+    static constexpr uint8_t CRC_EXTRA = 210;
     static constexpr auto NAME = "SYSTEM_STATUS_PACK";
 
 
     uint64_t Log_Timestamp; /*< [ms] Log timestamp since 1.1.1970 UTC. */
     uint32_t Core_Module_Status_Mask; /*<  Core module status mask */
-    uint32_t Telemetry_Module_Status_Mask; /*<  Telemetry module status mask */
+    uint64_t Telemetry_Module_Status_Mask; /*<  Telemetry module status mask */
     uint32_t Storage_Module_Status_Mask; /*<  Storage module status mask */
     uint32_t Radio_Link_Module_Status_Mask; /*<  Radio link module status mask */
     uint32_t Motor_Control_Module_Status_Mask; /*<  Motor control module status mask */
@@ -65,29 +65,29 @@ struct SYSTEM_STATUS_PACK : mavlink::Message {
         map.reset(MSG_ID, LENGTH);
 
         map << Log_Timestamp;                 // offset: 0
-        map << Core_Module_Status_Mask;       // offset: 8
-        map << Telemetry_Module_Status_Mask;  // offset: 12
-        map << Storage_Module_Status_Mask;    // offset: 16
-        map << Radio_Link_Module_Status_Mask; // offset: 20
-        map << Motor_Control_Module_Status_Mask; // offset: 24
-        map << Guidance_Module_Status_Mask;   // offset: 28
-        map << Flight_Phase_Time;             // offset: 32
-        map << Flight_Phase;                  // offset: 36
-        map << Flight_Mode;                   // offset: 37
+        map << Telemetry_Module_Status_Mask;  // offset: 8
+        map << Core_Module_Status_Mask;       // offset: 16
+        map << Storage_Module_Status_Mask;    // offset: 20
+        map << Radio_Link_Module_Status_Mask; // offset: 24
+        map << Motor_Control_Module_Status_Mask; // offset: 28
+        map << Guidance_Module_Status_Mask;   // offset: 32
+        map << Flight_Phase_Time;             // offset: 36
+        map << Flight_Phase;                  // offset: 40
+        map << Flight_Mode;                   // offset: 41
     }
 
     inline void deserialize(mavlink::MsgMap &map) override
     {
         map >> Log_Timestamp;                 // offset: 0
-        map >> Core_Module_Status_Mask;       // offset: 8
-        map >> Telemetry_Module_Status_Mask;  // offset: 12
-        map >> Storage_Module_Status_Mask;    // offset: 16
-        map >> Radio_Link_Module_Status_Mask; // offset: 20
-        map >> Motor_Control_Module_Status_Mask; // offset: 24
-        map >> Guidance_Module_Status_Mask;   // offset: 28
-        map >> Flight_Phase_Time;             // offset: 32
-        map >> Flight_Phase;                  // offset: 36
-        map >> Flight_Mode;                   // offset: 37
+        map >> Telemetry_Module_Status_Mask;  // offset: 8
+        map >> Core_Module_Status_Mask;       // offset: 16
+        map >> Storage_Module_Status_Mask;    // offset: 20
+        map >> Radio_Link_Module_Status_Mask; // offset: 24
+        map >> Motor_Control_Module_Status_Mask; // offset: 28
+        map >> Guidance_Module_Status_Mask;   // offset: 32
+        map >> Flight_Phase_Time;             // offset: 36
+        map >> Flight_Phase;                  // offset: 40
+        map >> Flight_Mode;                   // offset: 41
     }
 };
 
